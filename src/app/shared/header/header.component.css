@@ -1,0 +1,10 @@
+.navbar {
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    gap: 50px
+  }
+  .transparency{
+    background-color: transparent;
+    border: transparent;
+  }
