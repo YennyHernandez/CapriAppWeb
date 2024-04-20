@@ -2,9 +2,14 @@
     height: 64px;
     display: flex;
     justify-content: center;
-    gap: 50px
+    gap: 50px;
+    background-color: transparent;
   }
   .transparency{
     background-color: transparent;
     border: transparent;
+   
+  }
+  .isHomeRoute{
+    background-color: rosybrown
   }

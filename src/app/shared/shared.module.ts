@@ -4,6 +4,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FootherComponent } from './foother/foother.component';
+import { CardComponent } from './card/card.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -11,17 +13,21 @@ import { FootherComponent } from './foother/foother.component';
   declarations: [
   
     HeaderComponent,
-    FootherComponent
+    FootherComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
     MatToolbarModule,
-    RouterModule
+    RouterModule,
+    MatCardModule
     
   ],
   exports:[
     HeaderComponent,
-    FootherComponent
+    FootherComponent,
+    CardComponent,
+    
   ]
 })
 export class SharedModule { }

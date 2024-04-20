@@ -1,5 +1,4 @@
-<p>header works!</p>
-  <mat-toolbar color="primary" class="navbar">
+  <mat-toolbar color="primary" class="navbar" [ngClass]="{'isHomeRoute': isHomeRoute}">
     <button mat-button class="transparency" routerLink="/home">home</button>
     <button mat-button class="transparency" routerLink="/booking">Booking</button>
     <button mat-button class="transparency" routerLink="/about">About</button>
