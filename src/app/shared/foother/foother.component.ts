@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-foother',
   templateUrl: './foother.component.html',
-  styleUrls: ['./foother.component.css']
+  styleUrls: ['./foother.component.scss']
 })
 export class FootherComponent {
 
