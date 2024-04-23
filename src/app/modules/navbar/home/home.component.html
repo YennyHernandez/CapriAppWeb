@@ -1,9 +1,9 @@
-<div class="bannerhome">
+<div class="bannerhome ">
 <h1>Bienvenido a Capripicnic</h1>
 </div> 
-<div class="section">
-    <div class="adventure">
-      <h2>¿En qué consiste nuestra aventura?</h2>
+<div class="section contenedor">
+    <div >
+      <h1>¿En qué consiste nuestra aventura?</h1>
       <p>Descripción de la aventura...
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam labore sit quia hic. Ducimus quaerat reiciendis eos. Explicabo voluptates quidem itaque, soluta quibusdam repellendus rerum, illo provident cumque fugiat dolores.
       </p>
@@ -11,25 +11,31 @@
     <div >
       <img class="imagesection" src="../../.././../assets/banner.jpg" alt="Imagen de la aventura">
     </div>
-  </div>
-<div>
-    <h2>Nuestros paquetes</h2>
-    <div class="section">
+</div>
+<div class="contenedor">
+    <h1>Nuestros paquetes</h1>
+    <div class="section contenedor" >
         <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'"[namePaquete]="'Enamorados'" [descriptionPaquete]="'Descripción del paquete 1'" [pricePaquete]="100"></app-card>
         <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'"[namePaquete]="'Celebración'" [descriptionPaquete]="'Descripción del paquete 2'" [pricePaquete]="200"></app-card>
         <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'" [namePaquete]="'Descanso'" [descriptionPaquete]="'Descripción del paquete 3'" [pricePaquete]="300"></app-card>
     </div>
 </div>
-<div class="sectionactivis">
-    <h2>Actividades</h2>
+<div class="contenedor center">
+    <h1>Actividades</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus expedita pariatur omnis, assumenda esse in. Eius assumenda reiciendis et velit cum ratione magni eum nihil, necessitatibus blanditiis recusandae, fugit natus!</p>
 </div>
-<div class="grid-container">
-    <div class="image1"></div>
-    <div class="image2"></div>
-    <div class="image3"></div>
-    <div class="image4"></div>
+<div>
+  <mat-grid-list cols="4" rowHeight="100px">
+    <mat-grid-tile
+        *ngFor="let tile of tiles"
+        [colspan]="tile.cols"
+        [rowspan]="tile.rows"
+        [style.background]="tile.color">
+      {{tile.text}}
+    </mat-grid-tile>
+  </mat-grid-list>  
 </div>
+ 
 
 
 

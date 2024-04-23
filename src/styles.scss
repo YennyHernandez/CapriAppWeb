@@ -1,7 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
 
+
+// Definir colores principales
+$color-primary: #30391F ;
+$color-primary-complement:#668A4C;
+$color-secondary: #464646;
+$color-accent:#ACCC7B ;
+$color-claro: #FFFF;
+$color-oscuro: #0000;
+$color-warn: #80080C;
+
+// Aplicar los colores a variables CSS
+:root {
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-accent: #{$color-accent};
+  --color-warn: #{$color-warn};
+}
 html, body { height: 100%; }
  body {
+    margin: 0;
     font-family: "Poppins", sans-serif;
+   
+}
+button, .btn {
+    padding: 10px 20px;
+    background-color: $color-accent;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
+  }
+
+.contenedor{
+   margin-top: 50px;
+   margin-left: 100px;
+   margin-right: 100px;
+}
+.section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
 }
 
+.mat-h1, .mat-headline-5, .mat-typography .mat-h1, .mat-typography .mat-headline-5, .mat-typography h1 {
+  font-size: 34px;
+  text-align: center;
+}
+
+.center{
+  text-align: center;
+}

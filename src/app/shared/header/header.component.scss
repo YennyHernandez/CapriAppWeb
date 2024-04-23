@@ -1,9 +1,10 @@
+@import 'src/styles.scss';
 .navbar {
     height: 64px;
     display: flex;
     justify-content: center;
     gap: 50px;
-    background-color: transparent;
+    background-color: $color-primary;
   }
   .transparency{
     background-color: transparent;
@@ -11,5 +12,6 @@
    
   }
   .isHomeRoute{
-    background-color: rosybrown
+    background-color: $color-primary;
   }
+  
