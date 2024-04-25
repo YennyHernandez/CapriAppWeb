@@ -1,4 +1,6 @@
 @import 'src/styles.scss';
+
+/* Estilos para el banner*/
 .bannerhome{
     background-image: url('../../.././../assets/banner.jpg'); 
     background-size: cover;
@@ -7,11 +9,34 @@
     margin: 0;
     padding: 0; 
 }
-.imagesection{
-  width: 500px;
-  height: 400px;
-  border-radius: 20px;
- 
+/*Estilos de la sección descripción*/
+.description-section{
+  display: flex;
+  align-items: center;
+}
+/* Estilos para el grid */
+
+.image-grid {
+  position: relative;
+  display: inline-block;
+  
+}
+.img-shape{
+  object-fit: fill;
+}
+.button-grid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: transparent;
+  font-size: 20px;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* Inicialmente oculto */
+  transition: opacity 0.3s ease; /* Animación de transición */
+}
+
+.image-grid:hover .button-grid {
+  opacity: 1; /* Mostrar el botón cuando se hace hover */
 }
 
 

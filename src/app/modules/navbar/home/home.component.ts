@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 export interface Tile {
-  color: string;
+  color?: string;
+  imageURL? : string;
   cols: number;
   rows: number;
   text: string;
@@ -12,9 +13,13 @@ export interface Tile {
 })
 export class HomeComponent {
   tiles: Tile[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+    {text: 'One', cols: 2, rows: 3, imageURL: '../../../../assets/banner.jpg'},
+    {text: 'Two', cols: 1, rows: 2, imageURL: '../../../../assets/banner.jpg'},
+    {text: 'Three', cols: 2, rows: 2,imageURL: '../../../../assets/banner.jpg' },
+    {text: 'Four', cols: 1, rows: 2,imageURL: '../../../../assets/banner.jpg' },
+    {text: 'Five', cols: 1, rows: 3, imageURL: '../../../../assets/banner.jpg'},
+    {text: 'Six', cols: 3, rows: 3, imageURL: '../../../../assets/banner.jpg'},
+    {text: 'Seven', cols: 2, rows: 2,imageURL: '../../../../assets/banner.jpg' },
+    
   ];
 }
