@@ -1,55 +1,68 @@
 <header class="bannerhome">
-  <div class="row center-xs ">
+  <div class="row center-xs wrap-reservar">
     <h1>Bienvenido a Capripicnic</h1>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Selecciona un Paquete</mat-label>
+        <mat-select disableRipple>
+          <mat-option value="1">Option 1</mat-option>
+          <mat-option value="2">Option 2</mat-option>
+          <mat-option value="3">Option 3</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button>Reservar</button>
+    </div>
   </div> 
 </header>
-<div class="wrap container-fluid"> 
-<section class="page-section">
-  <div class="row description-section">
-    <div class="col-xs-12 col-md-6">
-      <h2>¿En qué consiste nuestra aventura?</h2>
-      <p>Descripción de la aventura...
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam labore sit quia hic. Ducimus quaerat reiciendis eos. Explicabo voluptates quidem itaque, soluta quibusdam repellendus rerum, illo provident cumque fugiat dolores.
-      </p>
+
+<div class="container-fluid"> 
+  <section class="page-section">
+    <div class="row description-section">
+      <div class="col-xs-12 col-md-6">
+        <h2>¿En qué consiste nuestra aventura?</h2>
+        <p>Descripción de la aventura...
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam labore sit quia hic. Ducimus quaerat reiciendis eos. Explicabo voluptates quidem itaque, soluta quibusdam repellendus rerum, illo provident cumque fugiat dolores.
+        </p>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <img class="" src="../../.././../assets/banner.jpg" alt="Imagen de la aventura">
+      </div>
     </div>
-    <div class="col-xs-12 col-md-6">
-      <img class="imagesection" src="../../.././../assets/banner.jpg" alt="Imagen de la aventura">
+  </section>
+  <section class="page-section">
+    <h2>Nuestros paquetes</h2>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'"[namePaquete]="'Enamorados'" [descriptionPaquete]="'Descripción del paquete 1'" [pricePaquete]="100"></app-card>
+      </div>
+      <div class="col-xs-12 col-sm-6 col-md-4">
+        <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'"[namePaquete]="'Celebración'" [descriptionPaquete]="'Descripción del paquete 2'" [pricePaquete]="200"></app-card>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-4">
+        <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'" [namePaquete]="'Descanso'" [descriptionPaquete]="'Descripción del paquete 3'" [pricePaquete]="300"></app-card>
+      </div>
     </div>
-  </div>
-</section>
-<section class="page-section">
-  <h2>Nuestros paquetes</h2>
-  <div class="row">
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'"[namePaquete]="'Enamorados'" [descriptionPaquete]="'Descripción del paquete 1'" [pricePaquete]="100"></app-card>
+  </section>
+  <section class="page-section">
+    <h2>Actividades</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus expedita pariatur omnis, assumenda esse in. Eius assumenda reiciendis et velit cum ratione magni eum nihil, necessitatibus blanditiis recusandae, fugit natus!</p>
+    <div class="row">
+      <div class="col-xs-12 ">
+        <mat-grid-list cols="6" rowHeight="130px">
+          <mat-grid-tile 
+              *ngFor="let tile of tiles"
+              [colspan]="tile.cols"
+              [rowspan]="tile.rows"
+              [style.background]="tile.color">
+              <div class="image-grid">
+                <img class="" [src]="tile.imageURL"/>
+                <button class="button-grid">Botón</button>
+              </div>      
+          </mat-grid-tile>
+        </mat-grid-list>       
+      </div>   
     </div>
-    <div class="col-xs-12 col-sm-6 col-md-4">
-      <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'"[namePaquete]="'Celebración'" [descriptionPaquete]="'Descripción del paquete 2'" [pricePaquete]="200"></app-card>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-4">
-      <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'" [namePaquete]="'Descanso'" [descriptionPaquete]="'Descripción del paquete 3'" [pricePaquete]="300"></app-card>
-    </div>
-  </div>
-</section>
-<section class="page-section">
-  <h2>Actividades</h2>
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus expedita pariatur omnis, assumenda esse in. Eius assumenda reiciendis et velit cum ratione magni eum nihil, necessitatibus blanditiis recusandae, fugit natus!</p>
-  <div class="row">
-    <div class="col-xs-12">
-      <mat-grid-list cols="6" rowHeight="110px">
-        <mat-grid-tile 
-            *ngFor="let tile of tiles"
-            [colspan]="tile.cols"
-            [rowspan]="tile.rows">
-            <div class="image-grid">
-              <img class="img-shape" [src]="tile.imageURL"/>
-              <button class="button-grid">Botón</button>
-            </div>      
-        </mat-grid-tile>
-      </mat-grid-list>       
-    </div>   
-  </div>
-</section>
+  </section>
 </div>
 
 

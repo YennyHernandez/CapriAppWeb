@@ -2,27 +2,27 @@
 
 /* Estilos para el banner*/
 .bannerhome{
-    background-image: url('../../.././../assets/banner.jpg'); 
-    background-size: cover;
-    background-position: center;
-    height: 100vh; 
-    margin: 0;
-    padding: 0; 
+  height: 100vh;
+  margin: 0;
+  padding: 0; 
+  position: relative;
+  background-image: url('../../.././../assets/banner.jpg'); 
+  background-size: cover;
+  background-position: center;
+   
 }
 /*Estilos de la sección descripción*/
 .description-section{
   display: flex;
   align-items: center;
-}
-/* Estilos para el grid */
-
-.image-grid {
-  position: relative;
-  display: inline-block;
   
 }
-.img-shape{
-  object-fit: fill;
+
+/* Estilos para el grid */
+
+.image-grid{
+  position: relative;
+  display: inline-block;
 }
 .button-grid {
   position: absolute;
@@ -39,6 +39,18 @@
   opacity: 1; /* Mostrar el botón cuando se hace hover */
 }
 
+/*reservar*/
+.wrap-reservar{
+  position:absolute;
+  top: 30%;
+  left: 10%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(70, 70, 70, 0.3);
+  width: 400px;
+  height: 200px;
+}
 
-
-
+img{
+  border-radius: 8px !important
+}

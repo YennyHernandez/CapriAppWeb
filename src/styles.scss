@@ -43,11 +43,11 @@ button, .btn {
     cursor: pointer;
     transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
   }
-img{
+ img{
   width: 100%;
-  height: 100%;
+  height: 100%; 
   border-radius: 20px; 
-}
+} 
 img:hover {
   filter: brightness(70%);
   transition: filter 0.3s ease-in-out;

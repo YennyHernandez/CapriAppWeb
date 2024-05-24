@@ -10,6 +10,7 @@ import { NavbarModule } from './modules/navbar/navbar.module';
 import { LoginModule } from './auth/login/login.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,9 +22,14 @@ import { LoginModule } from './auth/login/login.module';
     RouterModule,
     NavbarModule,
     LoginModule,
-    AngularFireModule.initializeApp(firebaseConfig)
+    AngularFireModule.initializeApp(firebaseConfig),
+
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+function providerStorage(arg0: () => import("@firebase/storage").FirebaseStorage): any[] | import("@angular/core").Type<any> | import("@angular/core").ModuleWithProviders<{}> {
+  throw new Error('Function not implemented.');
+}
+
