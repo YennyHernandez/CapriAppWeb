@@ -8,7 +8,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { firebaseConfig } from '../../firebase-config';
 import { NavbarModule } from './modules/navbar/navbar.module';
 import { LoginModule } from './auth/login/login.module';
-
+import { FirebaseStorageService } from './services/firebase-storage.service';
 
 
 @NgModule({
@@ -24,8 +24,10 @@ import { LoginModule } from './auth/login/login.module';
     LoginModule,
     AngularFireModule.initializeApp(firebaseConfig),
 
+  ], 
+  providers: [
+    FirebaseStorageService,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

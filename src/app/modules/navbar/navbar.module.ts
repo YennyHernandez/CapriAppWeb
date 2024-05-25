@@ -4,7 +4,6 @@ import { NavbarRoutingModule } from './navbar-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NavbarComponent } from './navbar-pages/navbar.component';
 
-
 @NgModule({
   declarations: [
     NavbarComponent
@@ -12,7 +11,7 @@ import { NavbarComponent } from './navbar-pages/navbar.component';
   imports: [
     CommonModule,
     NavbarRoutingModule,
-    SharedModule
-  ]
+    SharedModule,    
+  ],
 })
 export class NavbarModule { }

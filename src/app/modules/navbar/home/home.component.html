@@ -33,14 +33,14 @@
     <h2>Nuestros paquetes</h2>
     <div class="row">
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'"[namePaquete]="'Enamorados'" [descriptionPaquete]="'Descripción del paquete 1'" [pricePaquete]="100"></app-card>
+        <app-card [rutaImagePaquete]="firebaseStorageService.imagenes.imgPaqueteEnamorados.imagen"[namePaquete]="'Enamorados'" [descriptionPaquete]="'Descripción del paquete 1'" [pricePaquete]="100"></app-card>
       </div>
       <div class="col-xs-12 col-sm-6 col-md-4">
-        <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'"[namePaquete]="'Celebración'" [descriptionPaquete]="'Descripción del paquete 2'" [pricePaquete]="200"></app-card>
+        <app-card [rutaImagePaquete]="firebaseStorageService.imagenes.imgPaqueteCelebracion.imagen"[namePaquete]="'Celebración'" [descriptionPaquete]="'Descripción del paquete 2'" [pricePaquete]="200"></app-card>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-4">
-        <app-card [rutaImagePaquete]="'../../.././../assets/banner.jpg'" [namePaquete]="'Descanso'" [descriptionPaquete]="'Descripción del paquete 3'" [pricePaquete]="300"></app-card>
-      </div>
+        <app-card [rutaImagePaquete]="firebaseStorageService.imagenes.imgPaqueteDescanso.imagen" [namePaquete]="'Descanso'" [descriptionPaquete]="'Descripción del paquete 3'" [pricePaquete]="300"></app-card>
+      </div> 
     </div>
   </section>
   <section class="page-section">
