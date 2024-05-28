@@ -17,12 +17,28 @@
   align-items: center;
   
 }
-
+.videoAventura{
+  width: 250px;
+  border-radius: 24px; 
+}
+.containerVideo{
+  text-align: center;
+}
 /* Estilos para el grid */
 
-.image-grid{
+.cont-img-grid{
   position: relative;
   display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.img-grid{
+  object-fit: cover;
+  width: 100%;
+  height: 100%; 
 }
 .button-grid {
   position: absolute;
@@ -35,7 +51,7 @@
   transition: opacity 0.3s ease; /* Animación de transición */
 }
 
-.image-grid:hover .button-grid {
+.cont-img-grid:hover .button-grid {
   opacity: 1; /* Mostrar el botón cuando se hace hover */
 }
 
@@ -50,7 +66,8 @@
   width: 400px;
   height: 200px;
 }
-
+/* 
 img{
   border-radius: 8px !important
-}
+  
+} */
