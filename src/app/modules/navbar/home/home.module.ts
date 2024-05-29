@@ -4,10 +4,6 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import {MatSelectModule} from '@angular/material/select';
-
-
-
 @NgModule({
   declarations: [
     HomeComponent
@@ -17,8 +13,6 @@ import {MatSelectModule} from '@angular/material/select';
     HomeRoutingModule,
     SharedModule,
     MatGridListModule,
-    MatSelectModule,
-
   ]
 })
 export class HomeModule { }

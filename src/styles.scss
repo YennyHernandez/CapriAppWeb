@@ -2,10 +2,10 @@
 @import "../src/assets/grid-flex.scss";
 
 // Definir colores principales
-$color-primary: #30391F ;
-$color-primary-complement:#508A4C;
+$color-primary: #30391F;
+$color-primary-complement: #508A4C;
 $color-secondary: #464646;
-$color-accent:#ACCC7B ;
+$color-accent: #ACCC7B;
 $color-claro: #EEEEEE;
 $color-oscuro: #373A40;
 $color-warn: #80080C;
@@ -17,54 +17,54 @@ $color-warn: #80080C;
   --color-accent: #{$color-accent};
   --color-warn: #{$color-warn};
 }
-html, body { height: 100%; }
- body {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;/* no lo toma*/
-    margin-left:auto ; 
-    margin-right: auto;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
-    font-size: 18px;    /* no lo toma*/
-    font-weight: normal;
-    background: $color-claro;
-    color: $color-oscuro;
-    line-height: 1.4rem;
-   
+
+html,
+body {
+  height: 100%;
 }
 
-button, .btn {
-    padding: 10px 20px;
-    background-color: $color-accent;
-    color: white;
-    border: none;
-    border-radius: 24px;
-    cursor: pointer;
-    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
-  }
- img{
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  /* no lo toma*/
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  /* no lo toma*/
+  font-weight: normal;
+  background: $color-claro;
+  color: $color-oscuro;
+  line-height: 1.4rem;
+
+}
+
+button,
+.btn {
+  padding: 10px 20px;
+  background-color: $color-accent;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  /* Transición suave para el color de fondo */
+}
+
+img {
   width: 100%;
-  height: 100%; 
-  border-radius: 24px; 
-} 
+  height: 100%;
+  border-radius: 24px;
+}
+
 img:hover {
   filter: brightness(70%);
   transition: filter 0.3s ease-in-out;
 }
-h2{
+
+h2 {
   text-align: center;
 }
-
-
-
-
-
-/*
-
-img{
-  object-fit: cover;
-  max-width: 100%;
-  max-height: 100%;
-} */

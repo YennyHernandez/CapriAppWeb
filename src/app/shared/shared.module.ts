@@ -6,7 +6,8 @@ import { HeaderComponent } from './header/header.component';
 import { FootherComponent } from './foother/foother.component';
 import { CardComponent } from './card/card.component';
 import { MatCardModule } from '@angular/material/card';
-
+import { BannerComponent } from './banner/banner.component';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -15,19 +16,22 @@ import { MatCardModule } from '@angular/material/card';
   
     HeaderComponent,
     FootherComponent,
-    CardComponent
+    CardComponent,
+    BannerComponent
   ],
   imports: [
     CommonModule,
     MatToolbarModule,
     RouterModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule,
     
   ],
   exports:[
     HeaderComponent,
     FootherComponent,
     CardComponent,
+    BannerComponent,
     
   ]
 })

@@ -1,0 +1,50 @@
+@import 'src/styles.scss';
+
+/* Estilos para el banner*/
+.banner-home {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background-image: url('../../../assets/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: aquamarine;
+
+    &__wrap-reservar {
+        position: absolute;
+        top: 30%;
+        left: 10%;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(70, 70, 70, 0.4);
+        width: 50%;
+        height: 40%;
+        border-radius: 25px;
+
+        &__title-color {
+            color: $color-claro; 
+            font-size: 50px;
+            padding-bottom: 24px; 
+            
+            &.size{
+                font-size: 20px;
+            }
+        }
+
+        &__actions {
+            ::ng-deep {
+                display: flex;
+                gap: 16px;
+                justify-content: center;
+                .mdc-text-field {
+                    
+                    border-radius: 24px;
+                }
+            }
+            &__button-size{
+                height: 55px;
+            }
+        }
+    }
+}
