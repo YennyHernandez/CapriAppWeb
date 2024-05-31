@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 
 @Component({
   selector: 'app-banner',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./banner.component.scss']
 })
 export class BannerComponent {
-
+  constructor( public firebaseStorageService: FirebaseStorageService ){
+    
+  }
+  
 }

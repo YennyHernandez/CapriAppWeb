@@ -1,8 +1,10 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
+import { MediaPaquetesLiteralsObject } from 'src/app/interfaces/media-storage.interface';
+import { Subscription } from 'rxjs';
 
 export interface Tile {
-  imageURL? : string;
+  imageURL?: string;
   cols: number;
   rows: number;
   text: string;
@@ -11,31 +13,44 @@ export interface Tile {
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  
+
 })
-export class HomeComponent{
+export class HomeComponent {
   selectedValue: string = "selecciona";
   tiles: Tile[] = [];
+  cols: number = 6;
+  observerStorage!: Subscription
 
   constructor(public firebaseStorageService: FirebaseStorageService) {
-    this.auxInicializar();
-    
-  } 
-  async auxInicializar(): Promise<void> {
-    await this.firebaseStorageService.initStorageUrls();
-    this.inicializarTiles();
-  }
-  inicializarTiles(): void{
-    this.tiles= [
-      {text: 'Almentar Cabritas', cols: 2, rows: 2, imageURL: this.firebaseStorageService.media.alimentar.url},
-      {text: 'Ver Atardeceres', cols: 2, rows: 4, imageURL: this.firebaseStorageService.media.atardecer.url},
-      {text: 'Veladas Romanticas', cols: 2, rows: 2,imageURL: this.firebaseStorageService.media.velada.url , },
-      {text: 'Ordeñar', cols: 2, rows: 4,imageURL: this.firebaseStorageService.media.ordeño.url },
-      {text: 'Hacer Fogata', cols: 2, rows: 4, imageURL: this.firebaseStorageService.media.fogata.url},
-      {text: 'Comer delicioso', cols: 2, rows: 2, imageURL: this.firebaseStorageService.media.comida.url},
-      
-    ];
+
   }
 
-  
+
+  ngOnInit(): void {
+    this.calcularColumnas(); //calcula la primera vez
+    window.addEventListener('resize', () => {
+      this.calcularColumnas(); //re calcula al cambio de pantalla
+    });
+    this.observerStorage = this.firebaseStorageService.storageSubject.subscribe(data => {
+      this.tiles = [
+        { text: 'Almentar Cabritas', cols: 2, rows: 2, imageURL: data.alimentar.url },
+        { text: 'Ver Atardeceres', cols: 2, rows: 4, imageURL: data.atardecer.url },
+        { text: 'Veladas Romanticas', cols: 2, rows: 2, imageURL: data.velada.url, },
+        { text: 'Ordeñar', cols: 2, rows: 4, imageURL: data.ordeño.url },
+        { text: 'Hacer Fogata', cols: 2, rows: 4, imageURL: data.fogata.url },
+        { text: 'Comer delicioso', cols: 2, rows: 2, imageURL: data.comida.url },
+
+      ];
+    }
+    )
+
+  }
+  calcularColumnas() {
+    if (window.innerWidth <= 768) {
+      this.cols = 2;
+    } else {
+      this.cols = 6;
+    }
+  }
+
 }

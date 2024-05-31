@@ -1,17 +1,21 @@
-<section class="banner-home">
+<section class="banner-home" [ngStyle]="{ 'background-image': 'url('+firebaseStorageService.media.banner.url+')' }">
     <div class="banner-home__wrap-reservar row center-xs">
-        <h1 class="banner-home__wrap-reservar__title-color">Bienvenido a Capripicnic</h1>
-        <h3 class="banner-home__wrap-reservar__title-color size">¡Haz tu reserva y vive una experiencia única!</h3>
+        <h1 class="banner-home__wrap-reservar__title">Bienvenido a Capripicnic</h1>
+        <h3 class="banner-home__wrap-reservar__title size">¡Haz tu reserva y vive una experiencia única!</h3>
         <div class="banner-home__wrap-reservar__actions">
-            <mat-form-field appearance="fill">
-                <mat-label>Paquetes</mat-label>
-                <mat-select disableRipple>
-                    <mat-option value="1">Option 1</mat-option>
-                    <mat-option value="2">Option 2</mat-option>
-                    <mat-option value="3">Option 3</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <button class="banner-home__wrap-reservar__actions__button-size">Buscar</button>
+            <div class="banner-home__wrap-reservar__actions wh70">
+                <mat-form-field appearance="fill">
+                    <mat-label>Paquetes de Picnic</mat-label>
+                    <mat-select disableRipple>
+                        <mat-option value="1">Option 1</mat-option>
+                        <mat-option value="2">Option 2</mat-option>
+                        <mat-option value="3">Option 3</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="banner-home__wrap-reservar__actions wh30">
+                <button class="banner-home__wrap-reservar__actions__button-size">Buscar</button>
+            </div>           
         </div>
     </div>
 </section>

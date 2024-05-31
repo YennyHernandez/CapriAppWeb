@@ -1,69 +1,60 @@
-<app-banner></app-banner>
-<div class="container"> 
-  <section class="page-section">
-    <div class="row description-section">
-      <div class="col-xs-12 col-md-6">
-        <h2>¿En qué consiste nuestra aventura?</h2>
-        <p>¡Vive una experiencia única con nuestras adorables cabritas! Comienza con una fascinante charla sobre ellas, elige a tu compañera de picnic y disfruta de una tarde llena de ternura y diversión. Podrás darles el tetero y compartir momentos especiales.
-        </p>
-        <p> Nuestro espacio de picnic está decorado especialmente para que te relajes y saborees una deliciosa comida al aire libre. Reserva tu aventura privada y crea recuerdos inolvidables con nosotros. ¡Te esperamos!
-        </p>
+<section>
+  <app-banner></app-banner>
+  <div class="container">
+    <section class="page-section">
+      <div class="row description-section">
+        <div class="col-xs-12 col-md-8 p16">
+          <h2>¿En qué consiste nuestra aventura?</h2>
+          <p>¡Vive una experiencia única con nuestras adorables cabritas! Comienza con una fascinante charla sobre
+            ellas, elige a tu compañera de picnic y disfruta de una tarde llena de ternura y diversión. Podrás darles el
+            tetero y compartir momentos especiales.
+          </p>
+          <p> Nuestro espacio de picnic está decorado especialmente para que te relajes y saborees una deliciosa comida
+            al aire libre. Reserva tu aventura privada y crea recuerdos inolvidables con nosotros. ¡Te esperamos!
+          </p>
+        </div>
+        <div class="col-xs-12 col-md-4 containerVideo">
+          <video class="videoAventura" [src]="firebaseStorageService.media.aventura.url" controls></video>
+        </div>
       </div>
-      <div class="col-xs-12 col-md-6 containerVideo">
-        <video class="videoAventura" [src]="firebaseStorageService.media.aventura.url" controls></video>
+    </section>
+    <section class="page-section">
+      <h2>Nuestros paquetes</h2>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <app-card [rutaImagePaquete]="firebaseStorageService.media.paqueteEnamorados.url" [namePaquete]="'Enamorados'"
+            [descriptionPaquete]="'¡Enamora con un plan romántico para dos personas!'" [pricePaquete]="190000">
+          </app-card>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <app-card [rutaImagePaquete]="firebaseStorageService.media.paqueteCelebracion.url"
+            [namePaquete]="'Celebración'" [descriptionPaquete]="'¡Disfruta de un picnic interactivo para 5 personas!'"
+            [pricePaquete]="205000">
+          </app-card>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4">
+          <app-card [rutaImagePaquete]="firebaseStorageService.media.paqueteDescanso.url" [namePaquete]="'Descanso'"
+            [descriptionPaquete]="'¡Relajate en medio de la naturaleza y cabritas!'" [pricePaquete]="80000">
+          </app-card>
+        </div>
       </div>
-    </div>
-  </section>
-  <section class="page-section">
-    <h2>Nuestros paquetes</h2>
-    <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <app-card 
-          [rutaImagePaquete]="firebaseStorageService.media.paqueteEnamorados.url"
-          [namePaquete]="'Enamorados'" 
-          [descriptionPaquete]="'¡Enamora con un plan romántico para dos personas!'" 
-          [pricePaquete]="190000">
-        </app-card>
-      </div>
-      <div class="col-xs-12 col-sm-6 col-md-4">
-        <app-card
-          [rutaImagePaquete]="firebaseStorageService.media.paqueteCelebracion.url"
-          [namePaquete]="'Celebración'" 
-          [descriptionPaquete]="'¡Disfruta de un picnic interactivo para 5 personas!'" 
-          [pricePaquete]="205000">
-        </app-card>
-      </div>
-      <div class="col-xs-12 col-sm-12 col-md-4">
-        <app-card 
-          [rutaImagePaquete]="firebaseStorageService.media.paqueteDescanso.url" 
-          [namePaquete]="'Descanso'" 
-          [descriptionPaquete]="'¡Relajate en medio de la naturaleza y cabritas!'" 
-          [pricePaquete]="80000">
-        </app-card>
-      </div> 
-    </div>
-  </section>
-  <section class="
+    </section>
+    <section class="
   ">
-    <h2>Actividades</h2>
-    <p></p>
-    <div class="row">
-      <div class="col-xs-12 ">
-        <mat-grid-list cols="6" rowHeight="120px" >
-          <mat-grid-tile 
-              *ngFor="let tile of tiles"
-              [colspan]="tile.cols"
-              [rowspan]="tile.rows">
+      <h2>Actividades</h2>
+      <p></p>
+      <div class="row">
+        <div class="col-xs-12 ">
+          <mat-grid-list [cols]="cols" rowHeight="10vw">
+            <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
               <div class="cont-img-grid">
-                <img class="img-grid" [src]="tile.imageURL"/>
+                <img class="img-grid" [src]="tile.imageURL" />
                 <button class="button-grid">{{tile.text}}</button>
-              </div>      
-          </mat-grid-tile>
-        </mat-grid-list>       
-      </div>   
-    </div>
-  </section>
-</div>
-
-
-
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
