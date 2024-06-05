@@ -48,7 +48,7 @@
           <mat-grid-list [cols]="cols" rowHeight="10vw">
             <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
               <div class="cont-img-grid">
-                <img class="img-grid" [src]="tile.imageURL" />
+                <img [src]="tile.imageURL" />
                 <button class="button-grid">{{tile.text}}</button>
               </div>
             </mat-grid-tile>

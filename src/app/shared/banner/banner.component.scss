@@ -23,7 +23,7 @@
         /* para evitar desbordamientos */
         border-radius: 48px;
         background-color: rgba(70, 70, 70, 0.5);
-        
+
 
 
         &__title {
@@ -31,13 +31,13 @@
             position: relative;
             font-size: 40px;
             padding-top: 24px;
-            margin-bottom: 20px; 
+            margin-bottom: 20px;
             line-height: 1;
 
             &.size {
                 font-size: 20px;
                 padding-top: 0px;
-               
+
             }
         }
 
@@ -58,6 +58,7 @@
                 .mat-mdc-form-field {
                     width: 100%;
                 }
+
                 .mat-mdc-form-field-subscript-wrapper {
                     display: none;
                 }
@@ -86,6 +87,8 @@
 @media (max-width: 767px) {
     .banner-home {
         &__wrap-reservar {
+            left: 15%;
+            width: 70%;
             &__title {
                 font-size: 35px;
 
