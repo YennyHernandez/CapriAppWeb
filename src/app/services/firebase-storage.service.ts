@@ -23,6 +23,7 @@ export class FirebaseStorageService {
     alimentar: { mediaType: 'image', urlDescarga: 'generic/alimentar.jpg', url: '' },
     aventura: { mediaType: 'video', urlDescarga: 'generic/video_aventura.mov', url: '' },
     banner: { mediaType: 'image', urlDescarga: 'generic/banner.png', url: '' },
+    logocapri: { mediaType: 'image', urlDescarga: 'generic/logocapri.png', url: '' },
   };
 
   constructor() {

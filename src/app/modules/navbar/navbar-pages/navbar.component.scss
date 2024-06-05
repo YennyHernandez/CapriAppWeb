@@ -1,5 +1,18 @@
+@import  'src/styles.scss'; 
+.background-primary{
+  background-color: $color-primary;
+}
+.background-claro .mat-drawer-inner-container{
+  background-color: $color-claro;
+}
+.transparency{
+  background-color: transparent;
+}
+.mat-toolbar-row, .mat-toolbar-single-row{
+  justify-content: space-between;
+}
 
-   app-header {
+.stiky {
     position: sticky;
     top: 0;
     left: 0;

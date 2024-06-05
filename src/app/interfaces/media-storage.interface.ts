@@ -10,6 +10,7 @@ export interface MediaPaquetesLiteralsObject {
     alimentar: MediaPaquetes;
     aventura: MediaPaquetes;
     banner: MediaPaquetes;
+    logocapri: MediaPaquetes
   }
   
  export interface MediaPaquetes {

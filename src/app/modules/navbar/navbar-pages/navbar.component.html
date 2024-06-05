@@ -1,4 +1,27 @@
+<ng-container *ngIf="isSmallScreen; else isBigScreen">
+  <mat-sidenav-container >
+    <mat-sidenav #sidenav mode="over" opened="false">
+      <mat-nav-list class="background-claro">
+        <a mat-list-item (click)="sidenav.close()" routerLink="/home">Home</a>
+        <a mat-list-item (click)="sidenav.close()" routerLink="/booking">Booking</a>
+        <a mat-list-item (click)="sidenav.close()" routerLink="/about">About</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar class="background-primary stiky">
+        <button type="button" class="transparency" mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon fontIcon="menu"></mat-icon>
+        </button>
+        <button routerLink="/auth/login">Login</button>
+      </mat-toolbar>
+      <router-outlet></router-outlet>
+      <app-foother></app-foother>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>
 
-<app-header></app-header>
-<router-outlet></router-outlet>
-<app-foother></app-foother>
+<ng-template #isBigScreen>
+  <app-header class="stiky"></app-header>
+  <router-outlet></router-outlet>
+  <app-foother></app-foother>
+</ng-template>

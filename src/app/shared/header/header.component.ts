@@ -1,19 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { Component} from '@angular/core';
+import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
-  isHomeRoute : boolean = false;
-  constructor(private router: Router) {
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.isHomeRoute = (event.url === '/home');
-        console.log(this.isHomeRoute)
-      }
-    });
-  }
+export class HeaderComponent  {
+ 
+  constructor(public firebaseStorageService : FirebaseStorageService) {}
+  
 }
