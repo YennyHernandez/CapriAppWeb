@@ -2,13 +2,50 @@
 
 .mat-toolbar {
   background-color: $color-primary;
-  & .mat-toolbar-logo {
+
+
+  .mat-toolbar-hanger {
+   
+    display: flex;
+    position: absolute;
+    top: 25px;
+    left: 100px;
     box-sizing: border-box;
-    padding: 8px;
-    width: 70px;
-    border-radius: 50%;
+    width: 12vw;
+    height: 13vw;  
+    animation: swing 3.5s linear;
+    animation-iteration-count: 3;
+    transform-origin: center -20px ; 
+    & :hover{
+      animation: swing 3s linear infinite;
+      transform-origin: center -20px ; 
+    }
+
+    .mat-toolbar-logo {
+      border-radius: 0px;
+
+    }
+  }
+
+  @keyframes swing {
+    0% {
+      transform: rotate(0deg)
+    }
+    25% {
+      transform: rotate(10deg)
+    } 
+     50% {
+      transform: rotate(0deg)
+    } 
+    75% {
+      transform: rotate(-10deg)
+    }     
+    100% {
+      transform: rotate(0deg)
+    }
 
   }
+
   & .mat-toolbar-navbar {
     height: 64px;
     display: flex;
@@ -17,7 +54,6 @@
     width: 100%;
   }
 }
-
 
 .transparency {
   background-color: transparent;
