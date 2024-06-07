@@ -8,8 +8,7 @@ import { CardComponent } from './card/card.component';
 import { MatCardModule } from '@angular/material/card';
 import { BannerComponent } from './banner/banner.component';
 import {MatSelectModule} from '@angular/material/select';
-
-
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -25,14 +24,15 @@ import {MatSelectModule} from '@angular/material/select';
     RouterModule,
     MatCardModule,
     MatSelectModule,
-   
-    
+    MatIconModule, 
+      
   ],
   exports:[
     HeaderComponent,
     FootherComponent,
     CardComponent,
     BannerComponent,
+    MatIconModule, 
     
   ]
 })
