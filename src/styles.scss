@@ -1,9 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../src/assets/grid-flex.scss";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 
 // Definir colores principales
 $color-primary: #30391F;
 $color-primary-complement: #508A4C;
+$color-primary-accent: #54582f;
 $color-secondary: #464646;
 $color-accent: #ACCC7B;
 $color-claro: #EEEEEE;
@@ -72,3 +75,13 @@ h2 {
 a, mat-icon{
   color: #ACCC7B;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500; /* Semibold */
+}
+p, span, a {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400; /* Normal */
+}
+

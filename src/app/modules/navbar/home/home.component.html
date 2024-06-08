@@ -1,17 +1,10 @@
 <section>
   <app-banner></app-banner>
-  <div class="container">
+  <div class="container ">
     <section class="page-section">
       <div class="row description-section">
         <div class="col-xs-12 col-md-8 p16">
-          <h2>¿En qué consiste nuestra aventura?</h2>
-          <p>¡Vive una experiencia única con nuestras adorables cabritas! Comienza con una fascinante charla sobre
-            ellas, elige a tu compañera de picnic y disfruta de una tarde llena de ternura y diversión. Podrás darles el
-            tetero y compartir momentos especiales.
-          </p>
-          <p> Nuestro espacio de picnic está decorado especialmente para que te relajes y saborees una deliciosa comida
-            al aire libre. Reserva tu aventura privada y crea recuerdos inolvidables con nosotros. ¡Te esperamos!
-          </p>
+          <h2 class="color-claro">¡Descubre el encanto de alimentar a nuestras adorables cabritas, elige tu compañera de picnic y sumergete en una tarde llena de ternura y diversión!</h2>
         </div>
         <div class="col-xs-12 col-md-4 containerVideo">
           <video class="videoAventura" [src]="firebaseStorageService.media.aventura.url" controls></video>
@@ -20,6 +13,7 @@
     </section>
     <section class="page-section">
       <h2>Nuestros paquetes</h2>
+      <p class="p-section">Explora nuestra selección de paquetes de decoración de picnic, donde la personalización es la clave. Desde estilos románticos hasta opciones modernas y rústicas.</p>
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4">
           <app-card [rutaImagePaquete]="firebaseStorageService.media.paqueteEnamorados.url" [namePaquete]="'Enamorados'"
@@ -42,6 +36,7 @@
     <section class="
   ">
       <h2>Actividades</h2>
+      <p class="p-section">Nuestro lugar está diseñado para disfrutar de experiencias al aire libre. ¡Descúbrelas todas y sumérgete en un mundo de diversión y aventura en nuestro entorno natural!</p>
       <p></p>
       <div class="row">
         <div class="col-xs-12 ">
@@ -55,6 +50,9 @@
           </mat-grid-list>
         </div>
       </div>
+    </section>
+    <section>
+      <h2></h2>
     </section>
   </div>
 </section>
