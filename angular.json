@@ -16,6 +16,9 @@
             "customWebpackConfig": {
               "path": "src/custom-webpack.config.ts"
             },
+            "allowedCommonJsDependencies": [
+              "bezier-easing"
+           ],
             "outputPath": "dist/capri-app",
             "index": "src/index.html",
             "main": "src/main.ts",

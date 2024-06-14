@@ -4,21 +4,23 @@
 
 
 // Definir colores principales
-$color-primary: #30391F;
-$color-primary-complement: #508A4C;
+//$color-primary: #4d5a32;
+$color-primary:#30391F;
+$color-title: #416217; 
+$color-primary-complement: #ACCC7B;
 $color-primary-accent: #54582f;
 $color-secondary: #464646;
 $color-accent: #ACCC7B;
 $color-claro: #EEEEEE;
 $color-oscuro: #373A40;
-$color-warn: #80080C;
+$color-warn: #80080C; 
 
 // Aplicar los colores a variables CSS
 :root {
   --color-primary: #{$color-primary};
   --color-secondary: #{$color-secondary};
   --color-accent: #{$color-accent};
-  --color-warn: #{$color-warn};
+   --color-warn: #{$color-warn};
 }
 
 html,
@@ -54,6 +56,7 @@ button,
   border-radius: 24px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 15px;
   /* Transición suave para el color de fondo */
 }
 
@@ -71,17 +74,30 @@ img:hover {
 
 h2 {
   text-align: center;
+  text-transform: uppercase;
 }
 a, mat-icon{
   color: #ACCC7B;
 }
 
-h1, h2, h3, h4, h5, h6 {
+ h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
   font-weight: 500; /* Semibold */
 }
-p, span, a {
+p, a {
   font-family: 'Poppins', sans-serif;
   font-weight: 400; /* Normal */
+  font-size: 16px;
+  line-height: 1.9em;
 }
+
+.title{
+  font-size: 30px;
+  text-align: center;
+}
+.color-title{
+  color: $color-title;
+  font-weight: 600;
+}
+
 

@@ -1,0 +1,13 @@
+  <section class="shape-carousel">
+    <ng-carousel 
+    #carouselRef="ngCarousel"
+    [config]="config">
+       <ng-template [ngCarouselSlide]="carouselRef" let-item>
+           <mat-icon class="icon-carousel" fontSet="mdi" fontIcon="mdi-chevron-left"></mat-icon>
+           <img [src]="item.image" alt="Carousel Image" style="pointer-events: none">
+           <mat-icon class="icon-carousel" fontSet="mdi" fontIcon="mdi-chevron-right"></mat-icon>
+       </ng-template>
+   </ng-carousel>
+  </section>
+ 
+

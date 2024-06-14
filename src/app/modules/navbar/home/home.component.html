@@ -1,18 +1,39 @@
 <section>
-  <app-banner></app-banner>
+  <app-banner></app-banner>  
   <div class="container ">
     <section class="page-section">
       <div class="row description-section">
         <div class="col-xs-12 col-md-8 p16">
-          <h2 class="color-claro">¡Descubre el encanto de alimentar a nuestras adorables cabritas, elige tu compañera de picnic y sumergete en una tarde llena de ternura y diversión!</h2>
+          <h2 class="title title-section">¿EN QUE CONSISTE 
+            <br><br>
+            <span class="color-title">LA AVENTURA?</span></h2>
+            <span>Un divertido picnic interactivo</span>
+          <p>El plan de picnic interactivo consiste en pasar un día especial en la naturaleza. Escoge a tu cabrita compañera, dale de comer, y relájate en un espacio de picnic decorado a tu gusto. Disfruta de una deliciosa comida y diviértete con actividades al aire libre.</p>
         </div>
         <div class="col-xs-12 col-md-4 containerVideo">
           <video class="videoAventura" [src]="firebaseStorageService.media.aventura.url" controls></video>
         </div>
       </div>
+    </section> 
+    <section>
+      <h2 class="title"><span class="color-title"> Actividades</span> Imperdibles</h2>
+      <p class="p-section">Nuestro lugar está diseñado para disfrutar de experiencias al aire libre. ¡Descúbrelas todas y sumérgete en un mundo de diversión y aventura en nuestro entorno natural!</p>
+      <p></p>
+      <div class="row">
+        <div class="col-xs-12 ">
+          <mat-grid-list [cols]="cols" rowHeight="10vw">
+            <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
+              <div class="cont-img-grid">
+                <img [src]="tile.imageURL" />
+                <button class="button-grid">{{tile.text}}</button>
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+      </div>
     </section>
     <section class="page-section">
-      <h2>Nuestros paquetes</h2>
+      <h2 class="title">Nuestros <span class="color-title">paquetes</span></h2>
       <p class="p-section">Explora nuestra selección de paquetes de decoración de picnic, donde la personalización es la clave. Desde estilos románticos hasta opciones modernas y rústicas.</p>
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-4">
@@ -33,26 +54,8 @@
         </div>
       </div>
     </section>
-    <section class="
-  ">
-      <h2>Actividades</h2>
-      <p class="p-section">Nuestro lugar está diseñado para disfrutar de experiencias al aire libre. ¡Descúbrelas todas y sumérgete en un mundo de diversión y aventura en nuestro entorno natural!</p>
-      <p></p>
-      <div class="row">
-        <div class="col-xs-12 ">
-          <mat-grid-list [cols]="cols" rowHeight="10vw">
-            <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows">
-              <div class="cont-img-grid">
-                <img [src]="tile.imageURL" />
-                <button class="button-grid">{{tile.text}}</button>
-              </div>
-            </mat-grid-tile>
-          </mat-grid-list>
-        </div>
-      </div>
-    </section>
     <section>
-      <h2></h2>
+      <p>¡Descubre el encanto de alimentar a nuestras adorables cabritas, elige tu compañera de picnic y sumergete en una tarde llena de ternura y diversión!</p>
     </section>
   </div>
 </section>

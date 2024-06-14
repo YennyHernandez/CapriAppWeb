@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
@@ -9,6 +9,8 @@ import { MatCardModule } from '@angular/material/card';
 import { BannerComponent } from './banner/banner.component';
 import {MatSelectModule} from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { CarouselModule } from 'ng-carousel-cdk';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
     HeaderComponent,
     FootherComponent,
     CardComponent,
-    BannerComponent
+    BannerComponent,
+    CarouselComponent
   ],
   imports: [
     CommonModule,
@@ -25,6 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatSelectModule,
     MatIconModule, 
+    CarouselModule,
       
   ],
   exports:[
@@ -33,7 +37,9 @@ import { MatIconModule } from '@angular/material/icon';
     CardComponent,
     BannerComponent,
     MatIconModule, 
+    CarouselComponent,
     
-  ]
+  ],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class SharedModule { }

@@ -4,8 +4,6 @@
 .description-section{
   display: flex;
   align-items: center;
-  background-color: $color-primary-accent;
-  border-radius: 40px;
   padding: 16px 0px 16px 16px;  
 }
 
@@ -16,6 +14,12 @@
 .containerVideo{
   text-align: center;
 }
+
+.title-section{
+  font-size: 40px;
+  text-align: start;
+}
+
 /* Estilos para el grid */
 
 .cont-img-grid{
@@ -48,9 +52,6 @@
 .p-section{
   padding: 0px 140px 0px 140px;
   text-align: center;
-}
-.color-claro{
-  color: $color-claro;
 }
 
 .img-goats{
