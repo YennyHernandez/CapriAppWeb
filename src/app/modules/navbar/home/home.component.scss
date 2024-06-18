@@ -18,7 +18,9 @@
 .title-section{
   font-size: 40px;
   text-align: start;
+  padding-bottom: 16px ;
 }
+
 
 /* Estilos para el grid */
 
@@ -58,11 +60,72 @@
   width: 240px;
   
 }
+//estilos publicidad
+.publicity{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: $color-claro;
+  background-image: url(../../../../assets/publicity2.png);
+  background-repeat: round;
+  width: 100%;
+  height: 600px; 
+  padding: 50px;
+  box-sizing: border-box;
+}
+.flex{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  padding-top: 20px;
+}
+.center{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.title-publicity{
+  padding-bottom: 20px;
+}
+.container-icon-publicity{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px;
+  background-color: $color-claro;
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+}
 
+
+.mdi:before,
+.mdi-set {
+  font-size: 70px;
+  line-height: normal;
+  color: $color-title;
+
+}
 @media (max-width: 767px){
   .p-section{
     padding: 0px;
     text-align: start;
     
   }
+  .publicity{
+    background-repeat: repeat;
+    height: 800px;
+  }
+  .title-section{
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 50px ;
+  }
+  .title-publicity{
+    padding-top: 60px;
+  }
+
 }

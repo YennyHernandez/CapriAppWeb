@@ -7,7 +7,7 @@
 //$color-primary: #4d5a32;
 $color-primary:#30391F;
 $color-title: #416217; 
-$color-primary-complement: #ACCC7B;
+$color-primary-complement: #e8af6f;
 $color-primary-accent: #54582f;
 $color-secondary: #464646;
 $color-accent: #ACCC7B;
@@ -31,20 +31,16 @@ body {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Poppins", sans-serif;
-  /* no lo toma*/
   margin-left: auto;
   margin-right: auto;
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-size: 18px;
-  /* no lo toma*/
   font-weight: normal;
-  background: $color-claro;
+  background-color: $color-claro;
   color: $color-oscuro;
   line-height: 1.4rem;
-
 }
 
 button,
@@ -76,8 +72,13 @@ h2 {
   text-align: center;
   text-transform: uppercase;
 }
-a, mat-icon{
+a{
   color: #ACCC7B;
+}
+mat-icon{
+  color: #ACCC7B;
+  height: auto;
+  width: auto;
 }
 
  h3, h4, h5, h6 {
@@ -94,10 +95,42 @@ p, a {
 .title{
   font-size: 30px;
   text-align: center;
+  font-weight: 600;
+  line-height: 1.5;
 }
 .color-title{
   color: $color-title;
-  font-weight: 600;
 }
 
+.color-publicity{
+  color: $color-accent;
+}
+.shape-subtitle{
+  letter-spacing: 5px;
+  font-weight: 500px;
+  font-size: 20px;
+  font-weight: 500;
+}
+.container-fluid, .container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 6rem;
+  padding-left: 6rem;
+  background-color: $color-claro;
+}
+.page-section{
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+
+}
+.mat-drawer-container {
+  background-color: $color-claro;
+}
+
+@media (max-width: 767px){
+  .container{
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+}
 

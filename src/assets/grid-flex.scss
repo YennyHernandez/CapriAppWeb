@@ -1,12 +1,4 @@
-/* Uncomment and set these variables to customize the grid. */
-
-.container-fluid, .container {
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 6rem;
-    padding-left: 6rem;
-  }
-  
+/* Uncomment and set these variables to customize the grid. */  
   .row {
     box-sizing: border-box;
     display: -ms-flexbox;
@@ -26,11 +18,6 @@
     
   }
   
-  .page-section{
-    padding-top: 2rem;
-    margin-bottom: 2rem;
-
-  }
   
   .row.reverse {
     -ms-flex-direction: row-reverse;
