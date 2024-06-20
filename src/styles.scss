@@ -41,6 +41,7 @@ body {
   background-color: $color-claro;
   color: $color-oscuro;
   line-height: 1.4rem;
+  font-family: 'Poppins', sans-serif;
 }
 
 button,
@@ -69,8 +70,9 @@ img:hover {
 }
 
 h2 {
-  text-align: center;
+  font-size: 30px;
   text-transform: uppercase;
+  font-weight: 600;
 }
 a{
   color: #ACCC7B;
@@ -81,21 +83,18 @@ mat-icon{
   width: auto;
 }
 
- h3, h4, h5, h6 {
-  font-family: 'Poppins', sans-serif;
+ h1, h3, h4, h5, h6 {
   font-weight: 500; /* Semibold */
 }
 p, a {
   font-family: 'Poppins', sans-serif;
   font-weight: 400; /* Normal */
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.9em;
 }
 
 .title{
-  font-size: 30px;
   text-align: center;
-  font-weight: 600;
   line-height: 1.5;
 }
 .color-title{
@@ -105,6 +104,20 @@ p, a {
 .color-publicity{
   color: $color-accent;
 }
+
+.publicity{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: $color-claro;
+  background-image: url(./assets/publicity.png);
+  background-repeat: round;
+  width: 100%;
+  height: 600px; 
+  padding: 50px;
+  box-sizing: border-box;
+}
 .shape-subtitle{
   letter-spacing: 5px;
   font-weight: 500px;
@@ -112,11 +125,14 @@ p, a {
   font-weight: 500;
 }
 .container-fluid, .container {
+  box-sizing: border-box;
   margin-right: auto;
   margin-left: auto;
   padding-right: 6rem;
-  padding-left: 6rem;
+  padding-left: 6rem; 
   background-color: $color-claro;
+
+ 
 }
 .page-section{
   padding-top: 2rem;

@@ -1,0 +1,13 @@
+@import 'src/styles.scss';
+
+.colorbut{
+  background-color: black;
+  width: 300px;
+  height: 300px;
+}
+@media (max-width: 767px) {
+    .publicity{
+        background-repeat: round;
+        height: 400px;
+      }
+}
