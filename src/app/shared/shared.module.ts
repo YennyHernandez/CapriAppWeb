@@ -11,6 +11,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { CarouselModule } from 'ng-carousel-cdk';
 import { CarouselComponent } from './carousel/carousel.component';
+import { PaquetesComponent } from './paquetes/paquetes.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalComponent } from './modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { CarouselComponent } from './carousel/carousel.component';
     FootherComponent,
     CardComponent,
     BannerComponent,
-    CarouselComponent
+    CarouselComponent,
+    PaquetesComponent,
+    ModalComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +34,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     MatSelectModule,
     MatIconModule, 
     CarouselModule,
-      
+    MatDialogModule,    
   ],
   exports:[
     HeaderComponent,
@@ -38,6 +43,7 @@ import { CarouselComponent } from './carousel/carousel.component';
     BannerComponent,
     MatIconModule, 
     CarouselComponent,
+    PaquetesComponent,
     
   ],
   schemas: [NO_ERRORS_SCHEMA]

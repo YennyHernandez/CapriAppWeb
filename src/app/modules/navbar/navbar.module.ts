@@ -5,7 +5,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { NavbarComponent } from './navbar-pages/navbar.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 
@@ -19,8 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     NavbarRoutingModule,
     SharedModule,
     MatSidenavModule,
-    MatListModule,
-      
+    MatListModule,      
     MatToolbarModule,
   ],
 })

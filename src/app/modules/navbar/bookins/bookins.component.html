@@ -2,6 +2,11 @@
     <h2 class="title"> Planes de <span class=" title color-publicity"> Picnic</span></h2>
     <span class="shape-subtitle color-publicity">¡para todas las ocasiones!</span>
 </section>
+<div class="pd-50" *ngFor="let item of typePackages">
+    <app-paquetes [name_package]="item.namePackage" [description_package]="item.description" [price_package]="item.price"></app-paquetes>
+</div>
+
+
    <!--  <div class="colorbut">
         <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
         <script>
@@ -18,9 +23,9 @@
         })();
         </script>
     </div> -->
-    <div>   
+   <!--  <div>   
         <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0Zkhxkt-QRTkf3XLUlFvq0OdNbNI29n_2k2ai8vbzIsqVIQ0wBlU1W5PZoE66ifAsAexbbKnUh?gv=true" style="border: 0; background-color: #f0f0f0;" width="100%" height="600" frameborder="0"></iframe>
-    </div>
+    </div> -->
     
  
 
