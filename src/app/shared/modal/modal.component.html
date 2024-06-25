@@ -33,7 +33,7 @@
                         <div class="checkbox-item" *ngFor="let item of selectedPackage.menu">
                           <span>{{ item.producto }}</span>
                             <div>
-                              <span *ngIf="namePackage === 'Descanso'">{{ item.price | currency }}</span>
+                              <span *ngIf="idPackage === 'PaqueteDescanso'">{{ item.price | currency }}</span>
                               <mat-checkbox></mat-checkbox>
                             </div>                                    
                         </div>
@@ -53,7 +53,7 @@
                           <div class="checkbox-item">
                             <span>{{item.producto}}</span>
                             <div>
-                              <span *ngIf="namePackage === 'Descanso'">{{ item.price | currency }}</span>
+                              <span *ngIf="idPackage === 'PaqueteDescanso'">{{ item.price | currency }}</span>
                               <mat-checkbox></mat-checkbox>
                             </div>                           
                           </div>                         

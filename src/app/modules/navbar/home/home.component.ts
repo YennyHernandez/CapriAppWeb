@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 import { Subscription } from 'rxjs';
-import {PackageArray} from "../../../interfaces/media-storage.interface"
+import {PackageUrl} from "../../../interfaces/media-storage.interface"
 
 
 export interface Tile {
@@ -17,7 +17,7 @@ export interface Tile {
 
 })
 export class HomeComponent {
-  typePackagesUrls : PackageArray[] = [];
+  typePackagesUrls : PackageUrl[] = [];
   selectedValue: string = "selecciona";
   tiles: Tile[] = [];
   cols: number = 6;

@@ -8,5 +8,6 @@ import {typePackages} from "../../../constants/paquetes";
 })
 
 export class BookinsComponent {
+  constructor(){}
   typePackages = typePackages;
 }

@@ -17,18 +17,21 @@ export interface MediaLiteralsObject{
   }
 
  
-   export interface PackageArray {
+  export interface Packag {
     id: string;
     namePackage: string;
     slogan: string;
     description: string;
     price: number;
-    menu: MenuItem[];
+    menu: ProductPrice[];
     mediaType: string;
     urlDescarga: string;
+  }
+  
+  export interface PackageUrl extends Packag {
     url: string;
   }
-  export interface MenuItem {
+  export interface ProductPrice {
     producto: string;
     price: number;
   }

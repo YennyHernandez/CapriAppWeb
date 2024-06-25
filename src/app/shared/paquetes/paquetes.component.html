@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <h2 class="title">paquete <span class="color-title">{{name_package}}</span></h2>
+                <h2 class="title">paquete <span class="color-title">{{package.namePackage}}</span></h2>
             </div>
             <div class="col-xs-12 col-md-6">
                 <h3 class="shape-subtitle color-title"> Decoración</h3>
@@ -10,9 +10,10 @@
             </div>
             <div class="col-xs-12 col-md-6">
                 <h3  class="shape-subtitle color-title"> ¿Qué incluye?</h3>
-                <p>{{description_package}}</p>
-                <p>{{price_package | currency}}</p>
-                <button (click)="openModal()">+</button>
+                <p>{{package.description}}</p>
+                <p>{{package.id}}</p>
+                <p>{{package.price| currency}}</p>
+                <button (click)="openModal(package.id)">+</button>
             </div>
         </div>
     </div>

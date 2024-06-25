@@ -2,7 +2,7 @@ import { Injectable, OnInit } from '@angular/core';
 import { storage } from '../../../firebase-config';
 import { ref, getDownloadURL, StorageReference } from "firebase/storage";
 import { Subject } from 'rxjs';
-import { MediaLiteralsObject, PackageArray } from "../interfaces/media-storage.interface"
+import { MediaLiteralsObject, PackageUrl, Packag} from "../interfaces/media-storage.interface"
 type x = keyof MediaLiteralsObject;
 import { typePackages, media } from "../constants/paquetes"
 
@@ -15,7 +15,7 @@ export class FirebaseStorageService {
   media = media; //media
   flag = false;
   storageMediaSubject = new Subject<MediaLiteralsObject>
-  storagePaquetesSubject = new Subject<PackageArray[]>;
+  storagePaquetesSubject = new Subject<PackageUrl[]>;
 
   constructor() {
     this.initStorageUrls()
@@ -43,14 +43,14 @@ export class FirebaseStorageService {
   }
 
   private async initUrlsDataPaquetes() { //Get de urls paquetes
-    const urlDataPaquetes = this.typePackages.map(async (item) => {
+    const urlDataPaquetes = (this.typePackages).map(async (item) => {
       const storageRef: StorageReference = ref(storage, item.urlDescarga);
       try {
         const url = await getDownloadURL(storageRef);
         console.log("descargando url image paquetes")
         return {
           ...item, url
-        } as PackageArray
+        } as PackageUrl
       }
       catch (error) {
         console.error('Error al obtener la URL de descarga paquetes:', error);
@@ -58,7 +58,7 @@ export class FirebaseStorageService {
       }
     });
 
-    const data = (await Promise.all(urlDataPaquetes)) as PackageArray[]
+    const data = (await Promise.all(urlDataPaquetes)) as PackageUrl[]
     this.storagePaquetesSubject.next(data);
 
     console.log('typePackages actualizados con URLS', this.initUrlsDataPaquetes);

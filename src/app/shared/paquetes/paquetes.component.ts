@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Packag} from 'src/app/interfaces/media-storage.interface';
 import { ModalComponent } from '../modal/modal.component';
 
 @Component({
@@ -8,15 +9,25 @@ import { ModalComponent } from '../modal/modal.component';
   styleUrls: ['./paquetes.component.scss']
 })
 export class PaquetesComponent {
-  @Input() name_package: string = "nombre paquete"
-  @Input() description_package: string = "descripción"
-  @Input() price_package: number = 0
+  @Input() package: Packag = {
+    id: "",
+    namePackage:"", 
+    slogan: "",
+    description:"",
+    price: 0,
+    menu:[],
+    mediaType: "",
+    urlDescarga:"",
+  };
   constructor(public dialog: MatDialog) {}
 
 
-  openModal(): void {
-    this.dialog.open(ModalComponent, {data: {
-      namePackage: this.name_package  // Pasamos name_package como dato al modal
-    }});
+  openModal(package_id : string): void {
+     this.dialog.open(ModalComponent, {data: {
+      idPackage: package_id // Pasamos id package como dato al modal
+      
+    }}); 
+    console.log("pasando id al modal 👍", this.package ) 
   }
+  
 }

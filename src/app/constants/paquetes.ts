@@ -1,5 +1,5 @@
-import { MediaLiteralsObject, PackageArray } from "../interfaces/media-storage.interface"
-export const typePackages :Omit<PackageArray, 'url'>[]  = [{
+import { MediaLiteralsObject, Packag , ProductPrice} from "../interfaces/media-storage.interface"
+export const typePackages: Packag[]  = [{
     id: "paqueteEnamorados",
     namePackage: "Enamorados",
     slogan: "¡Enamora con un plan romántico para 2 personas!",
@@ -80,7 +80,7 @@ export const typePackages :Omit<PackageArray, 'url'>[]  = [{
     ],
     mediaType: 'image', 
     urlDescarga: 'generic/paquete_interaccion.png', 
-  },]
+  }]
 
 export const  media: MediaLiteralsObject = {
   ordeño: { mediaType: 'image', urlDescarga: 'generic/ordeno.JPG', url: '' },
@@ -94,8 +94,8 @@ export const  media: MediaLiteralsObject = {
   logocapri: { mediaType: 'image', urlDescarga: 'generic/logocapri.png', url: '' },
 };
 
-export const colorPackages = ["Rojo", "Rosado", "Azul", "Variados"]
-export const bebidas = [{
+export const colorPackages : string[] = ["Rojo", "Rosado", "Azul", "Variados"]
+export const bebidas : ProductPrice[] = [{
   producto: "Limonada natural",
   price: 4.000,
 },
@@ -107,7 +107,7 @@ export const bebidas = [{
   price: 4.000,
 }]
 
-export const productosExtra = [{
+export const productosExtra : ProductPrice[]= [{
   producto: "Globlos metalicos",
   price: 23.000,
 },
