@@ -1,12 +1,27 @@
-/* .example-action-buttons {
-    padding-bottom: 20px;
-  }
-  
-  .example-headers-align .mat-expansion-panel-header-description {
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
-    margin-left: 8px;
-  } */
+.container-modal{
+  width: 70vw;
+  max-height: 70vh;
+  box-sizing: border-box;
+  padding: 50px;
+  overflow-x: hidden;
+}
+.container-acordion{
+  box-sizing: border-box;
+  padding: 24px 0 24px 0;
+}
+.checkbox-group {
+  display: flex;
+  flex-direction: column;  
+}
+
+.checkbox-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px; /* Espacio entre elementos */
+
+}
+
+mat-panel-title {
+  font-size: 18px; /* Tamaño de fuente del título */
+}

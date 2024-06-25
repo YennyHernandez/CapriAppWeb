@@ -1,6 +1,70 @@
-<section>
-    <div>
+<section class="container-modal">
         <h1>Paquete</h1>
-        
-    </div>
+        <section class="container-acordion">          
+            <mat-accordion multi="true">
+              <!-- Panel 1 -->
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Elige tu color
+                  </mat-panel-title>
+                </mat-expansion-panel-header>                
+                    <form>
+                        <div class="checkbox-group" *ngFor="let item of colorPackages" >
+                          <div class="checkbox-item">
+                            <span>{{item}}</span>
+                            <mat-checkbox></mat-checkbox>
+                          </div>
+                          
+                        </div>
+                      </form>            
+              </mat-expansion-panel>
+          
+              <!-- Panel 2 -->
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Elige tu Menú
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+                  <ng-container *ngIf="selectedPackage">
+                    <form>
+                      <div class="checkbox-group">
+                        <div class="checkbox-item" *ngFor="let item of selectedPackage.menu">
+                          <span>{{ item.producto }}</span>
+                            <div>
+                              <span *ngIf="namePackage === 'Descanso'">{{ item.price | currency }}</span>
+                              <mat-checkbox></mat-checkbox>
+                            </div>                                    
+                        </div>
+                      </div>
+                    </form>
+                  </ng-container>                 
+              </mat-expansion-panel>
+          
+              <!-- Panel 3 -->
+              <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Añadir 
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <form>
+                  <div class="checkbox-group">
+                    <div class="checkbox-item" *ngFor="let item of productosExtra">
+                      <span>{{item.producto}}</span>
+                      <div>
+                        <span>{{ item.price | currency }}</span>
+                        <mat-checkbox></mat-checkbox>
+                      </div>  
+                    </div>
+                  </div>
+                </form>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </section>
+           <div>
+            <button>Reservar</button> 
+          </div> 
+                
 </section>

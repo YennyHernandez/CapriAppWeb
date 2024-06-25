@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {typePackages} from "../../../constants/paquetes";
 
 @Component({
   selector: 'app-bookins',
@@ -7,19 +8,5 @@ import { Component } from '@angular/core';
 })
 
 export class BookinsComponent {
-  typePackages = [{
-    namePackage: "Enamorados",
-    description: "paquete romantico",
-    price: 190.000,
-  },
-  {
-    namePackage: "Celebración",
-    description: "paquete celebration",
-    price: 210.000,
-  },
-  {
-    namePackage: "Descanso",
-    description: "paquete descanso",
-    price: 80.000,
-  },]
+  typePackages = typePackages;
 }

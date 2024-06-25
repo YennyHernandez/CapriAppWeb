@@ -14,6 +14,8 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { PaquetesComponent } from './paquetes/paquetes.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { ModalComponent } from './modal/modal.component';
     BannerComponent,
     CarouselComponent,
     PaquetesComponent,
-    ModalComponent
+    ModalComponent,
+   
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,9 @@ import { ModalComponent } from './modal/modal.component';
     MatSelectModule,
     MatIconModule, 
     CarouselModule,
-    MatDialogModule,    
+    MatDialogModule,
+    MatCheckboxModule,
+    MatExpansionModule    
   ],
   exports:[
     HeaderComponent,

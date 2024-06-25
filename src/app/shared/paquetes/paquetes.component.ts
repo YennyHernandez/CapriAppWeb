@@ -15,6 +15,8 @@ export class PaquetesComponent {
 
 
   openModal(): void {
-    this.dialog.open(ModalComponent);
+    this.dialog.open(ModalComponent, {data: {
+      namePackage: this.name_package  // Pasamos name_package como dato al modal
+    }});
   }
 }
