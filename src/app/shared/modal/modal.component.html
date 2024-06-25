@@ -24,7 +24,7 @@
               <mat-expansion-panel [expanded]="true">
                 <mat-expansion-panel-header>
                     <mat-panel-title>
-                      Elige tu Menú
+                      {{titlePanelMenu}}
                     </mat-panel-title>
                   </mat-expansion-panel-header>
                   <ng-container *ngIf="selectedPackage">
@@ -41,8 +41,26 @@
                     </form>
                   </ng-container>                 
               </mat-expansion-panel>
-          
-              <!-- Panel 3 -->
+               <!-- Panel 3 -->
+               <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    {{titlePanelBebida}}
+                  </mat-panel-title>
+                </mat-expansion-panel-header>                
+                    <form>
+                        <div class="checkbox-group" *ngFor="let item of bebidas" >
+                          <div class="checkbox-item">
+                            <span>{{item.producto}}</span>
+                            <div>
+                              <span *ngIf="namePackage === 'Descanso'">{{ item.price | currency }}</span>
+                              <mat-checkbox></mat-checkbox>
+                            </div>                           
+                          </div>                         
+                        </div>
+                      </form>            
+              </mat-expansion-panel>
+              <!-- Panel 4 -->
               <mat-expansion-panel [expanded]="true">
                 <mat-expansion-panel-header>
                   <mat-panel-title>

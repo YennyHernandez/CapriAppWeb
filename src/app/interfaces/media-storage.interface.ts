@@ -1,6 +1,4 @@
-export type Paquetes = 'paqueteEnamorados' |'paqueteCelebracion' | 'paqueteDescanso';
-export type x = Record<Paquetes, MediaPaquetes>
-export interface MediaPaquetesLiteralsObject extends x{
+export interface MediaLiteralsObject{
     ordeño: MediaPaquetes;
     velada: MediaPaquetes;
     atardecer: MediaPaquetes;
@@ -16,4 +14,21 @@ export interface MediaPaquetesLiteralsObject extends x{
     mediaType: 'image' | 'video';
     urlDescarga: string;
     url: string;
+  }
+
+ 
+   export interface PackageArray {
+    id: string;
+    namePackage: string;
+    slogan: string;
+    description: string;
+    price: number;
+    menu: MenuItem[];
+    mediaType: string;
+    urlDescarga: string;
+    url: string;
+  }
+  export interface MenuItem {
+    producto: string;
+    price: number;
   }

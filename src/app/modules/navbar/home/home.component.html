@@ -69,8 +69,8 @@
       <h2 class="title">Nuestros <span class="color-title">paquetes</span></h2>
       <p class="p-section">Explora nuestra selección de paquetes de decoración de picnic, donde la personalización es la clave. Desde estilos románticos hasta opciones modernas y rústicas.</p>
       <div class="row">
-        <div class="col-xs-12 col-md-4" *ngFor="let item of typePackages">
-          <app-card [rutaImagePaquete]="item.imagenPackage" [namePaquete]="item.namePackage"
+        <div class="col-xs-12 col-md-4" *ngFor="let item of typePackagesUrls ">
+          <app-card [rutaImagePaquete]="item.url" [namePaquete]="item.namePackage"
             [descriptionPaquete]="item.slogan" [pricePaquete]="item.price">
           </app-card>
         </div>
