@@ -69,20 +69,9 @@
       <h2 class="title">Nuestros <span class="color-title">paquetes</span></h2>
       <p class="p-section">Explora nuestra selección de paquetes de decoración de picnic, donde la personalización es la clave. Desde estilos románticos hasta opciones modernas y rústicas.</p>
       <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <app-card [rutaImagePaquete]="firebaseStorageService.media.paqueteEnamorados.url" [namePaquete]="'Enamorados'"
-            [descriptionPaquete]="'¡Enamora con un plan romántico para 2 personas!'" [pricePaquete]="190000">
-          </app-card>
-        </div>
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <app-card [rutaImagePaquete]="firebaseStorageService.media.paqueteCelebracion.url"
-            [namePaquete]="'Celebración'" [descriptionPaquete]="'¡Disfruta de un picnic interactivo para 5 personas!'"
-            [pricePaquete]="205000">
-          </app-card>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-4">
-          <app-card [rutaImagePaquete]="firebaseStorageService.media.paqueteDescanso.url" [namePaquete]="'Descanso'"
-            [descriptionPaquete]="'¡Relajate en medio de la naturaleza y cabritas!'" [pricePaquete]="80000">
+        <div class="col-xs-12 col-md-4" *ngFor="let item of typePackages">
+          <app-card [rutaImagePaquete]="item.imagenPackage" [namePaquete]="item.namePackage"
+            [descriptionPaquete]="item.slogan" [pricePaquete]="item.price">
           </app-card>
         </div>
       </div>

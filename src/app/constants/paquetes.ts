@@ -1,8 +1,13 @@
+import { inject } from "@angular/core"
+import { FirebaseStorageService } from "../services/firebase-storage.service"
+
 export const typePackages = [{
+    id: "paqueteEnamorados",
     namePackage: "Enamorados",
     slogan: "¡Enamora con un plan romántico para 2 personas!",
     description: "paquete romantico",
     price: 190.000,
+    imagenPackage: "",
     menu:[
       {
         producto: "Churrasco",
@@ -23,10 +28,12 @@ export const typePackages = [{
     ]
   },
   {
+    id: "paqueteCelebracion",
     namePackage: "Celebración",
     slogan: "¡Disfruta de un picnic interactivo para 5 personas!",
     description: "paquete celebration",
     price: 210.000,
+    imagenPackage: "",
     menu:[
       {
         producto: "Hamburgueda de res",
@@ -39,10 +46,12 @@ export const typePackages = [{
     ]
   },
   {
+    id: "paqueteDescanso",
     namePackage: "Descanso",
     slogan: "¡Relajate en medio de la naturaleza y cabritas!",
     description: "paquete descanso",
     price: 80.000,
+    imagenPackage: "",
     menu:[
       {
         producto: "Churrasco",

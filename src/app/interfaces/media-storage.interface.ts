@@ -1,7 +1,6 @@
-export interface MediaPaquetesLiteralsObject {
-    paqueteEnamorados: MediaPaquetes;
-    paqueteCelebracion: MediaPaquetes;
-    paqueteDescanso: MediaPaquetes;
+export type Paquetes = 'paqueteEnamorados' |'paqueteCelebracion' | 'paqueteDescanso';
+export type x = Record<Paquetes, MediaPaquetes>
+export interface MediaPaquetesLiteralsObject extends x{
     ordeño: MediaPaquetes;
     velada: MediaPaquetes;
     atardecer: MediaPaquetes;
