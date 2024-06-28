@@ -18,6 +18,7 @@ export class PaquetesComponent {
     menu:[],
     mediaType: "",
     urlDescarga:"",
+    itemsUrlDescarga: [],
   };
   constructor(public dialog: MatDialog) {}
 

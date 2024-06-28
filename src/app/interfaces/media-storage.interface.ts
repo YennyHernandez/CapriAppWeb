@@ -26,6 +26,7 @@ export interface MediaLiteralsObject{
     menu: ProductPrice[];
     mediaType: string;
     urlDescarga: string;
+    itemsUrlDescarga: string[];
   }
   
   export interface PackageUrl extends Packag {
@@ -35,3 +36,5 @@ export interface MediaLiteralsObject{
     producto: string;
     price: number;
   }
+
+ 

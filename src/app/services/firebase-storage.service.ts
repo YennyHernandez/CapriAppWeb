@@ -42,28 +42,72 @@ export class FirebaseStorageService {
     this.storageMediaSubject.next(this.media)
   }
 
-  private async initUrlsDataPaquetes() { //Get de urls paquetes
+ /*  private async initUrlsDataPaquetes() { //Get de urls paquetes
     const urlDataPaquetes = (this.typePackages).map(async (item) => {
+      //let urlsCarouselDownLoad: string = "";
       const storageRef: StorageReference = ref(storage, item.urlDescarga);
+      const urlsCarousel = item.itemsUrlDescarga.map( async (url)=>{
+        const storageRefcarousel: StorageReference = ref(storage, url);
+        try {
+          const urlsCarouselDownLoad = await getDownloadURL(storageRefcarousel);
+          console.log("descargando url image carousel")          
+        } 
+        catch (error) {
+          console.error('Error urls carousel:', error);         
+        }
+      })   
       try {
         const url = await getDownloadURL(storageRef);
         console.log("descargando url image paquetes")
         return {
-          ...item, url
+          ...item, url , urlsCarousel
         } as PackageUrl
-      }
+      } 
       catch (error) {
         console.error('Error al obtener la URL de descarga paquetes:', error);
         return
       }
     });
-
+    
     const data = (await Promise.all(urlDataPaquetes)) as PackageUrl[]
     this.storagePaquetesSubject.next(data);
-
     console.log('typePackages actualizados con URLS', this.initUrlsDataPaquetes);
 
+  } */
+  private async initUrlsDataPaquetes() { // Get de URLs paquetes
+    const urlDataPaquetes = this.typePackages.map(async (item) => {    // Procesar las URLs del carrusel  
+      const urlsCarousel = await Promise.all(item.itemsUrlDescarga.map(async (url) => {
+        const storageRefcarousel: StorageReference = ref(storage, url);
+        try {
+          const urlsCarouselDownLoad = await getDownloadURL(storageRefcarousel);
+          console.log("descargando url image carousel");
+          return urlsCarouselDownLoad; // Devolver la URL descargada
+        } catch (error) {
+          console.error('Error urls carousel:', error);
+          return null; 
+        }
+      }));  
+      const storageRef: StorageReference = ref(storage, item.urlDescarga);  // Procesar la URL del paquete
+      try {
+        const url = await getDownloadURL(storageRef);
+        console.log("descargando url image paquetes");
+        return {
+          ...item,
+          url,
+          urlsCarousel:  urlsCarousel.filter(url => url !== null)
+        } as PackageUrl;
+      } catch (error) {
+        console.error('Error al obtener la URL de descarga paquetes:', error);
+        return null; 
+      }
+    });
+  
+    // Esperar a que todas las promesas se resuelvan
+    const data = (await Promise.all(urlDataPaquetes)).filter(item => item !== null) as PackageUrl[];
+    this.storagePaquetesSubject.next(data);
+    console.log('typePackages actualizados con URLS', data);
   }
+  
 
 
 }

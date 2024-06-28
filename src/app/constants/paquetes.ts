@@ -25,6 +25,15 @@ export const typePackages: Packag[]  = [{
     ],
     mediaType: 'image', 
     urlDescarga: 'generic/paquete_enamorados.jpg',
+    itemsUrlDescarga: [
+      "penamorados/penamorados1.jpg",
+       "penamorados/penamorados2.jpg",
+       "penamorados/penamorados3.jpg",
+       "penamorados/penamorados4.jpg",
+       "penamorados/penamorados5.jpg",
+       "penamorados/penamorados6.jpg",
+       "penamorados/penamorados7.jpg",
+  ],
   
   },
   {
@@ -45,6 +54,15 @@ export const typePackages: Packag[]  = [{
     ],  
     mediaType: 'image',
     urlDescarga: 'generic/paquete_celebracion.jpg', 
+    itemsUrlDescarga: [
+     "pcelebracion/pcelebracion1.jpg",
+      "pcelebracion/pcelebracion2.jpg",
+    "pcelebracion/pcelebracion3.jpg",
+      "pcelebracion/pcelebracion4.jpg",
+      "pcelebracion/pcelebracion5.jpg",
+       "pcelebracion/pcelebracion6.jpg",
+     "pcelebracion/pcelebracion7.jpg",
+  ],
   },
   {
     id: "paqueteDescanso",
@@ -80,6 +98,16 @@ export const typePackages: Packag[]  = [{
     ],
     mediaType: 'image', 
     urlDescarga: 'generic/paquete_interaccion.png', 
+    itemsUrlDescarga: [
+       "pdescanso/pdescanso1.jpg",
+       "pdescanso/pdescanso2.jpg",
+       "pdescanso/pdescanso3.jpg",
+       "pdescanso/pdescanso4.jpg",
+       "pdescanso/pdescanso5.jpg",
+       "pdescanso/pdescanso6.jpg",
+       "pdescanso/pdescanso7.jpg",
+   
+  ],
   }]
 
 export const  media: MediaLiteralsObject = {
