@@ -31,6 +31,7 @@ export interface MediaLiteralsObject{
   
   export interface PackageUrl extends Packag {
     url: string;
+    urlsCarousel: string[];
   }
   export interface ProductPrice {
     producto: string;

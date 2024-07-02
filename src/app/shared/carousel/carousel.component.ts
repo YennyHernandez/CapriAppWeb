@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CarouselAlignMode, CarouselConfig, CarouselWidthMode } from 'ng-carousel-cdk';
+import { Subscription } from 'rxjs';
+import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 
 
 @Component({
@@ -9,25 +11,32 @@ import { CarouselAlignMode, CarouselConfig, CarouselWidthMode } from 'ng-carouse
 })
 
 export class CarouselComponent {
-  imageUrls: string[] = [
-    "../../../assets/cabra3.png",
-    "../../../assets/goat.png",
-    "../../../assets/goat2.png"
-  ];
-  config: CarouselConfig = {
-    items: this.imageUrls,
-    widthMode: CarouselWidthMode.PX,
-    alignMode: CarouselAlignMode.CENTER,
-    autoplayEnabled: true,
-    autoplayDelay: 6000,
-    dragEnabled: true,
-    slideWidth: 633,
-    transitionDuration: 280,
-    shouldRecalculateOnResize: true,
-    allowKeyboardNavigation: true,
-    shouldLoop: true,   
+  @Input() idPackage = "";
+  observerStoragePaquetes!: Subscription;
+  config!: CarouselConfig<string>;
+  imageUrls: string[] = [];
+  constructor(private firebaseStorageService: FirebaseStorageService) { }
+  ngOnInit(): void {
+    this.observerStoragePaquetes = this.firebaseStorageService.storagePaquetesSubject.subscribe((data) => {
+      const packageCreated = data.filter(item => this.idPackage === item.id);
+      this.imageUrls = packageCreated[0].urlsCarousel;
+      this.configureCarousel();
+      console.log(packageCreated[0].urlsCarousel, "🐐🐐🐐")
+    })
   }
-
-
-
+  configureCarousel(): void {
+    this.config = {
+      items: this.imageUrls,
+      widthMode: CarouselWidthMode.PX,
+      alignMode: CarouselAlignMode.CENTER,
+      autoplayEnabled: true,
+      autoplayDelay: 6000,
+      dragEnabled: true,
+      slideWidth: 633,
+      transitionDuration: 280,
+      shouldRecalculateOnResize: true,
+      allowKeyboardNavigation: true,
+      shouldLoop: true,
+    };
+  }
 }
