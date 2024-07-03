@@ -40,7 +40,7 @@ export const typePackages: Packag[]  = [{
     id: "paqueteCelebracion",
     namePackage: "Celebración",
     slogan: "¡Disfruta de un picnic interactivo para 5 personas!",
-    description: "Nuestro paquete celebración incluye munu, decoración según la ocasión con globos en el teppe y mensaje especial en el tablero tiza." ,
+    description: "Nuestro paquete celebración incluye menú, decoración según la ocasión con globos en el teppe y mensaje especial en el tablero tiza." ,
     price: 210.000,
     menu:[
       {

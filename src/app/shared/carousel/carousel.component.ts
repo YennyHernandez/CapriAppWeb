@@ -21,8 +21,13 @@ export class CarouselComponent {
       const packageCreated = data.filter(item => this.idPackage === item.id);
       this.imageUrls = packageCreated[0].urlsCarousel;
       this.configureCarousel();
-      console.log(packageCreated[0].urlsCarousel, "🐐🐐🐐")
+      console.log("send image to carousel")
     })
+  }
+  ngOnDestroy(): void {
+    if (this.observerStoragePaquetes) {
+      this.observerStoragePaquetes.unsubscribe();
+    }
   }
   configureCarousel(): void {
     this.config = {
@@ -32,7 +37,7 @@ export class CarouselComponent {
       autoplayEnabled: true,
       autoplayDelay: 6000,
       dragEnabled: true,
-      slideWidth: 633,
+      slideWidth: 630,
       transitionDuration: 280,
       shouldRecalculateOnResize: true,
       allowKeyboardNavigation: true,

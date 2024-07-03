@@ -12,6 +12,7 @@ $color-primary-accent: #54582f;
 $color-secondary: #464646;
 $color-accent: #ACCC7B;
 $color-claro: #EEEEEE;
+$color-claro-secondary: #4162172e;
 $color-oscuro: #373A40;
 $color-warn: #80080C; 
 
@@ -48,7 +49,7 @@ button,
 .btn {
   padding: 10px 20px;
   background-color: $color-accent;
-  color: white;
+  color:$color-claro;
   border: none;
   border-radius: 24px;
   cursor: pointer;

@@ -1,17 +1,16 @@
 <section>
-    <div class="container">
+    <div class="container color">
         <div class="row">
             <div class="col-xs-12 col-md-12">
                 <h2 class="title">paquete <span class="color-title">{{package.namePackage}}</span></h2>
             </div>
-            <div class="col-xs-12 col-md-6">
-                <h3 class="shape-subtitle color-title"> Decoración</h3>
+            <div class="col-xs-12 col-md-7">
+                <h3 class="shape-subtitle color-title"> Decoraciones</h3>
                 <app-carousel [idPackage]="package.id"></app-carousel>
             </div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-5 flex">
                 <h3  class="shape-subtitle color-title"> ¿Qué incluye?</h3>
                 <p>{{package.description}}</p>
-                <p>{{package.id}}</p>
                 <p>{{package.price| currency}}</p>
                 <button (click)="openModal(package.id)">+</button>
             </div>

@@ -2,8 +2,8 @@
 
   .card {
     overflow: hidden;
-    background-color: $color-primary; 
-    color: $color-claro;
+    background-color: $color-claro-secondary; 
+    color: $color-title;
     border-radius: 40px;    
     margin: 2rem auto;
     
@@ -18,7 +18,7 @@
     padding: 8px 16px;
   }
   .mat-mdc-card-subtitle{
-  color: $color-primary-complement;
+  color: $color-oscuro;
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   padding-bottom: 8px;

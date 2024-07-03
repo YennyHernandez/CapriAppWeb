@@ -23,6 +23,7 @@ export class HomeComponent {
   cols: number = 6;
   observerStorageMedia!: Subscription
   observerStoragePaquetes!: Subscription
+  subscriptions : Subscription[]= [];
 
   constructor(public firebaseStorageService: FirebaseStorageService) {
 
@@ -49,7 +50,11 @@ export class HomeComponent {
     this.observerStoragePaquetes = this.firebaseStorageService.storagePaquetesSubject.subscribe(data =>{
       this.typePackagesUrls = data;
     })
+    this.subscriptions.push(this.observerStorageMedia, this.observerStoragePaquetes)
 
+  }
+  ngOnDestroy():void{
+    this.subscriptions.forEach(subs => subs.unsubscribe());
   }
   calcularColumnas() {
     if (window.innerWidth <= 768) {
