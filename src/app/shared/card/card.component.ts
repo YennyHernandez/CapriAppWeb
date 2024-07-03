@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import {  PackageUrl } from 'src/app/interfaces/media-storage.interface';
 
 @Component({
   selector: 'app-card',
@@ -6,8 +7,17 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent {
-  @Input() namePaquete: string = "paquete";
-  @Input() rutaImagePaquete: string = "paquete";
-  @Input() descriptionPaquete: string = "description";
-  @Input() pricePaquete: number = 300.000;
+  @Input() packageCard :PackageUrl = {
+    id: "",
+    namePackage:"", 
+    slogan: "",
+    description:"",
+    price: 0,
+    menu:[],
+    mediaType: "",
+    urlDescarga:"",
+    itemsUrlDescarga: [],
+    url: "",
+    urlsCarousel:[],
+  };
 }
