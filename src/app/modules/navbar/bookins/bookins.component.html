@@ -1,10 +1,13 @@
-<section class="publicity">
-    <h2 class="title"> Planes de <span class=" title color-publicity"> Picnic</span></h2>
-    <span class="shape-subtitle color-publicity">¡para todas las ocasiones!</span>
+<section class="pd-body">
+    <section class="publicity">
+        <h2 class="title"> Planes de <span class=" title color-publicity"> Picnic</span></h2>
+        <span class="shape-subtitle color-publicity">¡para todas las ocasiones!</span>
+    </section>
+    <div class="pd-50" *ngFor="let item of typePackages">
+        <app-paquetes [package]="item"></app-paquetes>
+    </div>
 </section>
-<div class="pd-50" *ngFor="let item of typePackages">
-    <app-paquetes [package]="item"></app-paquetes>
-</div>
+
 
 
    <!--  <div class="colorbut">

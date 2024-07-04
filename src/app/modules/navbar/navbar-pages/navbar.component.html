@@ -9,21 +9,25 @@
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
-        <mat-toolbar class="background-primary stiky">
+        <mat-toolbar class="background-primary fixed">
           <button type="button" class="transparency" mat-icon-button (click)="sidenav.toggle()">
             <mat-icon fontIcon="menu"></mat-icon>
           </button>
           <button routerLink="/auth/login">Login</button>
         </mat-toolbar>
-        <router-outlet></router-outlet>
-        <app-foother></app-foother>
+        <div>
+          <router-outlet></router-outlet>
+          <app-foother></app-foother>
+        </div>
       </mat-sidenav-content>
     </mat-sidenav-container>
   </ng-container>
   
   <ng-template #isBigScreen>
-    <app-header class="stiky max-width"></app-header>
-    <router-outlet></router-outlet>
-    <app-foother class="max-width"></app-foother>
+    <app-header class="fixed max-width"></app-header>
+    <div>
+      <router-outlet ></router-outlet>
+      <app-foother class="max-width"></app-foother>
+    </div>
   </ng-template>
 </section>

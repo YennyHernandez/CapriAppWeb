@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 import { Subscription } from 'rxjs';
-import {PackageUrl} from "../../../interfaces/media-storage.interface"
+import { PackageUrl } from "../../../interfaces/media-storage.interface"
+
 
 
 export interface Tile {
@@ -17,19 +18,17 @@ export interface Tile {
 
 })
 export class HomeComponent {
-  typePackagesUrls : PackageUrl[] = [];
+  typePackagesUrls: PackageUrl[] = [];
   selectedValue: string = "selecciona";
   tiles: Tile[] = [];
   cols: number = 6;
   observerStorageMedia!: Subscription
   observerStoragePaquetes!: Subscription
-  subscriptions : Subscription[]= [];
+  subscriptions: Subscription[] = [];
 
   constructor(public firebaseStorageService: FirebaseStorageService) {
 
   }
-
-
   ngOnInit(): void {
     this.calcularColumnas(); //calcula la primera vez
     window.addEventListener('resize', () => {
@@ -47,15 +46,16 @@ export class HomeComponent {
       ];
     }
     )
-    this.observerStoragePaquetes = this.firebaseStorageService.storagePaquetesSubject.subscribe(data =>{
+    this.observerStoragePaquetes = this.firebaseStorageService.storagePaquetesSubject.subscribe(data => {
       this.typePackagesUrls = data;
     })
     this.subscriptions.push(this.observerStorageMedia, this.observerStoragePaquetes)
-
+    console.log("entrandooo a init de home")
   }
-  ngOnDestroy():void{
+  ngOnDestroy(): void {
     this.subscriptions.forEach(subs => subs.unsubscribe());
   }
+
   calcularColumnas() {
     if (window.innerWidth <= 768) {
       this.cols = 2;
@@ -63,5 +63,6 @@ export class HomeComponent {
       this.cols = 6;
     }
   }
+  
 
 }
