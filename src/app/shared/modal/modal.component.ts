@@ -69,32 +69,64 @@ export class ModalComponent {
     });
   }
 
-  sumarExtra(producto: string) {
-    const suma = this.productosExtra.find(extra => extra.producto === producto)?.price || 0
-    this.doOperation(suma, producto);
-  }
-
-  sumarBebida(producto: string) {
-    if (this.isPaqDescanso) {
-      const suma = this.bebidas.find(extra => extra.producto === producto)?.price || 0
-      this.doOperation(suma, producto);
-  }
-}
-  sumarMenu(producto: string) {
-    if (this.isPaqDescanso) {
-      const suma = this.selectedPackage?.menu.find(extra => extra.producto === producto)?.price || 0
-      this.doOperation(suma, producto);
+  sumar(producto: string, groupCheck:string ) {
+    if(groupCheck === 'Color'){
+      const productoArray = this.colorPackages
+      const checked = this.formulario.get(producto)?.value;
+      if(checked){
+        productoArray.forEach((item) =>{
+          if(item !== producto){
+            this.formulario.get(item)?.setValue(false, {emitEvent: false})
+          }         
+        })
+      }      
+    }
+    else if(groupCheck === 'Menu'){
+      let priceSum = 0;
+      const productoArray = this.selectedPackage!.menu
+      console.log('entro a menu')
+      if(this.idPackage === "paqueteDescanso"){
+         priceSum = productoArray.find(extra => extra.producto === producto)?.price || 0
+      } 
+      this.doOperation(priceSum, producto, productoArray, groupCheck);
+    }
+    else if (groupCheck === 'Bebida'){
+      let priceSum = 0;
+      const productoArray = this.bebidas
+      if(this.idPackage === "paqueteDescanso"){
+        priceSum = productoArray.find(extra => extra.producto === producto)?.price || 0
+     }
+      this.doOperation(priceSum, producto, productoArray, groupCheck);
+    }
+    else if (groupCheck === 'Extra'){
+      const productoArray = this.productosExtra
+      let priceSum = productoArray.find(extra => extra.producto === producto)?.price || 0
+      this.doOperation(priceSum, producto, productoArray,groupCheck);
+    }
+    else{
+      console.log("No se econtro ningun grupo", groupCheck)
     }
   }
 
-  doOperation(suma: number, producto:string) {
+  doOperation(priceSum: number, producto:string, productArray : ProductPrice[], groupCheck:string) {
     if (this.newPriceSubscription) {
       this.newPriceSubscription.unsubscribe(); //desuscribirse para hacer una nueva
     }
     this.newPriceSubscription = this.newPrice.subscribe((value) => {
       const checked = this.formulario.get(producto)?.value;
-      checked ? this.newCurrentPrice = value + suma : this.newCurrentPrice = value - suma
-
+      if(checked){
+        this.newCurrentPrice = value + priceSum;
+        if(groupCheck !== 'Extra' && this.idPackage !== 'paqueteDescanso'){
+          productArray.forEach((item) =>{
+            if(item.producto !== producto){
+              this.formulario.get(item.producto)?.setValue(false, {emitEvent: false})
+            }         
+          })
+        }
+      }
+      else{
+        this.newCurrentPrice = value - priceSum
+      }
     });
     this.newPrice.next(this.newCurrentPrice) //actualiza el nuevamente valor del precio
   }
