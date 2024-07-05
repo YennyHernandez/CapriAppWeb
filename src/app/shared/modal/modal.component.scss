@@ -1,14 +1,14 @@
 @import '../../../styles.scss';
 .container-modal{
-  width: 70vw;
-  max-height: 70vh;
+  position: relative;
+  width: 80vw;
+  max-height: 80vh;
   box-sizing: border-box;
-  padding: 50px;
   overflow-x: hidden;
 }
 .container-acordion{
   box-sizing: border-box;
-  padding: 24px 0 24px 0;
+  padding: 25px 50px 50px 25px;
 }
 .checkbox-group {
   display: flex;
@@ -19,11 +19,40 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px; /* Espacio entre elementos */
+  margin-bottom: 8px; 
 
 }
 
 mat-panel-title {
   font-size: 18px; /* Tamaño de fuente del título */
-  background-color: $color-claro-secondary;
+}
+
+.fixed-top {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap:18px;
+  background-color: $color-claro;
+  color: $color-title;
+  padding: 0 6px 0 6px;
+  z-index: 1000; /* Ajusta según sea necesario */
+}
+
+.fixed-button {
+ 
+  position: sticky;
+  z-index: 1000;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  background-color: $color-claro;
+  padding: 16px;
+}
+.color{
+  color: $color-title;
+  margin: 0;
 }

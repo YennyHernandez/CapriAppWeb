@@ -16,6 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     CarouselModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatExpansionModule    
+    MatExpansionModule,
+    ReactiveFormsModule    
   ],
   exports:[
     HeaderComponent,

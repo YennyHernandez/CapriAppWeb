@@ -12,7 +12,7 @@
                 <h3  class="shape-subtitle color-title"> ¿Qué incluye?</h3>
                 <p>{{package.description}}</p>
                 <p>{{package.price| currency}}</p>
-                <button (click)="openModal(package.id)">+</button>
+                <button (click)="openModal(package.id)"> <mat-icon fontSet="mdi" fontIcon="mdi-plus-thick" class="color-title"></mat-icon></button>
             </div>
         </div>
     </div>
