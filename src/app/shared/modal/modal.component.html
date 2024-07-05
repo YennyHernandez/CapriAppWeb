@@ -34,8 +34,8 @@
               <div class="checkbox-item" *ngFor="let item of selectedPackage.menu">
                 <span>{{ item.producto }}</span>
                 <div>
-                  <span *ngIf="idPackage === 'paqueteDescanso'"> +{{ item.price | currency }}</span>
-                  <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price"></mat-checkbox>
+                  <span *ngIf="isPaqDescanso"> +{{ item.price | currency }}</span>
+                  <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price" (change)="sumarMenu(item.producto)"></mat-checkbox>
                 </div>
               </div>
             </div>
@@ -52,8 +52,8 @@
             <div class="checkbox-item">
               <span>{{item.producto}}</span>
               <div>
-                <span *ngIf="idPackage === 'paqueteDescanso'">+{{ item.price | currency }}</span>
-                <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price"></mat-checkbox>
+                <span *ngIf="isPaqDescanso">+{{ item.price | currency }}</span>
+                <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price" (change)="sumarBebida(item.producto)"></mat-checkbox>
               </div>
             </div>
           </div>
@@ -70,7 +70,7 @@
               <span>{{item.producto}}</span>
               <div>
                 <span>+{{ item.price | currency }}</span>
-                <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price"></mat-checkbox>
+                <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price" (change)="sumarExtra(item.producto)"></mat-checkbox>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@
     <div class="fixed-button">
       <button type="submit">
         <mat-icon fontSet="mdi" fontIcon=" mdi-check-bold" class="color"></mat-icon> Reservar
-        <span>{{selectedPackage?.price | currency}}</span>
+        <span>{{newCurrentPrice | currency}}</span>
       </button>
       <button>
         <mat-icon fontSet="mdi" fontIcon="mdi-heart" class="color"></mat-icon> Guardar Cotización
