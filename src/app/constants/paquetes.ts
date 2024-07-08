@@ -5,6 +5,7 @@ export const typePackages: Packag[]  = [{
     slogan: "¡Enamora con un plan romántico para 2 personas!",
     description: "Nuestro Paquete romantico incluye menu, decoración con fotos y mensaje especial en tablero tiza, luces y antorchas en todo el lugar, fogata y malvaviscos. ",
     price: 190.000,
+    pricePersonExtra: 35.000,
     menu:[
       {
         producto: "Churrasco",
@@ -42,6 +43,7 @@ export const typePackages: Packag[]  = [{
     slogan: "¡Disfruta de un picnic interactivo para 5 personas!",
     description: "Nuestro paquete celebración incluye menú, decoración según la ocasión con globos en el teppe y mensaje especial en el tablero tiza." ,
     price: 210.000,
+    pricePersonExtra: 25.000,
     menu:[
       {
         producto: "Hamburgueda de res",
@@ -70,6 +72,7 @@ export const typePackages: Packag[]  = [{
     slogan: "¡Relajate en medio de la naturaleza y cabritas!",
     description: "Nuestro paquete descanso es el plan perfecto para relajarse, incluye tela picnic, cogines de descanso y juegos de mesa",
     price: 80.000,
+    pricePersonExtra: 0,
     menu:[
       {
         producto: "Churrasco",

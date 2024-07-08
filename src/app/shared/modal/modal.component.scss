@@ -1,30 +1,34 @@
 @import '../../../styles.scss';
-.container-modal{
+
+.container-modal {
   position: relative;
   width: 80vw;
   max-height: 80vh;
   box-sizing: border-box;
   overflow-x: hidden;
 }
-.container-acordion{
+
+.container-acordion {
   box-sizing: border-box;
   padding: 25px 50px 50px 25px;
 }
+
 .checkbox-group {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
 
 .checkbox-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px; 
+  margin-bottom: 8px;
 
 }
 
 mat-panel-title {
-  font-size: 18px; /* Tamaño de fuente del título */
+  font-size: 18px;
+  /* Tamaño de fuente del título */
 }
 
 .fixed-top {
@@ -33,26 +37,60 @@ mat-panel-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap:18px;
+  gap: 18px;
   background-color: $color-claro;
   color: $color-title;
-  padding: 0 6px 0 6px;
-  z-index: 1000; /* Ajusta según sea necesario */
+  padding: 8px 8px 8px 8px;
+  z-index: 1000;
+  /* Ajusta según sea necesario */
 }
 
 .fixed-button {
- 
+
   position: sticky;
   z-index: 1000;
   bottom: 0;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   gap: 16px;
   text-align: center;
   background-color: $color-claro;
   padding: 16px;
 }
-.color{
+
+.color {
   color: $color-title;
   margin: 0;
+}
+.color-reservar {
+  background-color: $color-title;
+}
+.color-claro {
+  color: $color-claro;
+  
+}
+.mdi:before,
+.mdi-set {
+    font-size: 20px;
+    line-height: normal;
+
+}
+.mat-mdc-checkbox.mat-accent {
+  --mdc-checkbox-selected-checkmark-color: #fff;
+  --mdc-checkbox-selected-focus-icon-color: #416217;
+  --mdc-checkbox-selected-hover-icon-color: #416217;
+  --mdc-checkbox-selected-icon-color: #416217;
+  --mdc-checkbox-selected-pressed-icon-color: #416217;
+  --mdc-checkbox-unselected-focus-icon-color: #212121;
+  --mdc-checkbox-unselected-hover-icon-color: #212121;
+  --mdc-checkbox-disabled-selected-icon-color: rgba(0, 0, 0, 0.38);
+  --mdc-checkbox-disabled-unselected-icon-color: rgba(0, 0, 0, 0.38);
+  --mdc-checkbox-unselected-icon-color: rgba(0, 0, 0, 0.54);
+  --mdc-checkbox-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
+}
+@media (max-width: 767px) {
+  .fixed-button{
+    flex-direction: column;
+  }
 }

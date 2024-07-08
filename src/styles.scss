@@ -46,6 +46,10 @@ body {
 }
 button,
 .btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   padding: 10px 20px;
   background-color: $color-accent;
   color:$color-title;

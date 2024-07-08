@@ -14,6 +14,7 @@ export class CardComponent {
     slogan: "",
     description:"",
     price: 0,
+    pricePersonExtra: 0,
     menu:[],
     mediaType: "",
     urlDescarga:"",

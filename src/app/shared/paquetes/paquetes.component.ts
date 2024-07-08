@@ -15,6 +15,7 @@ export class PaquetesComponent {
     slogan: "",
     description:"",
     price: 0,
+    pricePersonExtra: 0,
     menu:[],
     mediaType: "",
     urlDescarga:"",

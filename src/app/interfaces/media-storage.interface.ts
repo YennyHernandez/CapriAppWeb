@@ -23,6 +23,7 @@ export interface MediaLiteralsObject{
     slogan: string;
     description: string;
     price: number;
+    pricePersonExtra: number;
     menu: ProductPrice[];
     mediaType: string;
     urlDescarga: string;
