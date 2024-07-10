@@ -21,7 +21,6 @@ export class CarouselComponent {
       const packageCreated = data.filter(item => this.idPackage === item.id);
       this.imageUrls = packageCreated[0].urlsCarousel;
       this.configureCarousel();
-      console.log("send image to carousel")
     })
   }
   ngOnDestroy(): void {

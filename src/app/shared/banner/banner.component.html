@@ -1,4 +1,4 @@
-<section class="banner-home" [ngStyle]="{ 'background-image': 'url('+firebaseStorageService.media.banner.url+')' }">
+ <section class="banner-home" [ngStyle]="{ 'background-image': 'url('+firebaseStorageService.media.banner.url+')' }">
     <div class="banner-home__wrap-reservar row center-xs">
         <h1 class="banner-home__wrap-reservar__title">Bienvenido a Capripicnic</h1>
         <h3 class="banner-home__wrap-reservar__title size">¡Haz tu reserva y vive una experiencia única!</h3>
@@ -6,15 +6,20 @@
             <div class="banner-home__wrap-reservar__actions wh70">
                 <mat-form-field appearance="fill">
                     <mat-label>Paquetes de Picnic</mat-label>
-                    <mat-select disableRipple>
-                        <mat-option value="1">Enamorados</mat-option>
-                        <mat-option value="2">Celebración</mat-option>
-                        <mat-option value="3">Descanso</mat-option>
+                    <mat-select disableRipple (selectionChange)="onSelectionChange($event)" >
+                        <div *ngFor="let item of dataPackages">
+                            <mat-option value="{{item.id}}">{{item.namePackage}}</mat-option>
+                        </div>
                     </mat-select>
+                    <!-- <div *ngFor="let item of dataPackages">
+                        <mat-select disableRipple (selectionChange)="onSelectionChange($event)">
+                            <mat-option value="{{item.id}}">{{item.namePackage}}</mat-option>
+                        </mat-select>
+                    </div> -->
                 </mat-form-field>
             </div>
             <div class="banner-home__wrap-reservar__actions wh30">
-                <button class="banner-home__wrap-reservar__actions__button-size">Buscar</button>
+                <button (click)="openModal(selectedPackageId)" class="banner-home__wrap-reservar__actions__button-size">Reservar</button>
             </div>           
         </div>
     </div>

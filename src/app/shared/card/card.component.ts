@@ -22,9 +22,11 @@ export class CardComponent {
     url: "",
     urlsCarousel:[],
   };
-  constructor(private router: Router, private route: ActivatedRoute){}
+  constructor(private router: Router, private route: ActivatedRoute){
+  }
   irASeccion(id: string) {
     this.router.navigate(["/booking"], { fragment: id });
     console.log("enviando a seccion", id)
   }
+ 
 }

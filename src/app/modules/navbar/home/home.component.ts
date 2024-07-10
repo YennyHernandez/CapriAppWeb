@@ -50,7 +50,7 @@ export class HomeComponent {
       this.typePackagesUrls = data;
     })
     this.subscriptions.push(this.observerStorageMedia, this.observerStoragePaquetes)
-    console.log("entrandooo a init de home")
+  
   }
   ngOnDestroy(): void {
     this.subscriptions.forEach(subs => subs.unsubscribe());

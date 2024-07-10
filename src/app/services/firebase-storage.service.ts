@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { storage } from '../../../firebase-config';
 import { ref, getDownloadURL, StorageReference } from "firebase/storage";
-import { Subject } from 'rxjs';
+import { BehaviorSubject} from 'rxjs';
 import { MediaLiteralsObject, PackageUrl, Packag} from "../interfaces/media-storage.interface"
 type x = keyof MediaLiteralsObject;
 import { typePackages, media } from "../constants/paquetes"
@@ -13,14 +13,25 @@ import { typePackages, media } from "../constants/paquetes"
 export class FirebaseStorageService {
   typePackages = typePackages; //paquetes
   media = media; //media
-  flag = false;
-  storageMediaSubject = new Subject<MediaLiteralsObject>
-  storagePaquetesSubject = new Subject<PackageUrl[]>;
+  
+  private createEmptyMediaData(): MediaLiteralsObject {
+    const keys = Object.keys(media) as Array<keyof MediaLiteralsObject>;
+    const emptyData = {} as MediaLiteralsObject;
+    keys.forEach(key => {
+      emptyData[key] = { url: '', urlDescarga: '', mediaType:'image'};
+    });
+    return emptyData;
+  }
+
+  private initialMediaData: MediaLiteralsObject = this.createEmptyMediaData();
+  private initialPackageUrls: PackageUrl[] = [];
+  storageMediaSubject = new BehaviorSubject<MediaLiteralsObject>(this.initialMediaData);
+  storagePaquetesSubject = new BehaviorSubject<PackageUrl[]>(this.initialPackageUrls);
 
   constructor() {
     this.initStorageUrls()
     this.initUrlsDataPaquetes()
-    console.log("se inicilizo 1 vez")
+    console.log("se inicilizo 1 vez el servivio")
   }
 
   private async initStorageUrls() { //get de urls media
