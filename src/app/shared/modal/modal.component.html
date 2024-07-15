@@ -16,7 +16,7 @@
           <div class="checkbox-group" *ngFor="let item of colorPackages">
             <div class="checkbox-item">
               <span>{{item}}</span>
-              <mat-checkbox [formControlName]="item" [value]="item" (change)="sumar(item, 'Color')" ></mat-checkbox>
+              <mat-checkbox [formControlName]="item" [value]="item" (change)="sumar(item, 'Color')"></mat-checkbox>
             </div>
 
           </div>
@@ -35,7 +35,8 @@
                 <span>{{ item.producto }}</span>
                 <div>
                   <span *ngIf="isPaqDescanso"> +{{ item.price | currency }}</span>
-                  <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price" (change)="sumar(item.producto, 'Menu')"></mat-checkbox>
+                  <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price"
+                    (change)="sumar(item.producto, 'Menu')"></mat-checkbox>
                 </div>
               </div>
             </div>
@@ -53,7 +54,8 @@
               <span>{{item.producto}}</span>
               <div>
                 <span *ngIf="isPaqDescanso">+{{ item.price | currency }}</span>
-                <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price" (change)="sumar(item.producto, 'Bebida')"></mat-checkbox>
+                <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price"
+                  (change)="sumar(item.producto, 'Bebida')"></mat-checkbox>
               </div>
             </div>
           </div>
@@ -70,16 +72,34 @@
               <span>{{item.producto}}</span>
               <div>
                 <span>+{{ item.price | currency }}</span>
-                <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price" (change)="sumar(item.producto, 'Extra')"></mat-checkbox>
+                <mat-checkbox [formControlName]="item.producto" [ngvalue]="item.price"
+                  (change)="sumar(item.producto, 'Extra')"></mat-checkbox>
               </div>
             </div>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{isPaqDescanso? "Numero de personas" : "Añadir persona extra"}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="checkbox-item">
+            <span> Cantidad</span>
+            <div class="gap-8">
+              <span *ngIf="!isPaqDescanso">+{{ selectedPackage!.pricePersonExtra | currency }}</span>
+              <!-- <input type="number" (change)="sumarPersona()" min="1" placeholder="0" formControlName="numberPersonasExtra" class="size-input"> -->
+              <button type="button" (click)="sumarPersonasExtra(-1)" class="button-count">-</button>
+              <span>{{ formulario.get('numberPersonasExtra')?.value }}</span>
+              <button type="button" (click)="sumarPersonasExtra(+1)" class="button-count">+</button>
+            </div>            
           </div>
         </mat-expansion-panel>
       </mat-accordion>
     </section>
     <div class="fixed-button">
       <button type="submit" class="color-reservar color-claro">
-        <mat-icon fontSet="mdi" fontIcon=" mdi-check-bold" class="color-claro" ></mat-icon> Reservar
+        <mat-icon fontSet="mdi" fontIcon=" mdi-check-bold" class="color-claro"></mat-icon> Reservar
         <span>{{newCurrentPrice | currency}}</span>
       </button>
       <button>

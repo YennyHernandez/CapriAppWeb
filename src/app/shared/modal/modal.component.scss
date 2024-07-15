@@ -10,7 +10,7 @@
 
 .container-acordion {
   box-sizing: border-box;
-  padding: 25px 50px 50px 25px;
+  padding: 25px 50px 25px 50px;
 }
 
 .checkbox-group {
@@ -89,8 +89,21 @@ mat-panel-title {
   --mdc-checkbox-unselected-icon-color: rgba(0, 0, 0, 0.54);
   --mdc-checkbox-unselected-pressed-icon-color: rgba(0, 0, 0, 0.54);
 }
+.gap-8{
+  display: flex;
+  gap:8px
+}
+.size-input{
+  width: 50px;
+}
+.button-count{
+    height: 10px;
+}
 @media (max-width: 767px) {
   .fixed-button{
     flex-direction: column;
+  }
+  .container-acordion {
+    padding: 15px 25px 15px 25px;
   }
 }

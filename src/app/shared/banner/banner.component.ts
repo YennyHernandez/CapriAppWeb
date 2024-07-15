@@ -22,10 +22,6 @@ export class BannerComponent {
    }}); 
    console.log("pasando id al modal 👍") 
  }
- onSelectionChange(event: any): void {
-  console.log("Selección cambiada:", event.value);
-  this.selectedPackageId = event.value
-  // Aquí puedes manejar el evento de cambio, si es necesario
-}
+
   
 }

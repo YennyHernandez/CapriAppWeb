@@ -6,16 +6,11 @@
             <div class="banner-home__wrap-reservar__actions wh70">
                 <mat-form-field appearance="fill">
                     <mat-label>Paquetes de Picnic</mat-label>
-                    <mat-select disableRipple (selectionChange)="onSelectionChange($event)" >
+                    <mat-select disableRipple [(ngModel)] = "selectedPackageId">
                         <div *ngFor="let item of dataPackages">
                             <mat-option value="{{item.id}}">{{item.namePackage}}</mat-option>
                         </div>
                     </mat-select>
-                    <!-- <div *ngFor="let item of dataPackages">
-                        <mat-select disableRipple (selectionChange)="onSelectionChange($event)">
-                            <mat-option value="{{item.id}}">{{item.namePackage}}</mat-option>
-                        </mat-select>
-                    </div> -->
                 </mat-form-field>
             </div>
             <div class="banner-home__wrap-reservar__actions wh30">

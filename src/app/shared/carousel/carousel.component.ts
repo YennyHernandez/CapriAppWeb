@@ -19,7 +19,7 @@ export class CarouselComponent {
   ngOnInit(): void {
     this.observerStoragePaquetes = this.firebaseStorageService.storagePaquetesSubject.subscribe((data) => {
       const packageCreated = data.filter(item => this.idPackage === item.id);
-      this.imageUrls = packageCreated[0].urlsCarousel;
+      this.imageUrls = packageCreated[0]?.urlsCarousel;
       this.configureCarousel();
     })
   }

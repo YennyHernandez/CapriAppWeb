@@ -25,10 +25,9 @@ export class ModalComponent {
   newPrice: Subject<number> = new Subject<number>();
   newCurrentPrice: number = 0;
   private newPriceSubscription: Subscription | undefined;
+  private newPriceSubscriptionPerson: Subscription | undefined;
   isPaqDescanso = false;
   dataReservaToSend: any;
-
-
   constructor(public dialogRef: MatDialogRef<ModalComponent>, private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: { idPackage: string }
   ) {
@@ -48,7 +47,11 @@ export class ModalComponent {
     }
   }
   ngOnInit(): void {
-    this.formulario = this.fb.group({}); //creación del formulario dinámico
+    this.formulario = this.fb.group({
+      numberPersonasExtra: [0],
+      precioCotizadoPaquete:[0],  //crea control simple 
+      nombrePaqueteReservado: ""
+    }); //creación del formulario dinámico
 
     this.colorPackages.forEach(color => {
       this.formulario.addControl(color, this.fb.control(false));
@@ -56,7 +59,7 @@ export class ModalComponent {
 
     if (this.selectedPackage) {
       this.selectedPackage.menu.forEach(menuItem => {
-        this.formulario.addControl(menuItem.producto, this.fb.control(false));
+        this.formulario.addControl(menuItem.producto, this.fb.control(false)); //crea el control .fb.control
       });
     }
 
@@ -67,75 +70,96 @@ export class ModalComponent {
     this.productosExtra.forEach(extra => {
       this.formulario.addControl(extra.producto, this.fb.control(false));
     });
+
   }
 
-  sumar(producto: string, groupCheck:string ) {
-    if(groupCheck === 'Color'){
-      const productoArray = this.colorPackages
-      const checked = this.formulario.get(producto)?.value;
-      if(checked){
-        productoArray.forEach((item) =>{
-          if(item !== producto){
-            this.formulario.get(item)?.setValue(false, {emitEvent: false})
-          }         
-        })
-      }      
+  sumar(producto: string, groupCheck: string) {
+    let priceSum = 0;
+    let productArray: ProductPrice[] = [];
+
+    switch (groupCheck) {
+      case 'Color':
+        productArray = this.colorPackages.map(item => ({ producto: item, price: 0 }));;
+        break;
+      case 'Menu':
+        productArray = this.selectedPackage!.menu;
+        if (this.idPackage === "paqueteDescanso") {
+          priceSum = productArray.find(extra => extra.producto === producto)?.price || 0;
+        }
+        break;
+      case 'Bebida':
+        productArray = this.bebidas;
+        if (this.idPackage === "paqueteDescanso") {
+          priceSum = productArray.find(extra => extra.producto === producto)?.price || 0;
+        }
+        break;
+      case 'Extra':
+        productArray = this.productosExtra;
+        priceSum = productArray.find(extra => extra.producto === producto)?.price || 0;
+        break;
+      default:
+        console.log("No se encontró ningún grupo", groupCheck);
+        return;
     }
-    else if(groupCheck === 'Menu'){
-      let priceSum = 0;
-      const productoArray = this.selectedPackage!.menu
-      console.log('entro a menu')
-      if(this.idPackage === "paqueteDescanso"){
-         priceSum = productoArray.find(extra => extra.producto === producto)?.price || 0
-      } 
-      this.doOperation(priceSum, producto, productoArray, groupCheck);
-    }
-    else if (groupCheck === 'Bebida'){
-      let priceSum = 0;
-      const productoArray = this.bebidas
-      if(this.idPackage === "paqueteDescanso"){
-        priceSum = productoArray.find(extra => extra.producto === producto)?.price || 0
-     }
-      this.doOperation(priceSum, producto, productoArray, groupCheck);
-    }
-    else if (groupCheck === 'Extra'){
-      const productoArray = this.productosExtra
-      let priceSum = productoArray.find(extra => extra.producto === producto)?.price || 0
-      this.doOperation(priceSum, producto, productoArray,groupCheck);
-    }
-    else{
-      console.log("No se econtro ningun grupo", groupCheck)
-    }
+
+    this.doOperation(priceSum, producto, productArray, groupCheck);
   }
 
-  doOperation(priceSum: number, producto:string, productArray : ProductPrice[], groupCheck:string) {
+
+  doOperation(priceSum: number, producto: string, productArray: ProductPrice[], groupCheck: string) {
     if (this.newPriceSubscription) {
       this.newPriceSubscription.unsubscribe(); //desuscribirse para hacer una nueva
     }
     this.newPriceSubscription = this.newPrice.subscribe((value) => {
       const checked = this.formulario.get(producto)?.value;
-      if(checked){
+      if (checked) {
         this.newCurrentPrice = value + priceSum;
-        if(groupCheck !== 'Extra' && this.idPackage !== 'paqueteDescanso'){
-          productArray.forEach((item) =>{
-            if(item.producto !== producto){
-              this.formulario.get(item.producto)?.setValue(false, {emitEvent: false})
-            }         
+        if (groupCheck !== 'Extra' && this.idPackage !== 'paqueteDescanso') {
+          productArray.forEach((item) => {
+            if (item.producto !== producto) {
+              this.formulario.get(item.producto)?.setValue(false, { emitEvent: false })
+            }
           })
         }
       }
-      else{
+      else {
         this.newCurrentPrice = value - priceSum
       }
     });
     this.newPrice.next(this.newCurrentPrice) //actualiza el nuevamente valor del precio
   }
+
+  sumarPersonasExtra(operator: number) {
+    const control = this.formulario.get('numberPersonasExtra');
+    const valueControl = control!.value;
+    if (valueControl>= 0 && operator>0 || valueControl>0 && operator<0  ){
+      control!.setValue(valueControl + operator);
+      console.log(valueControl + operator)
+      if (this.newPriceSubscriptionPerson) {
+        this.newPriceSubscriptionPerson.unsubscribe(); //desuscribirse para hacer una nueva
+      }
+      this.newPriceSubscriptionPerson = this.newPrice.subscribe((value) => {
+        this.newCurrentPrice = value + (this.selectedPackage!.pricePersonExtra * operator);
+      })
+      this.newPrice.next(this.newCurrentPrice)
+    }
+  }
+
   onSubmit() {
     if (this.formulario.valid) {
-      this.dataReservaToSend = Object.keys(this.formulario.value).filter(key => this.formulario.get(key)?.value === true) // filtra la data de reserva
-      console.log("form validoo ✅", this.formulario.value, this.dataReservaToSend);
+      this.formulario.get("nombrePaqueteReservado")?.setValue(this.selectedPackage?.namePackage)
+      this.formulario.get("precioCotizadoPaquete")?.setValue(this.newCurrentPrice)
+      const formValue = this.formulario.value;
+      this.dataReservaToSend = Object.keys(formValue)
+        .filter(key => formValue[key] !== false) // Filtrar valores que no son falsos
+        .reduce((acumulador, key) => {
+          acumulador[key] = formValue[key];
+          return acumulador;
+        }, {} as { [key: string]: any });
+  
+      console.log("Formulario válido ✅", this.formulario.value, this.dataReservaToSend);
     } else {
-      console.log("form invalido")
+      console.log("Formulario inválido");
     }
   }
 
