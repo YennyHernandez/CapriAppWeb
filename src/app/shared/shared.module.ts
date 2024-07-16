@@ -17,6 +17,7 @@ import { ModalComponent } from './modal/modal.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GoogleCalendarComponent } from './google-calendar/google-calendar.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CarouselComponent,
     PaquetesComponent,
     ModalComponent,
+    GoogleCalendarComponent,
    
   ],
   imports: [

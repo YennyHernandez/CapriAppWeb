@@ -97,9 +97,22 @@
         </mat-expansion-panel>
       </mat-accordion>
     </section>
+    <section  class="container-acordion">
+      <H1>información de reserva</H1>
+     <!--  <label for="name">Nombre:</label>
+      <input type="text"  id="name" formArrayName="name"> -->
+      <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=America%2FBogota&bgcolor=%23ffffff&showTitle=0" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+      <input type="datetime-local" id="appointmentTime" formControlName="appointmentTime">
+      <label for="email">Email:</label>
+      <input type="email" id="email" formControlName="email">
+      <!-- <label for="phone">Telefono:</label>
+      <input type="tel" id="phone" formControlName="phone" pattern="\+?[0-9\s\-]{10,15}"  title="Por favor ingresa un número de celular válido con o sin código de país">
+      <label for="transferNumber">Número de Transferencia Bancaria:</label>
+      <input type="text" id="transferNumber" name="transferNumber" required pattern="[0-9]{10,20}" title="Por favor ingresa un número de transferencia bancaria válido (10 a 20 dígitos)"> -->
+    </section>
     <div class="fixed-button">
       <button type="submit" class="color-reservar color-claro">
-        <mat-icon fontSet="mdi" fontIcon=" mdi-check-bold" class="color-claro"></mat-icon> Reservar
+        <mat-icon fontSet="mdi" fontIcon=" mdi-check-bold" class="color-claro"></mat-icon> Solicitar Reserva
         <span>{{newCurrentPrice | currency}}</span>
       </button>
       <button>

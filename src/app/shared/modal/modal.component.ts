@@ -6,6 +6,8 @@ import { Packag, ProductPrice } from 'src/app/interfaces/media-storage.interface
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { _ViewRepeaterOperation } from '@angular/cdk/collections';
+import { GoogleEventService } from '../../services/google-events.service'
+declare var createGoogleEvent: any;
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -28,7 +30,7 @@ export class ModalComponent {
   private newPriceSubscriptionPerson: Subscription | undefined;
   isPaqDescanso = false;
   dataReservaToSend: any;
-  constructor(public dialogRef: MatDialogRef<ModalComponent>, private fb: FormBuilder,
+  constructor(public dialogRef: MatDialogRef<ModalComponent>, private fb: FormBuilder,  private googleEventService: GoogleEventService,
     @Inject(MAT_DIALOG_DATA) public data: { idPackage: string }
   ) {
     this.idPackage = data.idPackage;
@@ -48,6 +50,11 @@ export class ModalComponent {
   }
   ngOnInit(): void {
     this.formulario = this.fb.group({
+      appointmentTime: ['', Validators.required],
+      email:['', [Validators.required, Validators.email]],
+      /* name:['', Validators.required],
+      phone:[''],
+      transferNumber:['', Validators.required], */
       numberPersonasExtra: [0],
       precioCotizadoPaquete:[0],  //crea control simple 
       nombrePaqueteReservado: ""
@@ -147,22 +154,86 @@ export class ModalComponent {
 
   onSubmit() {
     if (this.formulario.valid) {
-      this.formulario.get("nombrePaqueteReservado")?.setValue(this.selectedPackage?.namePackage)
-      this.formulario.get("precioCotizadoPaquete")?.setValue(this.newCurrentPrice)
-      const formValue = this.formulario.value;
-      this.dataReservaToSend = Object.keys(formValue)
-        .filter(key => formValue[key] !== false) // Filtrar valores que no son falsos
-        .reduce((acumulador, key) => {
-          acumulador[key] = formValue[key];
-          return acumulador;
-        }, {} as { [key: string]: any });
-  
-      console.log("Formulario válido ✅", this.formulario.value, this.dataReservaToSend);
-    } else {
-      console.log("Formulario inválido");
-    }
-  }
+        this.formulario.get("nombrePaqueteReservado")?.setValue(this.selectedPackage?.namePackage);
+        this.formulario.get("precioCotizadoPaquete")?.setValue(this.newCurrentPrice);
+        
+        const formValue = this.formulario.value;
+        this.dataReservaToSend = Object.keys(formValue)
+            .filter(key => formValue[key] !== false)
+            .reduce((acumulador, key) => {
+                acumulador[key] = formValue[key];
+                return acumulador;
+            }, {} as { [key: string]: any });
 
+        console.log("Formulario válido ✅", this.formulario.value, this.dataReservaToSend);
+    } else {
+        console.log("Formulario inválido");
+    }
+
+
+    let appointmentTime = new Date(this.formulario.value.appointmentTime);
+    // Convert the date to the desired format with a custom offset (e.g., -07:00)
+    const startTime = appointmentTime.toISOString().slice(0, 18) + '-07:00';
+    const endTime = this.getEndTime(appointmentTime);
+    const eventDetails = {
+      email: this.formulario.value.email,
+      startTime: startTime,
+      endTime: endTime,
+    };
+    console.info(eventDetails);
+    this.googleEventService.createGoogleEvent(eventDetails);
+}
+
+getEndTime(appointmentTime: Date) {
+  // Add one hour to the date
+  appointmentTime.setHours(appointmentTime.getHours() + 1);
+  const endTime = appointmentTime.toISOString().slice(0, 18) + '-07:00';
+  return endTime;
+}
+
+generateICSFile() {
+  const datetimeValue = this.formulario.value.appointmentTime;
+  const date = new Date(datetimeValue);
+  const endTime = new Date(date);
+  endTime.setHours(endTime.getHours() + 1);
+  // Format dates to be in the proper format for the .ics file
+  const formattedStartDate = date
+    .toISOString()
+    .replace(/-/g, '')
+    .replace(/:/g, '')
+    .slice(0, -5);
+  const formattedEndDate = endTime
+    .toISOString()
+    .replace(/-/g, '')
+    .replace(/:/g, '')
+    .slice(0, -5);
+  // Event details
+  const eventName = 'Sample Event';
+  const eventDescription = 'This is a sample event';
+  const location = 'Sample Location';
+  // Create the .ics content
+  const icsContent = `BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTAMP:${formattedStartDate}Z
+DTSTART:${formattedStartDate}Z
+DTEND:${formattedEndDate}Z
+SUMMARY:${eventName}
+DESCRIPTION:${eventDescription}
+LOCATION:${location}
+END:VEVENT
+END:VCALENDAR`;
+  // Create a Blob containing the .ics content
+  const blob = new Blob([icsContent], {
+    type: 'text/calendar;charset=utf-8',
+  });
+  // Create a download link for the Blob
+  const downloadLink = document.createElement('a');
+  downloadLink.href = URL.createObjectURL(blob);
+  downloadLink.download = 'event.ics';
+  // Trigger the download
+  downloadLink.click();
+}
   close(): void {
     this.dialogRef.close();
   }
