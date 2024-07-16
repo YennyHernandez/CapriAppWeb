@@ -29,7 +29,14 @@ export class ModalComponent {
   private newPriceSubscription: Subscription | undefined;
   private newPriceSubscriptionPerson: Subscription | undefined;
   isPaqDescanso = false;
-  dataReservaToSend: any;
+  timeRanges: { [key: string]: { start: number; end: number } } = {
+    '3-6 Pm': { start: 15, end: 18 }, // De 2:00 PM a 6:00 PM
+    '7-9:30 Pm': { start: 19, end: 22 }, // De 7:00 PM a 9:30 PM
+};
+
+
+  availableTimes: string[] = Object.keys(this.timeRanges);
+  dataReservaToSend: { [key: string]: any } = {};
   constructor(public dialogRef: MatDialogRef<ModalComponent>, private fb: FormBuilder,  private googleEventService: GoogleEventService,
     @Inject(MAT_DIALOG_DATA) public data: { idPackage: string }
   ) {
@@ -50,7 +57,8 @@ export class ModalComponent {
   }
   ngOnInit(): void {
     this.formulario = this.fb.group({
-      appointmentTime: ['', Validators.required],
+      appointmentDate: ['', Validators.required],
+      selectedTimeRange: ['', Validators.required],
       email:['', [Validators.required, Validators.email]],
       /* name:['', Validators.required],
       phone:[''],
@@ -151,12 +159,11 @@ export class ModalComponent {
       this.newPrice.next(this.newCurrentPrice)
     }
   }
-
   onSubmit() {
     if (this.formulario.valid) {
         this.formulario.get("nombrePaqueteReservado")?.setValue(this.selectedPackage?.namePackage);
         this.formulario.get("precioCotizadoPaquete")?.setValue(this.newCurrentPrice);
-        
+
         const formValue = this.formulario.value;
         this.dataReservaToSend = Object.keys(formValue)
             .filter(key => formValue[key] !== false)
@@ -166,74 +173,40 @@ export class ModalComponent {
             }, {} as { [key: string]: any });
 
         console.log("Formulario válido ✅", this.formulario.value, this.dataReservaToSend);
+
+        const appointmentDate = new Date(this.formulario.value.appointmentDate);
+        const selectedRange = this.formulario.value.selectedTimeRange;
+        const selectedHours = this.timeRanges[selectedRange as keyof typeof this.timeRanges];
+
+        if (!selectedHours) {
+            console.error("selectedHours is undefined");
+            return;
+        }
+
+        // Ajustar la hora localmente para Bogotá (UTC-5)
+        const startTime = new Date(appointmentDate);
+        startTime.setUTCHours(selectedHours.start + 5, 0, 0); // Ajusta para UTC-5
+
+        const endTime = new Date(appointmentDate);
+        endTime.setUTCHours(selectedHours.end + 5, 0, 0); // Ajusta para UTC-5
+
+        const eventDetails = {
+            email: this.formulario.value.email,
+            startTime: startTime.toISOString(), // Convertir a ISO después de ajustar
+            endTime: endTime.toISOString(), // Convertir a ISO después de ajustar
+        };
+
+        console.info(eventDetails);
+
+        // Llamada al servicio para crear el evento
+        this.googleEventService.createGoogleEvent(eventDetails);
     } else {
         console.log("Formulario inválido");
     }
-
-
-    let appointmentTime = new Date(this.formulario.value.appointmentTime);
-    // Convert the date to the desired format with a custom offset (e.g., -07:00)
-    const startTime = appointmentTime.toISOString().slice(0, 18) + '-07:00';
-    const endTime = this.getEndTime(appointmentTime);
-    const eventDetails = {
-      email: this.formulario.value.email,
-      startTime: startTime,
-      endTime: endTime,
-    };
-    console.info(eventDetails);
-    this.googleEventService.createGoogleEvent(eventDetails);
 }
 
-getEndTime(appointmentTime: Date) {
-  // Add one hour to the date
-  appointmentTime.setHours(appointmentTime.getHours() + 1);
-  const endTime = appointmentTime.toISOString().slice(0, 18) + '-07:00';
-  return endTime;
-}
 
-generateICSFile() {
-  const datetimeValue = this.formulario.value.appointmentTime;
-  const date = new Date(datetimeValue);
-  const endTime = new Date(date);
-  endTime.setHours(endTime.getHours() + 1);
-  // Format dates to be in the proper format for the .ics file
-  const formattedStartDate = date
-    .toISOString()
-    .replace(/-/g, '')
-    .replace(/:/g, '')
-    .slice(0, -5);
-  const formattedEndDate = endTime
-    .toISOString()
-    .replace(/-/g, '')
-    .replace(/:/g, '')
-    .slice(0, -5);
-  // Event details
-  const eventName = 'Sample Event';
-  const eventDescription = 'This is a sample event';
-  const location = 'Sample Location';
-  // Create the .ics content
-  const icsContent = `BEGIN:VCALENDAR
-VERSION:2.0
-BEGIN:VEVENT
-DTSTAMP:${formattedStartDate}Z
-DTSTART:${formattedStartDate}Z
-DTEND:${formattedEndDate}Z
-SUMMARY:${eventName}
-DESCRIPTION:${eventDescription}
-LOCATION:${location}
-END:VEVENT
-END:VCALENDAR`;
-  // Create a Blob containing the .ics content
-  const blob = new Blob([icsContent], {
-    type: 'text/calendar;charset=utf-8',
-  });
-  // Create a download link for the Blob
-  const downloadLink = document.createElement('a');
-  downloadLink.href = URL.createObjectURL(blob);
-  downloadLink.download = 'event.ics';
-  // Trigger the download
-  downloadLink.click();
-}
+
   close(): void {
     this.dialogRef.close();
   }

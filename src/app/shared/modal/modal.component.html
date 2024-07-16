@@ -92,17 +92,22 @@
               <button type="button" (click)="sumarPersonasExtra(-1)" class="button-count">-</button>
               <span>{{ formulario.get('numberPersonasExtra')?.value }}</span>
               <button type="button" (click)="sumarPersonasExtra(+1)" class="button-count">+</button>
-            </div>            
+            </div>
           </div>
         </mat-expansion-panel>
       </mat-accordion>
     </section>
-    <section  class="container-acordion">
+    <section class="container-acordion">
       <H1>información de reserva</H1>
-     <!--  <label for="name">Nombre:</label>
+      <!--  <label for="name">Nombre:</label>
       <input type="text"  id="name" formArrayName="name"> -->
-      <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=America%2FBogota&bgcolor=%23ffffff&showTitle=0" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-      <input type="datetime-local" id="appointmentTime" formControlName="appointmentTime">
+      <iframe
+        src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=America%2FBogota&bgcolor=%23ffffff&showTitle=0"
+        style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+      <input type="date" formControlName="appointmentDate" required />
+      <select formControlName="selectedTimeRange">
+        <option *ngFor="let range of availableTimes" [value]="range">{{ range }}</option>
+    </select>
       <label for="email">Email:</label>
       <input type="email" id="email" formControlName="email">
       <!-- <label for="phone">Telefono:</label>

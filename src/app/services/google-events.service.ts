@@ -64,11 +64,11 @@ export class GoogleEventService {
       description: "A chance to hear more about Google's developer products.",
       start: {
         dateTime: eventDetails.startTime,
-        timeZone: "America/Los_Angeles",
+        timeZone: "America/Bogota",
       },
       end: {
         dateTime: eventDetails.endTime,
-        timeZone: "America/Los_Angeles",
+        timeZone:  "America/Bogota",
       },
       attendees: [{ email: eventDetails.email }],
       reminders: {
