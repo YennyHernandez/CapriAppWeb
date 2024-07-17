@@ -60,9 +60,9 @@ export class ModalComponent {
       appointmentDate: ['', Validators.required],
       selectedTimeRange: ['', Validators.required],
       email:['', [Validators.required, Validators.email]],
-      /* name:['', Validators.required],
+      name:['', Validators.required],
       phone:[''],
-      transferNumber:['', Validators.required], */
+      transferNumber:['', Validators.required],
       numberPersonasExtra: [0],
       precioCotizadoPaquete:[0],  //crea control simple 
       nombrePaqueteReservado: ""

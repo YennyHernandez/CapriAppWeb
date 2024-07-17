@@ -99,6 +99,37 @@ mat-panel-title {
 .button-count{
     height: 10px;
 }
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.flex-info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+label {
+  flex: 0 0 30%;
+  max-width: 30%;
+  margin-right: 10px;
+  
+}
+
+input,
+select {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+iframe {
+  margin-bottom: 20px;
+  margin-top: 8px;
+  width: 100%; /* Ensure iframe takes the full width of its container */
+}
+
 @media (max-width: 767px) {
   .fixed-button{
     flex-direction: column;

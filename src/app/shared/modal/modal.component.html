@@ -23,7 +23,7 @@
         </mat-expansion-panel>
 
         <!-- Panel 2 -->
-        <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel [expanded]="false">
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{titlePanelMenu}}
@@ -43,7 +43,7 @@
           </ng-container>
         </mat-expansion-panel>
         <!-- Panel 3 -->
-        <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel [expanded]="false">
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{titlePanelBebida}}
@@ -61,7 +61,7 @@
           </div>
         </mat-expansion-panel>
         <!-- Panel 4 -->
-        <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel [expanded]="false">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Añadir
@@ -78,7 +78,7 @@
             </div>
           </div>
         </mat-expansion-panel>
-        <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel [expanded]="false">
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{isPaqDescanso? "Numero de personas" : "Añadir persona extra"}}
@@ -88,32 +88,63 @@
             <span> Cantidad</span>
             <div class="gap-8">
               <span *ngIf="!isPaqDescanso">+{{ selectedPackage!.pricePersonExtra | currency }}</span>
-              <!-- <input type="number" (change)="sumarPersona()" min="1" placeholder="0" formControlName="numberPersonasExtra" class="size-input"> -->
               <button type="button" (click)="sumarPersonasExtra(-1)" class="button-count">-</button>
               <span>{{ formulario.get('numberPersonasExtra')?.value }}</span>
               <button type="button" (click)="sumarPersonasExtra(+1)" class="button-count">+</button>
             </div>
           </div>
         </mat-expansion-panel>
+        <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+             Información para reservar
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="row">
+            <div class="col-xs-12 col-md-6">
+              <label>Agenda disponible:</label>
+              <iframe
+                src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FBogota&bgcolor=%23ffffff&showPrint=0&showTabs=0&showCalendars=0&showTitle=0&showTz=0&src=Y2FwcmlwaWNuaWNAZ21haWwuY29t&color=%230B8043"
+                style="border:solid 1px #777"
+                width="300"
+                height="300"
+                frameborder="0"
+                scrolling="no"
+              ></iframe>
+            </div>
+            <div class="col-xs-12 col-md-6 flex-info">
+              <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" formControlName="name">
+              </div>
+              <div class="form-group">
+                <label for="date">Fecha:</label>
+                <input type="date" formControlName="appointmentDate" id="date" required>
+              </div>
+              <div class="form-group">
+                <label>Horario:</label>
+                <select formControlName="selectedTimeRange">
+                  <option *ngFor="let range of availableTimes" [value]="range">{{ range }}</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" formControlName="email">
+              </div>
+              <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <input type="tel" id="phone" formControlName="phone" pattern="\+?[0-9\s\-]{10,15}"
+                  title="Por favor ingresa un número de celular válido con o sin código de país">
+              </div>
+              <div class="form-group">
+                <label for="transferNumber">Número de Transferencia Bancaria:</label>
+                <input type="text" id="transferNumber" name="transferNumber" required pattern="[0-9]{10,20}"
+                  title="Por favor ingresa un número de transferencia bancaria válido (10 a 20 dígitos)">
+              </div>
+            </div>
+          </div>
+        </mat-expansion-panel>
       </mat-accordion>
-    </section>
-    <section class="container-acordion">
-      <H1>información de reserva</H1>
-      <!--  <label for="name">Nombre:</label>
-      <input type="text"  id="name" formArrayName="name"> -->
-      <iframe
-        src="https://calendar.google.com/calendar/embed?height=600&wkst=2&ctz=America%2FBogota&bgcolor=%23ffffff&showTitle=0"
-        style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-      <input type="date" formControlName="appointmentDate" required />
-      <select formControlName="selectedTimeRange">
-        <option *ngFor="let range of availableTimes" [value]="range">{{ range }}</option>
-    </select>
-      <label for="email">Email:</label>
-      <input type="email" id="email" formControlName="email">
-      <!-- <label for="phone">Telefono:</label>
-      <input type="tel" id="phone" formControlName="phone" pattern="\+?[0-9\s\-]{10,15}"  title="Por favor ingresa un número de celular válido con o sin código de país">
-      <label for="transferNumber">Número de Transferencia Bancaria:</label>
-      <input type="text" id="transferNumber" name="transferNumber" required pattern="[0-9]{10,20}" title="Por favor ingresa un número de transferencia bancaria válido (10 a 20 dígitos)"> -->
     </section>
     <div class="fixed-button">
       <button type="submit" class="color-reservar color-claro">
