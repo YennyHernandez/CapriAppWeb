@@ -62,7 +62,7 @@ export class ModalComponent {
       email:['', [Validators.required, Validators.email]],
       name:['', Validators.required],
       phone:[''],
-      transferNumber:['', Validators.required],
+      transferNumber:[0, Validators.required],
       numberPersonasExtra: [0],
       precioCotizadoPaquete:[0],  //crea control simple 
       nombrePaqueteReservado: ""
@@ -201,7 +201,7 @@ export class ModalComponent {
         // Llamada al servicio para crear el evento
         this.googleEventService.createGoogleEvent(eventDetails);
     } else {
-        console.log("Formulario inválido");
+        console.log("Formulario inválido", this.formulario.value, this.dataReservaToSend);
     }
 }
 
