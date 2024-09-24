@@ -3,10 +3,11 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { typePackages, colorPackages, productosExtra, bebidas } from '../../constants/paquetes'; // Asegúrate de importar typePackages desde la ubicación correcta
 import { Packag, ProductPrice } from 'src/app/interfaces/media-storage.interface';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, Subscription } from 'rxjs';
 import { _ViewRepeaterOperation } from '@angular/cdk/collections';
 import { GoogleEventService } from '../../services/google-events.service'
+import {customValidator} from '../modal/validators/custom-validators'
 declare var createGoogleEvent: any;
 @Component({
   selector: 'app-modal',
@@ -37,6 +38,7 @@ export class ModalComponent {
 
   availableTimes: string[] = Object.keys(this.timeRanges);
   dataReservaToSend: { [key: string]: any } = {};
+  asyncValidator: any | string;
   constructor(public dialogRef: MatDialogRef<ModalComponent>, private fb: FormBuilder,  private googleEventService: GoogleEventService,
     @Inject(MAT_DIALOG_DATA) public data: { idPackage: string }
   ) {
@@ -59,12 +61,12 @@ export class ModalComponent {
     this.formulario = this.fb.group({
       appointmentDate: ['', Validators.required],
       selectedTimeRange: ['', Validators.required],
-      email:['', [Validators.required, Validators.email]],
+      email:['', [Validators.required]],
       name:['', Validators.required],
-      phone:[''],
+      phone:['', customValidator.phoneValidator], 
       transferNumber:[0, Validators.required],
       numberPersonasExtra: [0],
-      precioCotizadoPaquete:[0],  //crea control simple 
+      precioCotizadoPaquete:[0],
       nombrePaqueteReservado: ""
     }); //creación del formulario dinámico
 
@@ -88,6 +90,17 @@ export class ModalComponent {
 
   }
 
+   // Verifica si el campo es inválido
+    isFieldInvalid(field: string): boolean {
+   
+    const control = this.formulario.get(field);
+    control?.setErrors({
+      isRequired:true,
+      isInvalid: true,
+      message: 'El campo es requerido'
+    }, {emitEvent: false})
+    return (control?.invalid && (control?.dirty || control?.touched) ) ?? false;
+  } 
   sumar(producto: string, groupCheck: string) {
     let priceSum = 0;
     let productArray: ProductPrice[] = [];
@@ -161,6 +174,7 @@ export class ModalComponent {
   }
   onSubmit() {
     if (this.formulario.valid) {
+      alert('Formulario enviado correctamente');
         this.formulario.get("nombrePaqueteReservado")?.setValue(this.selectedPackage?.namePackage);
         this.formulario.get("precioCotizadoPaquete")?.setValue(this.newCurrentPrice);
 
@@ -201,6 +215,8 @@ export class ModalComponent {
         // Llamada al servicio para crear el evento
         this.googleEventService.createGoogleEvent(eventDetails);
     } else {
+      this.formulario.markAllAsTouched();
+      alert('Por favor, completa todos los campos requeridos correctamente.');
         console.log("Formulario inválido", this.formulario.value, this.dataReservaToSend);
     }
 }

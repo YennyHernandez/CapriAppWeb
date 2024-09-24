@@ -130,6 +130,9 @@ iframe {
   width: 100%; /* Ensure iframe takes the full width of its container */
 }
 
+.error{
+  border: 2px solid red;
+}
 @media (max-width: 767px) {
   .fixed-button{
     flex-direction: column;
