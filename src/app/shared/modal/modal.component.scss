@@ -27,7 +27,7 @@
 }
 
 mat-panel-title {
-  font-size: 18px;
+  font-size: 16px;
   /* Tamaño de fuente del título */
 }
 
@@ -131,7 +131,14 @@ iframe {
 }
 
 .error{
-  border: 2px solid red;
+  border: 2px solid $color-warn;
+}
+.error-message{
+  display: flex;
+  justify-content: flex-end;
+  color: $color-warn;
+  font-size: 12px;
+  
 }
 @media (max-width: 767px) {
   .fixed-button{

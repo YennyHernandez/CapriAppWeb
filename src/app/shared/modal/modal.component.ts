@@ -63,7 +63,7 @@ export class ModalComponent {
       selectedTimeRange: ['', Validators.required],
       email:['', [Validators.required]],
       name:['', Validators.required],
-      phone:['', customValidator.phoneValidator], 
+      phone:['', [customValidator.requiredValidator, customValidator.phoneValidator]], 
       transferNumber:[0, Validators.required],
       numberPersonasExtra: [0],
       precioCotizadoPaquete:[0],
@@ -90,17 +90,6 @@ export class ModalComponent {
 
   }
 
-   // Verifica si el campo es inválido
-    isFieldInvalid(field: string): boolean {
-   
-    const control = this.formulario.get(field);
-    control?.setErrors({
-      isRequired:true,
-      isInvalid: true,
-      message: 'El campo es requerido'
-    }, {emitEvent: false})
-    return (control?.invalid && (control?.dirty || control?.touched) ) ?? false;
-  } 
   sumar(producto: string, groupCheck: string) {
     let priceSum = 0;
     let productArray: ProductPrice[] = [];

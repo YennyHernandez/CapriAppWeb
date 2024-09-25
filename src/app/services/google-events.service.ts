@@ -89,4 +89,33 @@ export class GoogleEventService {
       console.info("Event created: " + event.htmlLink);
     });
   }
+
+  async listGoogleEvents() {
+    try {
+      const request = gapi.client.calendar.events.list({
+        calendarId: this.CALENDAR_ID,
+        timeMin: (new Date()).toISOString(),  // Obtiene eventos a partir de hoy
+        showDeleted: false,
+        singleEvents: true,
+        maxResults: 50,  // Limita la cantidad de eventos a obtener
+        orderBy: 'startTime'
+      });
+  
+      const response = await new Promise((resolve, reject) => {
+        request.execute((response: any) => {
+          if (response.error) {
+            reject(response.error);
+          } else {
+            resolve(response.items);
+          }
+        });
+      });
+  
+      return response; // Retorna los eventos
+    } catch (error) {
+      console.error("Error al listar los eventos de Google Calendar:", error);
+      throw error; // Re-lanzar el error para que pueda ser manejado por el llamador
+    }
+  }
+  
 }
