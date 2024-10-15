@@ -1,0 +1,71 @@
+.calendar {
+    display: flex;
+    flex-direction: column; // Disposición vertical
+    align-items: center; // Centrar el contenido
+    margin: 20px;
+    font-family: Arial, sans-serif; // Fuente más legible
+  }
+  
+  .header {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .days {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); // 7 columnas para los días de la semana
+    gap: 10px;
+  }
+  
+  .day {
+    border: 1px solid #ccc; // Borde alrededor de cada día
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9; // Fondo claro
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); // Sombra sutil
+    transition: background-color 0.3s;
+    min-height: 100px; // Asegurar un tamaño mínimo para cada día
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .date {
+    font-weight: bold; // Hacer la fecha más prominente
+    font-size: 1em; // Tamaño de fuente más grande
+    margin-bottom: 10px;
+    text-align: center; // Centrar el texto
+  }
+  
+  .selected-slot {
+    background-color: #007bff; /* Ejemplo de color para botón seleccionado */
+    color: white;
+    border-color: #0056b3;
+  }
+  .slots {
+    display: flex;
+    flex-direction: column; // Disposición vertical de los slots
+    align-items: center; // Centrar los botones
+  }
+  
+  button {
+    background-color: #28a745; // Color de fondo verde para los botones
+    color: white; // Texto blanco
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s; // Transiciones suaves
+    
+    &:hover {
+      background-color: #218838; // Color más oscuro al pasar el mouse
+      transform: scale(1.05); // Efecto de zoom al pasar el mouse
+    }
+  
+    &:disabled {
+      background-color: #ccc; // Color gris para botones deshabilitados
+      cursor: not-allowed; // Cambiar el cursor para indicar que no se puede hacer clic
+    }
+  }
+  

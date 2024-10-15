@@ -1,15 +1,22 @@
-<div>
-  <mat-form-field appearance="fill">
-    <mat-label>Selecciona una fecha</mat-label>
-    <input
-      matInput
-      [matDatepicker]="picker"
-      [matDatepickerFilter]="disableReservedDates"
-      (dateChange)="onDateChange($event)"
-    >
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
-  
-  <span *ngIf="selectedDate && disableReservedDates(selectedDate)">Fecha no disponible</span>
+<div class="calendar">
+  <div class="header">
+    <h2>Agenda disponible - {{ getCurrentMonthYear() }}</h2> <!-- Mostrar mes y año -->
+  </div>
+  <div class="days">
+    <div *ngFor="let day of days" class="day">
+      <div class="date">{{  day.date | date: 'EEEE d'}}</div>
+      <div class="slots">
+        <div *ngFor="let slot of day.timeSlots">
+          <button
+             type="button"
+             [ngClass]="{ 'selected-slot': isSelectedSlot(day.date, slot.start, slot.end) }"
+            *ngIf="!isSlotReserved(day.date, slot.start, slot.end)" 
+            (click)="reserveSlot(day.date, slot.start, slot.end)"
+          >
+          {{ slot.start | date: 'h:mm ' }} - {{ slot.end | date: 'h:mm a' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

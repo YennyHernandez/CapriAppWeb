@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +9,10 @@ import { firebaseConfig } from '../../firebase-config';
 import { NavbarModule } from './modules/navbar/navbar.module';
 import { LoginModule } from './auth/login/login.module';
 import { FirebaseStorageService } from './services/firebase-storage.service';
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
 
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { FirebaseStorageService } from './services/firebase-storage.service';
   ], 
   providers: [
     FirebaseStorageService,
+    { provide: LOCALE_ID, useValue: 'es' } ,
   ],
   bootstrap: [AppComponent]
 })

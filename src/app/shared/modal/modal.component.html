@@ -101,13 +101,10 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="row">
-            <div class="col-xs-12 col-md-6">
-              <label>Agenda disponible:</label>
-              <iframe
-                src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FBogota&bgcolor=%23ffffff&showPrint=0&showTabs=0&showCalendars=0&showTitle=0&showTz=0&src=Y2FwcmlwaWNuaWNAZ21haWwuY29t&color=%230B8043"
-                style="border:solid 1px #777" width="300" height="300" frameborder="0" scrolling="no"></iframe>
-            </div>
-            <div class="col-xs-12 col-md-6 flex-info">
+            <div class="col-xs-12 col-md-12 flex-info">
+              <div class="form-group">
+                <app-google-calendar (dateSelected)="onDateSelected($event)"></app-google-calendar>
+              </div>            
               <div class="form-group">
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" formControlName="name"
@@ -120,20 +117,9 @@
                 class="error-message">
                 {{ formulario.get('name')?.errors?.['message']}}
               </div>
-              <app-google-calendar></app-google-calendar>
               <!--  <div class="form-group">
                 <app-google-calendar formControlName="appointmentDate"></app-google-calendar>
               </div> -->
-              <!-- <div class="form-group">
-                <label for="date">Fecha:</label>
-                <input type="date" formControlName="appointmentDate" id="date" >
-              </div> -->
-              <div class="form-group">
-                <label>Horario:</label>
-                <select formControlName="selectedTimeRange">
-                  <option *ngFor="let range of availableTimes" [value]="range">{{ range }}</option>
-                </select>
-              </div>
               <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" formControlName="email"

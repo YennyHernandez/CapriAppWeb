@@ -36,7 +36,7 @@ export class ModalComponent {
 };
 
 
-  availableTimes: string[] = Object.keys(this.timeRanges);
+  
   dataReservaToSend: { [key: string]: any } = {};
   asyncValidator: any | string;
   constructor(public dialogRef: MatDialogRef<ModalComponent>, private fb: FormBuilder,  private googleEventService: GoogleEventService,
@@ -59,8 +59,8 @@ export class ModalComponent {
   }
   ngOnInit(): void {
     this.formulario = this.fb.group({
-      appointmentDate: [''],
-      selectedTimeRange: [''],
+      appointmentDate: [null],
+      endAppointmentDate: [null], 
       email:['', [customValidator.requiredValidator, customValidator.emailValidator]],
       name:['', [customValidator.requiredValidator, customValidator.fullNameValidator]],
       phone:['', [customValidator.requiredValidator, customValidator.phoneValidator]], 
@@ -160,6 +160,15 @@ export class ModalComponent {
       })
       this.newPrice.next(this.newCurrentPrice)
     }
+  }
+  onDateSelected(event: { startTime: Date; endTime: Date }) {
+    this.formulario.patchValue({ //actualiza
+      appointmentDate: event.startTime, 
+      endAppointmentDate: event.endTime 
+    });
+  
+    console.log('Fecha de inicio seleccionada:', this.formulario.value.appointmentDate);
+    console.log('Fecha de fin seleccionada:', this.formulario.value.endAppointmentDate);
   }
   onSubmit() {
     
