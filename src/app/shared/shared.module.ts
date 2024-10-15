@@ -18,7 +18,10 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleCalendarComponent } from './google-calendar/google-calendar.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 @NgModule({
   declarations: [
   
@@ -30,6 +33,7 @@ import { GoogleCalendarComponent } from './google-calendar/google-calendar.compo
     PaquetesComponent,
     ModalComponent,
     GoogleCalendarComponent,
+    
    
   ],
   imports: [
@@ -45,6 +49,10 @@ import { GoogleCalendarComponent } from './google-calendar/google-calendar.compo
     MatExpansionModule,
     ReactiveFormsModule,
     FormsModule,    
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
   ],
   exports:[
     HeaderComponent,

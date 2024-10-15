@@ -59,12 +59,12 @@ export class ModalComponent {
   }
   ngOnInit(): void {
     this.formulario = this.fb.group({
-      appointmentDate: ['', Validators.required],
-      selectedTimeRange: ['', Validators.required],
-      email:['', [Validators.required]],
-      name:['', Validators.required],
+      appointmentDate: [''],
+      selectedTimeRange: [''],
+      email:['', [customValidator.requiredValidator, customValidator.emailValidator]],
+      name:['', [customValidator.requiredValidator, customValidator.fullNameValidator]],
       phone:['', [customValidator.requiredValidator, customValidator.phoneValidator]], 
-      transferNumber:[0, Validators.required],
+      transferNumber:['', [customValidator.requiredValidator, customValidator.transferValidator]],
       numberPersonasExtra: [0],
       precioCotizadoPaquete:[0],
       nombrePaqueteReservado: ""
@@ -162,8 +162,10 @@ export class ModalComponent {
     }
   }
   onSubmit() {
+    
     if (this.formulario.valid) {
-      alert('Formulario enviado correctamente');
+      
+      alert('Formulario valido');
         this.formulario.get("nombrePaqueteReservado")?.setValue(this.selectedPackage?.namePackage);
         this.formulario.get("precioCotizadoPaquete")?.setValue(this.newCurrentPrice);
 
@@ -176,7 +178,7 @@ export class ModalComponent {
             }, {} as { [key: string]: any });
 
         console.log("Formulario válido ✅", this.formulario.value, this.dataReservaToSend);
-
+/* 
         const appointmentDate = new Date(this.formulario.value.appointmentDate);
         const selectedRange = this.formulario.value.selectedTimeRange;
         const selectedHours = this.timeRanges[selectedRange as keyof typeof this.timeRanges];
@@ -202,7 +204,7 @@ export class ModalComponent {
         console.info(eventDetails);
 
         // Llamada al servicio para crear el evento
-        this.googleEventService.createGoogleEvent(eventDetails);
+        this.googleEventService.createGoogleEvent(eventDetails); */
     } else {
       this.formulario.markAllAsTouched();
       alert('Por favor, completa todos los campos requeridos correctamente.');

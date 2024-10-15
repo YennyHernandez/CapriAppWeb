@@ -97,7 +97,7 @@
         <mat-expansion-panel [expanded]="true">
           <mat-expansion-panel-header>
             <mat-panel-title>
-             Información para reservar
+              Información para reservar
             </mat-panel-title>
           </mat-expansion-panel-header>
           <div class="row">
@@ -105,22 +105,29 @@
               <label>Agenda disponible:</label>
               <iframe
                 src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FBogota&bgcolor=%23ffffff&showPrint=0&showTabs=0&showCalendars=0&showTitle=0&showTz=0&src=Y2FwcmlwaWNuaWNAZ21haWwuY29t&color=%230B8043"
-                style="border:solid 1px #777"
-                width="300"
-                height="300"
-                frameborder="0"
-                scrolling="no"
-              ></iframe>
+                style="border:solid 1px #777" width="300" height="300" frameborder="0" scrolling="no"></iframe>
             </div>
             <div class="col-xs-12 col-md-6 flex-info">
               <div class="form-group">
                 <label for="name">Nombre:</label>
-                <input type="text" id="name" formControlName="name" >
+                <input type="text" id="name" formControlName="name"
+                  [ngClass]="{'error': formulario.get('phone')?.errors && formulario.touched}">
               </div>
-              <div class="form-group">
+              <div *ngIf="formulario.get('name')?.hasError('invalidFullName')" class="error-message">
+                {{ formulario.get('name')?.errors?.['message']}}
+              </div>
+              <div *ngIf="formulario.get('name')?.hasError('invalidRequired')&& formulario.touched"
+                class="error-message">
+                {{ formulario.get('name')?.errors?.['message']}}
+              </div>
+              <app-google-calendar></app-google-calendar>
+              <!--  <div class="form-group">
+                <app-google-calendar formControlName="appointmentDate"></app-google-calendar>
+              </div> -->
+              <!-- <div class="form-group">
                 <label for="date">Fecha:</label>
                 <input type="date" formControlName="appointmentDate" id="date" >
-              </div>
+              </div> -->
               <div class="form-group">
                 <label>Horario:</label>
                 <select formControlName="selectedTimeRange">
@@ -129,23 +136,41 @@
               </div>
               <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" formControlName="email" >
+                <input type="email" id="email" formControlName="email"
+                  [ngClass]="{'error': formulario.get('email')?.errors && formulario.touched}">
+              </div>
+              <div *ngIf="formulario.get('email')?.hasError('invalidEmail')" class="error-message">
+                {{ formulario.get('email')?.errors?.['message']}}
+              </div>
+              <div *ngIf="formulario.get('email')?.hasError('invalidRequired') && formulario.touched"
+                class="error-message">
+                {{ formulario.get('email')?.errors?.['message']}}
               </div>
               <div class="form-group">
                 <label for="phone">Teléfono:</label>
-                <input type="tel" id="phone" formControlName="phone" [ngClass]="{'error': formulario.get('phone')?.errors}"
+                <input type="tel" id="phone" formControlName="phone"
+                  [ngClass]="{'error': formulario.get('phone')?.errors && formulario.touched}"
                   title="Ingresa un número de celular válido con o sin código de país">
               </div>
               <div *ngIf="formulario.get('phone')?.hasError('invalidPhone')" class="error-message">
                 {{ formulario.get('phone')?.errors?.['message']}}
-              </div> 
-              <div *ngIf="formulario.get('phone')?.hasError('invalidRequired')" class="error-message">
+              </div>
+              <div *ngIf="formulario.get('phone')?.hasError('invalidRequired') && formulario.touched"
+                class="error-message">
                 {{ formulario.get('phone')?.errors?.['message']}}
               </div>
               <div class="form-group">
                 <label for="transferNumber">Número de Transferencia Bancaria:</label>
-                <input type="number" id="transferNumber" formControlName="transferNumber"
-                  title="Ingresa un número de transferencia bancaria válido (10 a 20 dígitos)">
+                <input type="string" id="transferNumber" formControlName="transferNumber"
+                  title="Ingresa un número de transferencia bancaria válido (10 a 20 dígitos)"
+                  [ngClass]="{'error': formulario.get('transferNumber')?.errors && formulario.touched}">
+              </div>
+              <div *ngIf="formulario.get('transferNumber')?.hasError('invalidTransfer')" class="error-message">
+                {{ formulario.get('transferNumber')?.errors?.['message']}}
+              </div>
+              <div *ngIf="formulario.get('transferNumber')?.hasError('invalidRequired') && formulario.touched"
+                class="error-message">
+                {{ formulario.get('transferNumber')?.errors?.['message']}}
               </div>
             </div>
           </div>
