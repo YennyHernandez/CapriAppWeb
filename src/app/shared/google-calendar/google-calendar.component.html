@@ -1,13 +1,15 @@
 <div>
-    <mat-form-field appearance="fill">
-      <mat-label>Selecciona una fecha</mat-label>
-      <input matInput [matDatepicker]="picker" [matDatepickerFilter]="disableReservedDates"> 
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-    <span *ngIf="disableReservedDates(selectedDate)">Fecha no disponible</span>
-  </div>
-
- 
-    
+  <mat-form-field appearance="fill">
+    <mat-label>Selecciona una fecha</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [matDatepickerFilter]="disableReservedDates"
+      (dateChange)="onDateChange($event)"
+    >
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
   
+  <span *ngIf="selectedDate && disableReservedDates(selectedDate)">Fecha no disponible</span>
+</div>
