@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header">
+    <h3><Strong>Nombre:</Strong>{{ booking.name }}</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <h4>Datos personales</h4>
+        <p><strong>Email:</strong> {{ booking.email }}</p>
+        <p><strong>Teléfono:</strong> {{ booking.phone }}</p>
+        <p><strong>Paquete Reservado:</strong> {{ booking.nombrePaqueteReservado }}</p>
+        <p><strong>Fecha de Reserva:</strong> {{ booking.appointmentDate?.toDate() | date: 'long' }}</p>
+        <p><strong>Fecha de Fin:</strong> {{ booking.endAppointmentDate?.toDate() | date: 'long' }}</p>
+        <p><strong>Precio Cotizado:</strong> ${{ booking.precioCotizadoPaquete }}</p>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <h4> Datos de reserva</h4>        
+        <p><strong>Descripción:</strong> {{ description }}</p>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <h4>Seguimiento</h4>
+        <p><strong>Número de Transferencia:</strong> {{ booking.transferNumber }}</p>
+        <label><strong>Estado de Reserva:</strong></label>
+        <p class="stateSolicited"> {{ booking.stateBooking }}</p>
+        <div class="flex-gap8">
+          <button>Eliminar ✖️</button>
+           <button>Confirmar✔️</button>
+        </div>
+        
+      </div>
+      <div class="col-xs-12 col-md-4">
+
+      </div>
+    </div>
+
+   
+    
+  </div>
+</div>

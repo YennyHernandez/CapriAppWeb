@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { storage } from '../../../firebase-config';
-import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
+import { collection, addDoc, doc, setDoc, getDocs } from 'firebase/firestore';
 import { db } from '../../../firebase-config';
 import { ref, getDownloadURL, StorageReference } from "firebase/storage";
 import { BehaviorSubject} from 'rxjs';
@@ -98,6 +98,20 @@ export class FirebaseStorageService {
     } catch (e) {
         console.error("Error agregando reserva: ", e);
     }
+}
+
+async getReservas(): Promise<any[]> {
+  try {
+      const querySnapshot = await getDocs(collection(db, 'reservas'));
+      const reservas: any[] = [];
+      querySnapshot.forEach((doc) => {
+          reservas.push({ id: doc.id, ...doc.data() });
+      });
+      return reservas;
+  } catch (e) {
+      console.error("Error obteniendo reservas: ", e);
+      return [];
+  }
 }
 
 

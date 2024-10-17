@@ -1,0 +1,31 @@
+@import '../../../styles.scss';
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .tabs button {
+    flex: 1;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: #f1f1f1;
+    transition: background-color 0.3s;
+  }
+  
+  .tabs button.active {
+    background-color: $color-title;
+    color: white;
+  }
+  
+  .tabs button:hover {
+    background-color: #ddd;
+  }
+
+  .return-home{
+    background-color: $color-primary ;
+    padding: 8px 24px;
+    margin-bottom: 24px;
+  }
+  
+  

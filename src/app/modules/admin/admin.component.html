@@ -1,1 +1,28 @@
-<p>admin works!</p>
+<section>
+    <div class="return-home"> 
+        <button routerLink="/home"> Home 🏠</button>
+    </div>
+    <div class="container">
+        <h1 class="">Gestión de reservas</h1>
+        <div class="row">
+            <div class="col xs-12 md-6">
+                <div class="tabs">
+                    <button (click)="selectTab('solicitadas')" [class.active]="activeTab === 'solicitadas'">Reservas
+                        Solicitadas</button>
+                    <button (click)="selectTab('confirmadas')" [class.active]="activeTab === 'confirmadas'">Reservas
+                        Confirmadas</button>
+                </div>
+                <div *ngIf="activeTab === 'solicitadas'">
+                    <div *ngFor="let reserva of reservasSolitadas">
+                        <app-card-booking [booking]="reserva"></app-card-booking>
+                    </div>
+                </div>
+                <div *ngIf="activeTab === 'confirmadas'">
+                    <div *ngFor="let reserva of reservasConfirmadas">
+                        <app-card-booking [booking]="reserva"></app-card-booking>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

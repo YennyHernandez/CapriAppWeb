@@ -65,6 +65,7 @@ export class ModalComponent {
       precioCotizadoPaquete:[0],
       nombrePaqueteReservado: "",
       requestedDate: new Date(),
+      stateBooking: "Solicitado"
     }); //creación del formulario dinámico
 
     this.colorPackages.forEach(color => {

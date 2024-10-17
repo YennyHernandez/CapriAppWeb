@@ -22,6 +22,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CardBookingComponent } from './card-booking/card-booking.component';
 @NgModule({
   declarations: [
   
@@ -33,6 +34,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     PaquetesComponent,
     ModalComponent,
     GoogleCalendarComponent,
+    CardBookingComponent,
     
    
   ],
@@ -62,6 +64,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatIconModule, 
     CarouselComponent,
     PaquetesComponent,
+    CardBookingComponent,
    
     
   ],
