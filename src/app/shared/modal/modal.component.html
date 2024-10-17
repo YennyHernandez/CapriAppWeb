@@ -102,13 +102,16 @@
           </mat-expansion-panel-header>
           <div class="row">
             <div class="col-xs-12 col-md-12 flex-info">
-              <div class="form-group">
+              <div class="">
                 <app-google-calendar (dateSelected)="onDateSelected($event)"></app-google-calendar>
-              </div>            
+              </div> 
+              <div *ngIf="formulario.get('appointmentDate')?.hasError('required') && formulario.touched"  class="error-message">
+                {{'Debes seleccionar una fecha'}}
+              </div>   
               <div class="form-group">
                 <label for="name">Nombre:</label>
                 <input type="text" id="name" formControlName="name"
-                  [ngClass]="{'error': formulario.get('phone')?.errors && formulario.touched}">
+                  [ngClass]="{'error': formulario.get('name')?.errors && formulario.touched}">
               </div>
               <div *ngIf="formulario.get('name')?.hasError('invalidFullName')" class="error-message">
                 {{ formulario.get('name')?.errors?.['message']}}
@@ -117,9 +120,6 @@
                 class="error-message">
                 {{ formulario.get('name')?.errors?.['message']}}
               </div>
-              <!--  <div class="form-group">
-                <app-google-calendar formControlName="appointmentDate"></app-google-calendar>
-              </div> -->
               <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" id="email" formControlName="email"

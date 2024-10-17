@@ -31,23 +31,17 @@ export class ModalComponent {
   private newPriceSubscription: Subscription | undefined;
   private newPriceSubscriptionPerson: Subscription | undefined;
   isPaqDescanso = false;
-  timeRanges: { [key: string]: { start: number; end: number } } = {
-    '3-6 Pm': { start: 15, end: 18 }, // De 2:00 PM a 6:00 PM
-    '7-9:30 Pm': { start: 19, end: 22 }, // De 7:00 PM a 9:30 PM
-};
-
-
-  
   dataReservaToSend: { [key: string]: any } = {};
   asyncValidator: any | string;
-  constructor(public dialogRef: MatDialogRef<ModalComponent>, private fb: FormBuilder,  private googleEventService: GoogleEventService, private firebaseStorageService : FirebaseStorageService,
+
+
+  constructor(public dialogRef: MatDialogRef<ModalComponent>, private fb: FormBuilder, private firebaseStorageService : FirebaseStorageService,
     @Inject(MAT_DIALOG_DATA) public data: { idPackage: string }
   ) {
     this.idPackage = data.idPackage;
     this.selectedPackage = this.typePackages.find(item => item.id === this.idPackage) || null;
     this.newCurrentPrice = this.selectedPackage!.price;
     this.newPrice.next(this.newCurrentPrice);
-    console.log(this.selectedPackage, "💓")
     if (this.idPackage === "paqueteDescanso") {
       this.isPaqDescanso = true;
       this.titlePanelMenu = "Añadir menú";
@@ -58,17 +52,19 @@ export class ModalComponent {
       this.titlePanelBebida = "Elige tu Bebida";
     }
   }
+
   ngOnInit(): void {
     this.formulario = this.fb.group({
-      appointmentDate: [null],
-      endAppointmentDate: [null], 
+      appointmentDate: [null, Validators.required ],
+      endAppointmentDate: [null, Validators.required], 
       email:['', [customValidator.requiredValidator, customValidator.emailValidator]],
       name:['', [customValidator.requiredValidator, customValidator.fullNameValidator]],
       phone:['', [customValidator.requiredValidator, customValidator.phoneValidator]], 
       transferNumber:['', [customValidator.requiredValidator, customValidator.transferValidator]],
       numberPersonasExtra: [0],
       precioCotizadoPaquete:[0],
-      nombrePaqueteReservado: ""
+      nombrePaqueteReservado: "",
+      requestedDate: new Date(),
     }); //creación del formulario dinámico
 
     this.colorPackages.forEach(color => {
@@ -162,14 +158,13 @@ export class ModalComponent {
       this.newPrice.next(this.newCurrentPrice)
     }
   }
+
   onDateSelected(event: { startTime: Date; endTime: Date }) {
     this.formulario.patchValue({ //actualiza
       appointmentDate: event.startTime, 
       endAppointmentDate: event.endTime 
     });
   
-    console.log('Fecha de inicio seleccionada:', this.formulario.value.appointmentDate);
-    console.log('Fecha de fin seleccionada:', this.formulario.value.endAppointmentDate);
   }
   onSubmit() {
     
@@ -188,34 +183,8 @@ export class ModalComponent {
             }, {} as { [key: string]: any });
 
         console.log("Formulario válido ✅", this.formulario.value, this.dataReservaToSend);
-        this.firebaseStorageService.guardarReserva(this.dataReservaToSend)
-/* 
-        const appointmentDate = new Date(this.formulario.value.appointmentDate);
-        const selectedRange = this.formulario.value.selectedTimeRange;
-        const selectedHours = this.timeRanges[selectedRange as keyof typeof this.timeRanges];
-
-        if (!selectedHours) {
-            console.error("selectedHours is undefined");
-            return;
-        }
-
-        // Ajustar la hora localmente para Bogotá (UTC-5)
-        const startTime = new Date(appointmentDate);
-        startTime.setUTCHours(selectedHours.start + 5, 0, 0); // Ajusta para UTC-5
-
-        const endTime = new Date(appointmentDate);
-        endTime.setUTCHours(selectedHours.end + 5, 0, 0); // Ajusta para UTC-5
-
-        const eventDetails = {
-            email: this.formulario.value.email,
-            startTime: startTime.toISOString(), // Convertir a ISO después de ajustar
-            endTime: endTime.toISOString(), // Convertir a ISO después de ajustar
-        };
-
-        console.info(eventDetails);
-
-        // Llamada al servicio para crear el evento
-        this.googleEventService.createGoogleEvent(eventDetails); */
+        this.firebaseStorageService.guardarReserva(this.dataReservaToSend) 
+        
     } else {
       this.formulario.markAllAsTouched();
       alert('Por favor, completa todos los campos requeridos correctamente.');
