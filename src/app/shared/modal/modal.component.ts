@@ -8,6 +8,7 @@ import { Subject, Subscription } from 'rxjs';
 import { _ViewRepeaterOperation } from '@angular/cdk/collections';
 import { GoogleEventService } from '../../services/google-events.service'
 import {customValidator} from '../modal/validators/custom-validators'
+import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 declare var createGoogleEvent: any;
 @Component({
   selector: 'app-modal',
@@ -39,7 +40,7 @@ export class ModalComponent {
   
   dataReservaToSend: { [key: string]: any } = {};
   asyncValidator: any | string;
-  constructor(public dialogRef: MatDialogRef<ModalComponent>, private fb: FormBuilder,  private googleEventService: GoogleEventService,
+  constructor(public dialogRef: MatDialogRef<ModalComponent>, private fb: FormBuilder,  private googleEventService: GoogleEventService, private firebaseStorageService : FirebaseStorageService,
     @Inject(MAT_DIALOG_DATA) public data: { idPackage: string }
   ) {
     this.idPackage = data.idPackage;
@@ -174,7 +175,7 @@ export class ModalComponent {
     
     if (this.formulario.valid) {
       
-      alert('Formulario valido');
+      alert('Reserva solicitada');
         this.formulario.get("nombrePaqueteReservado")?.setValue(this.selectedPackage?.namePackage);
         this.formulario.get("precioCotizadoPaquete")?.setValue(this.newCurrentPrice);
 
@@ -187,6 +188,7 @@ export class ModalComponent {
             }, {} as { [key: string]: any });
 
         console.log("Formulario válido ✅", this.formulario.value, this.dataReservaToSend);
+        this.firebaseStorageService.guardarReserva(this.dataReservaToSend)
 /* 
         const appointmentDate = new Date(this.formulario.value.appointmentDate);
         const selectedRange = this.formulario.value.selectedTimeRange;

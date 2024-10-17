@@ -1,5 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { storage } from '../../../firebase-config';
+import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
+import { db } from '../../../firebase-config';
 import { ref, getDownloadURL, StorageReference } from "firebase/storage";
 import { BehaviorSubject} from 'rxjs';
 import { MediaLiteralsObject, PackageUrl, Packag} from "../interfaces/media-storage.interface"
@@ -86,7 +88,17 @@ export class FirebaseStorageService {
     this.storagePaquetesSubject.next(data);
     console.log('typePackages actualizados con URLS', data);
   }
+
+  // Metodos CRUD firestorage database
   
+  async guardarReserva(datosFormulario: any): Promise<void> {
+    try {
+        const docRef = await addDoc(collection(db, 'reservas'), datosFormulario);
+        console.log("Reserva guardada con ID: ", docRef.id);
+    } catch (e) {
+        console.error("Error agregando reserva: ", e);
+    }
+}
 
 
 }

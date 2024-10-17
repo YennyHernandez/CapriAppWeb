@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getStorage} from "firebase/storage";
+import { getFirestore } from 'firebase/firestore';
 
 export const firebaseConfig = {
   apiKey: process.env['ANGULAR_API_KEY'],
@@ -17,4 +18,5 @@ export const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const storage = getStorage(app); //instancia de Firebase Storage
+export const db = getFirestore(app); // Exporta Firestore database
 export { storage, analytics };
