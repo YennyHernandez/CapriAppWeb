@@ -170,7 +170,7 @@ export class ModalComponent {
     
     if (this.formulario.valid) {
       
-      alert('Reserva solicitada');
+      alert('Reserva solicitada, en tus reservas puedes seguir el estado de tu reserva');
         this.formulario.get("nombrePaqueteReservado")?.setValue(this.selectedPackage?.namePackage);
         this.formulario.get("precioCotizadoPaquete")?.setValue(this.newCurrentPrice);
 
@@ -184,6 +184,7 @@ export class ModalComponent {
 
         console.log("Formulario válido ✅", this.formulario.value, this.dataReservaToSend);
         this.firebaseStorageService.guardarReserva(this.dataReservaToSend) 
+        this.close();
         
     } else {
       this.formulario.markAllAsTouched();

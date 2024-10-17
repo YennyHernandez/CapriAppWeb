@@ -8,11 +8,22 @@ const routes: Routes = [
    loadChildren: () => import('./auth/login/login.module').then(m => m.LoginModule)
   },   
   {    
+    path:"admin",   
+    loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
+     
+  },
+  {    
+    path:"user",
+    loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule)
+     
+  },
+  {    
     path:"",
     component: NavbarComponent,
     loadChildren: () => import('./modules/navbar/navbar.module').then(m => m.NavbarModule)
      
-  }
+  },
+ 
 ];
 
 @NgModule({

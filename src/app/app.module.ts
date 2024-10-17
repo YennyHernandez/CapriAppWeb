@@ -11,6 +11,8 @@ import { LoginModule } from './auth/login/login.module';
 import { FirebaseStorageService } from './services/firebase-storage.service';
 import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
+import { UserModule } from './modules/user/user.module';
+import { AdminModule } from './modules/admin/admin.module';
 
 registerLocaleData(localeEs);
 
@@ -25,6 +27,8 @@ registerLocaleData(localeEs);
     RouterModule,
     NavbarModule,
     LoginModule,
+    UserModule,
+    AdminModule,
     AngularFireModule.initializeApp(firebaseConfig),
 
   ], 
