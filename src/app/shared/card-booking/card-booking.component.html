@@ -14,26 +14,28 @@
         <p><strong>Precio Cotizado:</strong> ${{ booking.precioCotizadoPaquete }}</p>
       </div>
       <div class="col-xs-12 col-md-4">
-        <h4> Datos de reserva</h4>        
+        <h4> Datos de reserva</h4>
         <p><strong>Descripción:</strong> {{ description }}</p>
       </div>
       <div class="col-xs-12 col-md-4">
         <h4>Seguimiento</h4>
         <p><strong>Número de Transferencia:</strong> {{ booking.transferNumber }}</p>
-        <label><strong>Estado de Reserva:</strong></label>
-        <p class="stateSolicited"> {{ booking.stateBooking }}</p>
+        <div class="flex-gap8">
+          <p><strong>Estado de Reserva:</strong></p>
+          <p class="stateSolicited"> {{ booking.stateBooking }}</p>
+        </div>
         <div class="flex-gap8">
           <button>Eliminar ✖️</button>
-           <button>Confirmar✔️</button>
+          <button (click)="sendConfirm(booking)">Confirmar✔️</button>
         </div>
-        
+
       </div>
       <div class="col-xs-12 col-md-4">
 
       </div>
     </div>
 
-   
-    
+
+
   </div>
 </div>

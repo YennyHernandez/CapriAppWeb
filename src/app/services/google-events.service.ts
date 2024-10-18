@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { rejects } from 'assert';
-
+interface EventDetails {
+  startTime: string;
+  endTime: string;
+  email: string;
+}
 
 declare var gapi: any;
 declare var google: any;
@@ -54,25 +58,35 @@ export class GoogleEventService {
     console.log('gis inicializado');
   }
 
-  createGoogleEvent(eventDetails: { startTime: string; endTime: string; email: string }) {
+  createGoogleEvent(booking: any) {
+    const startTime = booking.appointmentDate?.toDate().toISOString(); // Convertir a formato ISO
+    const endTime = booking.endAppointmentDate?.toDate().toISOString(); // Convertir a formato ISO
+    const email = booking.email; 
+    const eventDetails: EventDetails = {
+      startTime: startTime,
+      endTime: endTime,
+      email: email,
+    };
+  
     this.tokenClient.callback = async (resp: any) => {
       if (resp.error !== undefined) {
         throw resp;
       }
-      await this.scheduleEvent(eventDetails);
+      await this.scheduleEvent(eventDetails, booking);
     };
+  
     if (gapi.client.getToken() === null) {
       this.tokenClient.requestAccessToken({ prompt: 'consent' });
     } else {
       this.tokenClient.requestAccessToken({ prompt: '' });
     }
   }
-
-  private async scheduleEvent(eventDetails: { startTime: string; endTime: string; email: string }) {
+  
+  private async scheduleEvent(eventDetails: EventDetails, booking: any) {
     const event = {
-      summary: 'Google I/O 2015',
-      location: '800 Howard St., San Francisco, CA 94103',
-      description: 'A chance to hear more about Google\'s developer products.',
+      summary: `Reserva de ${booking.nombrePaqueteReservado}`, 
+      location: 'Capripicnic, Vereda el Maco',
+      description: `Reserva para ${booking.name} con ${booking.numberPersonasExtra} personas extra. Detalles: ${JSON.stringify(booking)}`, // Descripción del evento
       start: {
         dateTime: eventDetails.startTime,
         timeZone: 'America/Bogota',
@@ -81,25 +95,28 @@ export class GoogleEventService {
         dateTime: eventDetails.endTime,
         timeZone: 'America/Bogota',
       },
-      attendees: [{ email: eventDetails.email }],
+      attendees: [{ email: eventDetails.email }], // email de quien reserva
       reminders: {
         useDefault: false,
         overrides: [
-          { method: 'email', minutes: 24 * 60 },
-          { method: 'popup', minutes: 10 },
+          { method: 'email', minutes: 24 * 60 }, // Recordatorio por email 1 día antes
+          { method: 'popup', minutes: 30 }, // Recordatorio emergente 30 minutos antes
         ],
       },
     };
-
-    const request = gapi.client.calendar.events.insert({
-      calendarId: this.CALENDAR_ID,
-      resource: event,
-    });
-
-    request.execute((event: any) => {
-      console.info('Event created: ' + event.htmlLink);
-    });
+  
+    // API de Google Calendar para crear el evento
+    try {
+      const response = await gapi.client.calendar.events.insert({
+        calendarId: this.CALENDAR_ID, 
+        resource: event,
+      });
+      console.log('Evento creado: ', response);
+    } catch (error) {
+      console.error('Error creando el evento: ', error);
+    }
   }
+  
 
   async listGoogleEvents(): Promise<any[]> {
     try {

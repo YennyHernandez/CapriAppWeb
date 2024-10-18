@@ -65,6 +65,8 @@ import { CardBookingComponent } from './card-booking/card-booking.component';
     CarouselComponent,
     PaquetesComponent,
     CardBookingComponent,
+    GoogleCalendarComponent,
+    
    
     
   ],

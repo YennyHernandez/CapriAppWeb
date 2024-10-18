@@ -60,8 +60,8 @@ export class GoogleCalendarComponent implements OnInit {
   initializeTimeSlots(day: Date): TimeSlot[] {
     const baseDate = new Date(day); // Usa el día como base para las franjas
     return [
-      { start: new Date(baseDate.setHours(14, 0, 0)), end: new Date(baseDate.setHours(18, 0, 0)) }, // 2:00 PM - 6:00 PM
-      { start: new Date(baseDate.setHours(18, 0, 0)), end: new Date(baseDate.setHours(21, 0, 0)) }  // 6:00 PM - 9:00 PM
+      { start: new Date(baseDate.setHours(15, 0, 0)), end: new Date(baseDate.setHours(18, 0, 0)) }, // 3:00 PM - 6:00 PM
+      { start: new Date(baseDate.setHours(19, 0, 0)), end: new Date(baseDate.setHours(21, 0, 0)) }  // 7:00 PM - 9:00 PM
     ];
   }
 
