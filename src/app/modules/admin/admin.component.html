@@ -17,7 +17,7 @@
                 </div>
                 <div *ngIf="activeTab === 'solicitadas'">
                     <div *ngFor="let reserva of reservasSolitadas">
-                        <app-card-booking [booking]="reserva" (confirm)="reservarToCalendar($event)"></app-card-booking>
+                        <app-card-booking [booking]="reserva" (confirm)="reservarToCalendar($event)" (delete)="deleteBookingDB($event)"></app-card-booking>
                     </div>
                 </div>
                 <div *ngIf="activeTab === 'confirmadas'">

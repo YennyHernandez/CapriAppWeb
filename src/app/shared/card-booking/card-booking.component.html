@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
   <div class="card-header">
     <h3><Strong>Nombre:</Strong>{{ booking.name }}</h3>
   </div>
@@ -25,8 +25,9 @@
           <p class="stateSolicited"> {{ booking.stateBooking }}</p>
         </div>
         <div class="flex-gap8">
-          <button>Eliminar ✖️</button>
-          <button (click)="sendConfirm(booking)">Confirmar✔️</button>
+          <button (click)="sendDelete(booking)">Eliminar ✖️</button>       
+          <button  *ngIf="booking.stateBooking !== textConfirmado" (click)="sendConfirm(booking)">Confirmar✔️</button>
+          <button *ngIf="booking.stateBooking === textConfirmado" (click)="changeToEdit()">Editar ✏️</button>
         </div>
 
       </div>
@@ -37,5 +38,90 @@
 
 
 
+  </div>
+</div> -->
+
+
+<div class="card">
+  <div class="card-header">
+    <h3><strong>Nombre:</strong>
+      <!-- Si isEditing es true, muestra un input, si no, muestra un <p> con el valor -->
+      <ng-container *ngIf="isEditing; else showName">
+        <input [(ngModel)]="booking.name" />
+      </ng-container>
+      <ng-template #showName>
+        <p>{{ booking.name }}</p>
+      </ng-template>
+    </h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <h4>Datos personales</h4>
+        <p><strong>Email:</strong>
+          <ng-container *ngIf="isEditing; else showEmail">
+            <input [(ngModel)]="booking.email" />
+          </ng-container>
+          <ng-template #showEmail>
+            <p>{{ booking.email }}</p>
+          </ng-template>
+        </p>
+        <p><strong>Teléfono:</strong>
+          <ng-container *ngIf="isEditing; else showPhone">
+            <input [(ngModel)]="booking.phone" />
+          </ng-container>
+          <ng-template #showPhone>
+            <p>{{ booking.phone }}</p>
+          </ng-template>
+        </p>
+        <p><strong>Paquete Reservado:</strong>
+          <ng-container *ngIf="isEditing; else showPackage">
+            <input [(ngModel)]="booking.nombrePaqueteReservado" />
+          </ng-container>
+          <ng-template #showPackage>
+            <p>{{ booking.nombrePaqueteReservado }}</p>
+          </ng-template>
+        </p>
+        <p><strong>Precio Cotizado:</strong> $
+          <ng-container *ngIf="isEditing; else showPrice">
+            <input [(ngModel)]="booking.precioCotizadoPaquete" />
+          </ng-container>
+          <ng-template #showPrice>
+            <p>{{ booking.precioCotizadoPaquete }}</p>
+          </ng-template>
+        </p>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <h4>Datos de reserva</h4>
+        <p><strong>Descripción:</strong> {{ description }}</p>
+        <p><strong>Fecha de Reserva:</strong>{{ booking.appointmentDate?.toDate() | date: 'long' }}</p>
+        <p><strong>Fecha de Fin:</strong> {{ booking.endAppointmentDate?.toDate() | date: 'long' }}</p>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <h4>Seguimiento</h4>
+        <p><strong>Número de Transferencia:</strong> {{ booking.transferNumber }}</p>
+        <div class="flex-gap8">
+          <p><strong>Estado de Reserva:</strong></p>
+          <ng-container *ngIf="isEditing; else showStateBooking">
+            <select [(ngModel)]="selectedState">
+              <option>{{textActualizado}}</option>
+              <option>{{textConfirmado}}</option>
+              <option>{{textSolicitado}}</option>
+            </select>
+          </ng-container>
+          <ng-template #showStateBooking>
+            <p class="stateSolicited"> {{ booking.stateBooking }}</p>
+          </ng-template>
+        </div>
+        <div class="flex-gap8">
+          <button  *ngIf=" !isEditing" (click)="sendDelete(booking)">Eliminar 🗑️</button>       
+          <button *ngIf=" !isEditing && booking.stateBooking !== textConfirmado" (click)="sendConfirm(booking)">Confirmar 📆</button>
+          <button *ngIf=" !isEditing && booking.stateBooking === textConfirmado" (click)="changeToEdit()">Editar ✏️</button>
+          <button *ngIf="isEditing" (click)="updateBooking()">Actualizar ✔️</button>
+          <button *ngIf="isEditing" (click)="closeEdit()">Cancelar ✖️</button>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-4"></div>
+    </div>
   </div>
 </div>

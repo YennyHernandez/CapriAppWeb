@@ -158,3 +158,7 @@ export const productosExtra : ProductPrice[]= [{
   producto: "Banderines",
   price: 8.000,
 }]
+
+export const  textSolicitado = "Solicitado";
+export const  textConfirmado = "Confirmado";
+export const  textActualizado = "Actualizado"

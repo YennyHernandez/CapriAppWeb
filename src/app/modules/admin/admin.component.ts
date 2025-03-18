@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Console } from 'console';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 import { GoogleEventService } from 'src/app/services/google-events.service';
+import { textSolicitado, textConfirmado, textActualizado} from 'src/app/constants/paquetes'
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -13,6 +15,9 @@ export class AdminComponent implements OnInit {
   reservasConfirmadas: any[] = []; 
   allReservas: any[] = []; 
   activeTab: string = 'solicitadas';
+  textSolicitado = textSolicitado;
+  textConfirmado = textConfirmado;
+  textActualizado = textActualizado;
 
   constructor(private firebaseStorageService: FirebaseStorageService, private googleEventService : GoogleEventService) {}
 
@@ -29,8 +34,8 @@ export class AdminComponent implements OnInit {
   }
 
   filterReservas() {
-    this.reservasSolitadas = this.allReservas.filter(reserva => reserva.stateBooking === 'Solicitado');
-    this.reservasConfirmadas = this.allReservas.filter(reserva => reserva.stateBooking === 'Confirmado');
+    this.reservasSolitadas = this.allReservas.filter(reserva => reserva.stateBooking === this.textSolicitado);
+    this.reservasConfirmadas = this.allReservas.filter(reserva => reserva.stateBooking === (this.textConfirmado || this.textActualizado));
   }
 
   selectTab(tab: string) {
@@ -39,6 +44,15 @@ export class AdminComponent implements OnInit {
   reservarToCalendar(booking: any){
     alert("¿Estas seguro de reservar en el calendario?")
     this.googleEventService.createGoogleEvent(booking);
+    this.firebaseStorageService.updateStateBooking(booking.id,this.textConfirmado)
+    this.loadReservas();
     
+  }
+  
+
+  deleteBookingDB(booking:any){
+    alert("¿Estas seguro que deseas eliminar la reserva")
+    this.firebaseStorageService.deleteReserva(booking.id);
+    this.loadReservas();
   }
 }

@@ -9,17 +9,19 @@
     padding: 10px;
     cursor: pointer;
     border: none;
-    background-color: #f1f1f1;
+    background-color: $color-claro;
+    color:$color-title;
     transition: background-color 0.3s;
   }
   
   .tabs button.active {
     background-color: $color-title;
-    color: white;
+    color: $color-claro;
   }
   
   .tabs button:hover {
-    background-color: #ddd;
+    background-color: $color-accent;
+    color: $color-title
   }
 
   .return-home{

@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { storage } from '../../../firebase-config';
-import { collection, addDoc, doc, setDoc, getDocs } from 'firebase/firestore';
+import { collection, addDoc, doc, setDoc, getDocs, deleteDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../firebase-config';
 import { ref, getDownloadURL, StorageReference } from "firebase/storage";
 import { BehaviorSubject} from 'rxjs';
@@ -113,8 +113,26 @@ async getReservas(): Promise<any[]> {
       return [];
   }
 }
-
-
+async updateStateBooking(bookingId: string, newState: string): Promise<void> {
+  try {
+    const reservaRef = doc(db, 'reservas', bookingId);
+    await updateDoc(reservaRef, {
+      stateBooking: newState
+    });
+    console.log(`El estado de la reserva con ID ${bookingId} ha sido actualizado a: ${newState}`);
+  } catch (e) {
+    console.error("Error al actualizar el estado de la reserva:", e);
+  }
+}
+async deleteReserva(id: string): Promise<void> {
+  try {
+      const reservaRef = doc(db, 'reservas', id);
+      await deleteDoc(reservaRef);
+      console.log("Reserva eliminada con ID: ", id);
+  } catch (e) {
+      console.error("Error eliminando reserva: ", e);
+  }
+}
 }
 
 
