@@ -29,5 +29,21 @@
     padding: 8px 24px;
     margin-bottom: 24px;
   }
+  .CardSinReservas{
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: $color-oscuro;
+  }
   
-  
+  .widthContainer{
+    width: 100%;
+  }
+  .tabsContainer{
+    padding-top: 30px;
+  }
+  .titleGestionReservas{
+    color: $color-title;
+  }

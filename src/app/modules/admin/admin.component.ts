@@ -47,14 +47,13 @@ export class AdminComponent implements OnInit {
     this.loadReservas();  
   }
   
-  deleteBookingFB(booking:any){
-    alert("¿Estas seguro que deseas eliminar la reserva en base de datos")
-    this.firebaseStorageService.deleteReserva(booking.id);
+  async deleteBookingFB(booking:any){
+    await this.firebaseStorageService.deleteReserva(booking.id);
     this.loadReservas();
   }
-  deleteBookingDB(booking:any){
-    alert("¿Estas seguro que deseas eliminar la reserva en google calendar")
-    this.googleEventService.deleteGoogleEventByDate(booking.appointmentDate);
-    this.deleteBookingFB(booking);
+  async deleteBookingGC(booking:any){
+    alert("¿Estas seguro que deseas eliminar la reserva")
+    await this.googleEventService.deleteGoogleEventByDate(booking.appointmentDate);
+    await this.deleteBookingFB(booking);
   }
 }

@@ -3,9 +3,9 @@
     <mat-sidenav-container >
       <mat-sidenav #sidenav mode="over" opened="false">
         <mat-nav-list class="background-claro">
-          <a mat-list-item (click)="sidenav.close()" routerLink="/home">Home</a>
-          <a mat-list-item (click)="sidenav.close()" routerLink="/booking">Booking</a>
-          <a mat-list-item (click)="sidenav.close()" routerLink="/about">About</a>
+          <a mat-list-item (click)="sidenav.close()" routerLink="/home">Inicio</a>
+          <a mat-list-item (click)="sidenav.close()" routerLink="/booking">Servicios</a>
+          <a mat-list-item (click)="sidenav.close()" routerLink="/about">Sobre nosotros</a>
         </mat-nav-list>
       </mat-sidenav>
       <mat-sidenav-content>
@@ -13,7 +13,7 @@
           <button type="button" class="transparency" mat-icon-button (click)="sidenav.toggle()">
             <mat-icon fontIcon="menu"></mat-icon>
           </button>
-          <button routerLink="/auth/login">Login</button>
+          <button routerLink="/auth/login">Iniciar Sesión</button>
         </mat-toolbar>
         <div>
           <router-outlet></router-outlet>

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { rejects } from 'assert';
+import { Timestamp } from 'firebase/firestore';
 import { BehaviorSubject } from 'rxjs';
 interface EventDetails {
   startTime: string;
@@ -123,7 +124,6 @@ export class GoogleEventService {
 
   async listGoogleEvents(): Promise<any[]> {
     try {
-      console.log("entrando al try")
       const request = gapi.client.calendar.events.list({
         calendarId: this.CALENDAR_ID,
         timeMin: (new Date()).toISOString(),  // Obtiene eventos a partir de hoy
@@ -142,7 +142,6 @@ export class GoogleEventService {
           }
         });
       });
-      console.log('El servicio está listando eventos');
       return response; // Retorna los eventos
 
     } catch (error) {
@@ -151,16 +150,20 @@ export class GoogleEventService {
     }
   }
 
-  async deleteGoogleEventByDate(startDateTime: string): Promise<void> {
+  async deleteGoogleEventByDate(startDateTime: Timestamp): Promise<void> {
     try {
       const eventos = await this.listGoogleEvents();
-  
-      // Buscar el evento que coincide con la fecha y hora exactas
-      const eventoAEliminar = eventos.find(evento => evento.start.dateTime === startDateTime);
-  
+      const eventoAEliminar = eventos.find(evento => {
+        const eventoTime = new Date(evento.start.dateTime).getTime();
+        const timestampTime = new Date(startDateTime.seconds * 1000).getTime();
+      
+        const diferencia = Math.abs(eventoTime - timestampTime);
+        return diferencia < 60000; 
+      }); 
       if (eventoAEliminar) {
         await this.deleteGoogleEvent(eventoAEliminar.id);
         console.log(`Evento con fecha ${startDateTime} eliminado exitosamente.`);
+        this.stateUpdatedSource.next(true); 
       } else {
         console.log(`No se encontró un evento con fecha ${startDateTime}.`);
       }
@@ -168,19 +171,40 @@ export class GoogleEventService {
       console.error('Error al eliminar el evento por fecha:', error);
     }
   }
-  
-  async deleteGoogleEvent(eventId: string): Promise<void> {
-    try {
-      await gapi.client.calendar.events.delete({
-        calendarId: this.CALENDAR_ID,
-        eventId: eventId,
-      });
-      console.log(`Evento con ID ${eventId} eliminado exitosamente.`);
-    } catch (error) {
-      console.error('Error al eliminar el evento:', error);
-      throw error;
+    async deleteGoogleEvent(eventId: string): Promise<void> {
+      try {
+        // Verificar si ya existe un token
+        if (gapi.client.getToken() === null) {
+          this.tokenClient.callback = async (resp: any) => {
+            if (resp.error !== undefined) {
+              console.error('Error al obtener token:', resp.error);
+              return;
+            }
+            await this.executeDelete(eventId);
+          };
+          this.tokenClient.requestAccessToken({ prompt: '' });
+        } else {
+          await this.executeDelete(eventId);
+        }
+      } catch (error) {
+        console.error('Error al eliminar el evento por ID:', error);
+        throw error;
+      }
     }
-  }
+    
+    private async executeDelete(eventId: string): Promise<void> {
+      try {
+        await gapi.client.calendar.events.delete({
+          calendarId: this.CALENDAR_ID,
+          eventId: eventId,
+        });
+        console.log('Evento eliminado exitosamente.');
+      } catch (error) {
+        console.error('Error ejecutando el delete:', error);
+        throw error;
+      }
+    }
+    
   
   
   
