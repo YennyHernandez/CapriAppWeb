@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { rejects } from 'assert';
+import { BehaviorSubject } from 'rxjs';
 interface EventDetails {
   startTime: string;
   endTime: string;
@@ -19,6 +20,8 @@ export class GoogleEventService {
   private CALENDAR_ID = process.env['ANGULAR_CALENDAR_ID']!;
   private CLIENT_ID = process.env['ANGULAR_CLIENT_ID']!;
   private SCOPES = process.env['ANGULAR_SCOPES']!;
+  private stateUpdatedSource = new BehaviorSubject<boolean>(false); // Emite si se actualizó el estado de la reserva
+  stateUpdated$ = this.stateUpdatedSource.asObservable();
 
 
   public loadGapi(): Promise<void> {
@@ -111,7 +114,7 @@ export class GoogleEventService {
         calendarId: this.CALENDAR_ID, 
         resource: event,
       });
-      console.log('Evento creado: ', response);
+      this.stateUpdatedSource.next(true);
     } catch (error) {
       console.error('Error creando el evento: ', error);
     }
@@ -147,4 +150,38 @@ export class GoogleEventService {
       throw error;
     }
   }
+
+  async deleteGoogleEventByDate(startDateTime: string): Promise<void> {
+    try {
+      const eventos = await this.listGoogleEvents();
+  
+      // Buscar el evento que coincide con la fecha y hora exactas
+      const eventoAEliminar = eventos.find(evento => evento.start.dateTime === startDateTime);
+  
+      if (eventoAEliminar) {
+        await this.deleteGoogleEvent(eventoAEliminar.id);
+        console.log(`Evento con fecha ${startDateTime} eliminado exitosamente.`);
+      } else {
+        console.log(`No se encontró un evento con fecha ${startDateTime}.`);
+      }
+    } catch (error) {
+      console.error('Error al eliminar el evento por fecha:', error);
+    }
+  }
+  
+  async deleteGoogleEvent(eventId: string): Promise<void> {
+    try {
+      await gapi.client.calendar.events.delete({
+        calendarId: this.CALENDAR_ID,
+        eventId: eventId,
+      });
+      console.log(`Evento con ID ${eventId} eliminado exitosamente.`);
+    } catch (error) {
+      console.error('Error al eliminar el evento:', error);
+      throw error;
+    }
+  }
+  
+  
+  
 }

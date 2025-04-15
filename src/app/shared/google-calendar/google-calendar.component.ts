@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { GoogleEventService } from '../../services/google-events.service';
+import { Subscription } from 'rxjs';
 
 interface ReservedSlot {
   date: Date; 
@@ -10,6 +11,7 @@ interface ReservedSlot {
 interface TimeSlot {
   start: Date;
   end: Date;
+  isReserved?: boolean;
 }
 
 @Component({
@@ -21,13 +23,25 @@ export class GoogleCalendarComponent implements OnInit {
 
   @Output() dateSelected = new EventEmitter<{ startTime: Date; endTime: Date }>();
   reservedSlots: ReservedSlot[] = [];
-  days: { date: Date, timeSlots: TimeSlot[] }[] = []; // Modificado para incluir timeSlots
+  days: { date: Date, timeSlots: TimeSlot[] }[] = [];
   selectedSlot: { date: Date; start: Date; end: Date } | null = null;
+  private stateUpdatedSubscription!: Subscription;
   constructor(private googleEventService: GoogleEventService) { }
 
   ngOnInit(): void {
     this.loadReservedSlots();
-    this.initializeDays();
+    this.stateUpdatedSubscription = this.googleEventService.stateUpdated$.subscribe((updated) => {
+      if (updated) {
+        console.log("escuchando suscripcion")
+        this.loadReservedSlots(); 
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.stateUpdatedSubscription) {
+      this.stateUpdatedSubscription.unsubscribe();
+    }
   }
 
   // Cargar horarios reservados desde Google Calendar
@@ -39,7 +53,9 @@ export class GoogleCalendarComponent implements OnInit {
           start: new Date(event.start.dateTime),
           end: new Date(event.end.dateTime)
         }));
-        console.log(this.reservedSlots, "horarios reservados");
+        this.days = [];
+        this.initializeDays();
+        console.log(this.reservedSlots, "horarios reservados");      
       });
     });
   }
@@ -48,12 +64,18 @@ export class GoogleCalendarComponent implements OnInit {
   initializeDays() {
     const today = new Date();
     today.setDate(today.getDate() + 1); // Inicia desde el día siguiente
+    const newDays = [];
     for (let i = 0; i < 15; i++) {
       const nextDay = new Date(today);
       nextDay.setDate(today.getDate() + i);
       const timeSlots = this.initializeTimeSlots(nextDay); // Inicializa franjas horarias para cada día
-      this.days.push({ date: nextDay, timeSlots });
+      timeSlots.forEach(slot => {
+        slot.isReserved = this.isSlotReserved(nextDay, slot.start, slot.end); //Marca solo las franjas reservadas
+      });
+      newDays.push({ date: nextDay, timeSlots }); 
     }
+    this.days = newDays;
+    console.log("days totales", this.days)
   }
 
   // Inicializa las franjas de horario para un día específico
@@ -117,3 +139,4 @@ export class GoogleCalendarComponent implements OnInit {
     return `${today.toLocaleString('default', { month: 'long' })} ${today.getFullYear()}`;
   }
 }
+

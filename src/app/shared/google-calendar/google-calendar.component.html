@@ -10,7 +10,7 @@
           <button
              type="button"
              [ngClass]="{ 'selected-slot': isSelectedSlot(day.date, slot.start, slot.end) }"
-            *ngIf="!isSlotReserved(day.date, slot.start, slot.end)" 
+            *ngIf="!slot.isReserved" 
             (click)="reserveSlot(day.date, slot.start, slot.end)"
           >
           {{ slot.start | date: 'h:mm ' }} - {{ slot.end | date: 'h:mm a' }}

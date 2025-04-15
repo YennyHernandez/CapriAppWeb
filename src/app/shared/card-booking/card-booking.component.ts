@@ -29,7 +29,9 @@ export class CardBookingComponent {
   }
 
   sendDelete(booking: any){
+    console.log("emitiendo");
     this.delete.emit(this.booking)
+   
   }
   changeToEdit(){
     this.isEditing = true;

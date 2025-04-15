@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { storage } from '../../../firebase-config';
 import { collection, addDoc, doc, setDoc, getDocs, deleteDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../../firebase-config';
@@ -29,6 +29,7 @@ export class FirebaseStorageService {
   private initialPackageUrls: PackageUrl[] = [];
   storageMediaSubject = new BehaviorSubject<MediaLiteralsObject>(this.initialMediaData);
   storagePaquetesSubject = new BehaviorSubject<PackageUrl[]>(this.initialPackageUrls);
+
 
   constructor() {
     this.initStorageUrls()

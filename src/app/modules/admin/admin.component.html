@@ -17,12 +17,12 @@
                 </div>
                 <div *ngIf="activeTab === 'solicitadas'">
                     <div *ngFor="let reserva of reservasSolitadas">
-                        <app-card-booking [booking]="reserva" (confirm)="reservarToCalendar($event)" (delete)="deleteBookingDB($event)"></app-card-booking>
+                        <app-card-booking [booking]="reserva" (confirm)="reservarToCalendar($event)" (delete)="deleteBookingFB($event)"></app-card-booking>
                     </div>
                 </div>
                 <div *ngIf="activeTab === 'confirmadas'">
                     <div *ngFor="let reserva of reservasConfirmadas">
-                        <app-card-booking [booking]="reserva"></app-card-booking>
+                        <app-card-booking [booking]="reserva" (delete)="deleteBookingDB($event)" ></app-card-booking>
                     </div>
                 </div>
             </div>
