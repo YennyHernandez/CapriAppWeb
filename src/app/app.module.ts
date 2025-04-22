@@ -13,6 +13,7 @@ import localeEs from '@angular/common/locales/es';
 import { registerLocaleData } from '@angular/common';
 import { UserModule } from './modules/user/user.module';
 import { AdminModule } from './modules/admin/admin.module';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 registerLocaleData(localeEs);
 
@@ -30,6 +31,7 @@ registerLocaleData(localeEs);
     UserModule,
     AdminModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
 
   ], 
   providers: [

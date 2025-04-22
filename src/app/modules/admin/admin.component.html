@@ -18,14 +18,15 @@
                 <div *ngIf="activeTab === 'solicitadas'">
                     <ng-container *ngIf="reservasSolitadas.length > 0; else MensajeListaVacia">
                         <div *ngFor="let reserva of reservasSolitadas">                    
-                                <app-card-booking [booking]="reserva" (confirm)="reservarToCalendar($event)" (delete)="deleteBookingFB($event)"/>                                           
+                                <app-card-booking [booking]="reserva" (confirm)="reservarToCalendar($event)" (delete)="deleteBookingFB($event)"                 
+                                />                                           
                         </div>
                     </ng-container>  
                 </div>
                 <div *ngIf="activeTab === 'confirmadas'">
                     <ng-container *ngIf="reservasConfirmadas.length > 0; else MensajeListaVacia">
                         <div *ngFor="let reserva of reservasConfirmadas">                               
-                                <app-card-booking [booking]="reserva" (delete)="deleteBookingGC($event)" />            
+                                <app-card-booking [booking]="reserva" (delete)="deleteBookingGC($event)" (update)="updateBookingFB($event)"/>            
                         </div>
                     </ng-container> 
                 </div>

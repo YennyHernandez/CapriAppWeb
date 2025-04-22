@@ -1,13 +1,14 @@
-<div class="anuncio-page">
-    <H1>Página en Construcción 🏗️🚧👷🏻‍♀️</H1>
-    <p>Estamos trabajando para ofrecerte una plataforma completa para la gestión de reservas. En breve, podrás:</p>
-    <ul>
-      <li>Iniciar sesión para acceder a tus reservas.</li>
-      <li>Consultar el estado de tus reservas.</li>
-      <li>Solicitar cotizaciones personalizadas.</li>
-      <li>Guardar tus reservas favoritas.</li>
-      <li>Descargar los detalles de tus reservas.</li>
-    </ul>
-    <p>¡Gracias por tu paciencia mientras mejoramos nuestro servicio!</p>
+<section class="containerLogin">
+<!-- <img class="logoLogin" src= "{{firebaseStorageService.media.logocapri.url}}" alt="imagen-logo"/> -->
+<input [(ngModel)]="email" name="email" placeholder="Email">
+<input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña">
+<input *ngIf="isRegister" [(ngModel)]="nameUser" name="nameUser" type="name" placeholder="Nombre">
+
+<div class="buttonsLogin"> 
+  <p *ngIf="!isRegister">¿No tienes cuenta?<span (click)="changeSesionRegister(isRegister)">Registráte</span></p>
+  <p *ngIf="isRegister">¿ya tienes cuenta?<span (click)="changeSesionRegister(isRegister)">Inicia Sesion</span></p>
+  <button *ngIf="isRegister" (click)="register()">Registrarse</button>
+  <button *ngIf="!isRegister" (click)="login()">Iniciar sesión</button>
 </div>
+</section>
 

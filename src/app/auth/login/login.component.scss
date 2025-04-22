@@ -1,8 +1,26 @@
-.anuncio-page{
+@import '../../../styles.scss';
+
+.containerLogin{
+    width: 40%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    align-content: center;
-    padding: 100px;
+    position: fixed;
+    top: 200px;
+    left: 200px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 24px;
+    margin: 10px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: $color-oscuro;
+    gap: 30px;
+}
 
+.logoLogin{
+    width: 30%;
+}
+.buttonsLogin{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

@@ -71,9 +71,9 @@
         <div class="flex-gap8">
           <button  *ngIf=" !isEditing" (click)="sendDelete(booking)">Eliminar 🗑️</button>       
           <button *ngIf=" !isEditing && booking.stateBooking !== textConfirmado" (click)="sendConfirm(booking)">Confirmar 📆</button>
-          <button *ngIf=" !isEditing && booking.stateBooking === textConfirmado" (click)="changeToEdit()">Editar ✏️</button>
-          <button *ngIf="isEditing" (click)="updateBooking()">Actualizar ✔️</button>
-          <button *ngIf="isEditing" (click)="closeEdit()">Cancelar ✖️</button>
+          <button *ngIf=" !isEditing && booking.stateBooking === textConfirmado" (click)="changeToEdit(booking)">Editar ✏️</button>
+          <button *ngIf="isEditing" (click)="updateBooking(booking)">Actualizar ✔️</button>
+          <button *ngIf="isEditing" (click)="closeEdit(booking)">Cancelar ✖️</button>
         </div>
       </div>
       <div class="col-xs-12 col-md-4"></div>

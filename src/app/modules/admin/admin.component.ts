@@ -56,4 +56,10 @@ export class AdminComponent implements OnInit {
     await this.googleEventService.deleteGoogleEventByDate(booking.appointmentDate);
     await this.deleteBookingFB(booking);
   }
+
+  async updateBookingFB(booking:any){
+  alert("¿Estas seguro de actualizar tu reserva?")
+  await this.firebaseStorageService.updateBooking(booking.id, booking);
+  this.loadReservas();
+  }
 }

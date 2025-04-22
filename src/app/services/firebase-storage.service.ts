@@ -32,9 +32,8 @@ export class FirebaseStorageService {
 
 
   constructor() {
-    this.initStorageUrls()
-    this.initUrlsDataPaquetes()
-    console.log("se inicilizo 1 vez el servivio")
+    this.initStorageUrls();
+    this.initUrlsDataPaquetes();
   }
 
   private async initStorageUrls() { //get de urls media
@@ -43,7 +42,6 @@ export class FirebaseStorageService {
       const storageRef: StorageReference = ref(storage, ruta);
       try {
         const url = await getDownloadURL(storageRef);
-        console.log('descargando');
         this.media[key as keyof MediaLiteralsObject].url = url;
       } catch (error) {
         console.error('Error al obtener la URL de descarga:', error);
@@ -52,7 +50,6 @@ export class FirebaseStorageService {
 
     });
     await Promise.all(urlData)
-    console.log('Todas las URLS descargadas');
     this.storageMediaSubject.next(this.media)
   }
 
@@ -62,7 +59,6 @@ export class FirebaseStorageService {
         const storageRefcarousel: StorageReference = ref(storage, url);
         try {
           const urlsCarouselDownLoad = await getDownloadURL(storageRefcarousel);
-          console.log("descargando url image carousel");
           return urlsCarouselDownLoad; // Devolver la URL descargada
         } catch (error) {
           console.error('Error urls carousel:', error);
@@ -72,7 +68,6 @@ export class FirebaseStorageService {
       const storageRef: StorageReference = ref(storage, item.urlDescarga);  // Procesar la URL del paquete
       try {
         const url = await getDownloadURL(storageRef);
-        console.log("descargando url image paquetes");
         return {
           ...item,
           url,
@@ -87,7 +82,6 @@ export class FirebaseStorageService {
     // Esperar a que todas las promesas se resuelvan
     const data = (await Promise.all(urlDataPaquetes)).filter(item => item !== null) as PackageUrl[];
     this.storagePaquetesSubject.next(data);
-    console.log('typePackages actualizados con URLS', data);
   }
 
   // Metodos CRUD firestorage database
@@ -95,7 +89,6 @@ export class FirebaseStorageService {
   async guardarReserva(datosFormulario: any): Promise<void> {
     try {
         const docRef = await addDoc(collection(db, 'reservas'), datosFormulario);
-        console.log("Reserva guardada con ID: ", docRef.id);
     } catch (e) {
         console.error("Error agregando reserva: ", e);
     }
@@ -120,16 +113,22 @@ async updateStateBooking(bookingId: string, newState: string): Promise<void> {
     await updateDoc(reservaRef, {
       stateBooking: newState
     });
-    console.log(`El estado de la reserva con ID ${bookingId} ha sido actualizado a: ${newState}`);
   } catch (e) {
     console.error("Error al actualizar el estado de la reserva:", e);
+  }
+}
+async updateBooking(bookingId: string, booking: any): Promise<void> {
+  try {
+    const reservaRef = doc(db, 'reservas', bookingId);
+    await updateDoc(reservaRef, booking); 
+  } catch (e) {
+    console.error("Error al actualizar la reserva:", e);
   }
 }
 async deleteReserva(id: string): Promise<void> {
   try {
       const reservaRef = doc(db, 'reservas', id);
       await deleteDoc(reservaRef);
-      console.log("Reserva eliminada con ID: ", id);
   } catch (e) {
       console.error("Error eliminando reserva: ", e);
   }

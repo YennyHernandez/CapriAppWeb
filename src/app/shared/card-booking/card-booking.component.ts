@@ -10,11 +10,13 @@ export class CardBookingComponent {
   @Input() booking: any;  
   @Output() confirm = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
+  @Output() update = new EventEmitter<any>();
   textSolicitado = textSolicitado;
   textConfirmado = textConfirmado;
   textActualizado = textActualizado;
   isEditing = false;
   selectedState = "";
+  originalBooking: any = null;
   
   ngOnInit() {
     this.selectedState = this.booking?.stateBooking;
@@ -33,14 +35,17 @@ export class CardBookingComponent {
     this.delete.emit(this.booking)
    
   }
-  changeToEdit(){
+  changeToEdit(booking:any){
     this.isEditing = true;
+    this.originalBooking = {...booking}
   }
 
-  updateBooking(){
-
+  updateBooking(booking: any){
+  this.update.emit(this.booking)
   }
-  closeEdit(){
+  closeEdit(booking: any){
+    Object.assign(booking, this.originalBooking);
     this.isEditing = false;
+  
   }
 }

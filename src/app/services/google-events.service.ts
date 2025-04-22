@@ -142,6 +142,7 @@ export class GoogleEventService {
           }
         });
       });
+      console.log('El servicio está listando eventos');
       return response; // Retorna los eventos
 
     } catch (error) {
@@ -160,6 +161,7 @@ export class GoogleEventService {
         const diferencia = Math.abs(eventoTime - timestampTime);
         return diferencia < 60000; 
       }); 
+      console.log("✏️✏️✏️✏️",eventoAEliminar, startDateTime, eventos)
       if (eventoAEliminar) {
         await this.deleteGoogleEvent(eventoAEliminar.id);
         console.log(`Evento con fecha ${startDateTime} eliminado exitosamente.`);
@@ -171,6 +173,18 @@ export class GoogleEventService {
       console.error('Error al eliminar el evento por fecha:', error);
     }
   }
+  
+ /*  async deleteGoogleEvent(eventId: string): Promise<void> {
+    try {
+      await gapi.client.calendar.events.delete({
+        calendarId: this.CALENDAR_ID,
+        eventId: eventId,
+      });
+    } catch (error) {
+      console.error('Error al eliminar el evento por ID:', error);
+      throw error;
+    }
+  } */
     async deleteGoogleEvent(eventId: string): Promise<void> {
       try {
         // Verificar si ya existe un token
