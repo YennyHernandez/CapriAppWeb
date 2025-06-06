@@ -1,14 +1,15 @@
+<img src="../../../assets/publicity.png" alt="Fondo login" class="fondoLogin">
 <section class="containerLogin">
-<!-- <img class="logoLogin" src= "{{firebaseStorageService.media.logocapri.url}}" alt="imagen-logo"/> -->
-<input [(ngModel)]="email" name="email" placeholder="Email">
-<input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña">
-<input *ngIf="isRegister" [(ngModel)]="nameUser" name="nameUser" type="name" placeholder="Nombre">
+<img src="../../../assets/logocapri2.png" alt="logo capri" class="logoCapri">
+<input [(ngModel)]="email" name="email" placeholder="Email" class="credenciales">
+<input [(ngModel)]="password" name="password" type="password" placeholder="Contraseña" class="credenciales">
+<input *ngIf="isRegister" [(ngModel)]="nameUser" name="nameUser" type="name" placeholder="Nombre" class="credenciales">
 
 <div class="buttonsLogin"> 
-  <p *ngIf="!isRegister">¿No tienes cuenta?<span (click)="changeSesionRegister(isRegister)">Registráte</span></p>
-  <p *ngIf="isRegister">¿ya tienes cuenta?<span (click)="changeSesionRegister(isRegister)">Inicia Sesion</span></p>
   <button *ngIf="isRegister" (click)="register()">Registrarse</button>
   <button *ngIf="!isRegister" (click)="login()">Iniciar sesión</button>
+  <p *ngIf="!isRegister">¿No tienes cuenta?<span class="link" (click)="changeSesionRegister(isRegister)">Registráte</span></p>
+  <p *ngIf="isRegister">¿ya tienes cuenta?<span class="link" (click)="changeSesionRegister(isRegister)">Inicia Sesion</span></p> 
 </div>
 </section>
 

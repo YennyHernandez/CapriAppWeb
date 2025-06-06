@@ -36,6 +36,7 @@ export class AuthFirebaseService {
         await this.firestore.collection('usuarios').doc(user.uid).set({ //guarda los datos y el rol
           name: name,
           email: email,
+          password: password,
           uid: user.uid,
           role: 'user'
         });
