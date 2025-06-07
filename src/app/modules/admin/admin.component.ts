@@ -17,6 +17,7 @@ export class AdminComponent implements OnInit {
   textSolicitado = textSolicitado;
   textConfirmado = textConfirmado;
   textActualizado = textActualizado;
+  mostrarAgenda: boolean = false;
  
   constructor(private firebaseStorageService: FirebaseStorageService, private googleEventService : GoogleEventService) {}
  
@@ -61,5 +62,8 @@ export class AdminComponent implements OnInit {
   alert("¿Estas seguro de actualizar tu reserva?")
   await this.firebaseStorageService.updateBooking(booking.id, booking);
   this.loadReservas();
+  }
+  toogleModalAgenda(){
+    this.mostrarAgenda = !this.mostrarAgenda;
   }
 }

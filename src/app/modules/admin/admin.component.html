@@ -1,12 +1,17 @@
 <section>
-    <div class="return-home"> 
+    <div class="containerActions"> 
         <button routerLink="/home"> Home 🏠</button>
+        <button (click)="toogleModalAgenda()"> Agenda 📙</button>
     </div>
-    <div class="container">
+    <div class="container spaceHeader">
         <h1 class="titleGestionReservas">Gestión de reservas 📑</h1>
         <div class="row">
-            <div class="col xs-12 widthContainer">
-                <app-google-calendar></app-google-calendar>
+            <div [ngClass]="{'visible': mostrarAgenda, 'oculto': !mostrarAgenda}"class="col xs-12 widthContainer containerModalAgenda">
+                <div class="modalAgenda">
+                    <button (click)="toogleModalAgenda()" class="icnCerrar">✖️</button>
+                    <app-google-calendar></app-google-calendar>
+                </div>
+                
             </div>
             <div class="col xs-12 md-6 widthContainer tabsContainer">
                 <div class="tabs">
